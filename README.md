@@ -5,12 +5,17 @@ Steps to follow
 1)
 
 chmod +x startp.sh
+
 chmod +x download.sh 
+
 ./startp.sh 
 
 #after comlpetion
+
 #cd anime_folder
+
 ./download.sh
+
 
 Usage:
 
@@ -26,6 +31,7 @@ Usage:
 
 
 eg:
+
 1)
 
 phanirithvij2000@phanihp-notebook-pc:~/Junk$ ./startp.sh 
