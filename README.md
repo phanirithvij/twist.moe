@@ -24,7 +24,8 @@ Usage:
 	or
 	
 	./startp.sh
-.	
+
+
 	enter (url)
 
 2.	./download.sh
@@ -63,5 +64,21 @@ Creating gintama/list.txt
 copying download.sh to gintama
 
 Done
+
+3)
+
+phanirithvij2000@phanihp-notebook-pc:~/Junk/one-piece$ ./download.sh 
+
+Total no of episodes : 819
+
+start at:
+
+3
+
+end at:
+
+55
+
+[HorribleSubs] One Piece - 003 [1080p   0%[                                                                        ]   2.76M   813KB/s    eta 13m 30s
 
 
