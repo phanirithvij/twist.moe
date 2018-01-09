@@ -1,4 +1,9 @@
 #!/bin/bash
+if [ ! -d Anime ]
+then
+	mkdir Anime
+fi
+cd Anime
 IFS=$'\n'
 if [ $# -ne 1 ]
 then
@@ -31,5 +36,5 @@ j=$j$i
 echo $j >> $di/list.txt 
 done
 echo copying download.sh to $di
-cp download.sh $di/
+cp ../download.sh $di/
 echo Done
