@@ -8,13 +8,17 @@ chmod +x startp.sh
 
 chmod +x download.sh 
 
-./startp.sh 
+2)
+
+./startp.sh #URL
+
+#Here URL is from https://twist.moe
 
 #after comlpetion
 
-#cd anime_folder
+#cd Anime/anime_name_folder/
 
-./download.sh
+./download.sh 
 
 
 Usage:
@@ -35,7 +39,7 @@ eg:
 
 1)
 
-phanirithvij2000@phanihp-notebook-pc:~/Junk$ ./startp.sh 
+phani200-pc:~/Home$ ./startp.sh 
 
 Enter link from https://twist.moe/
 
@@ -53,7 +57,7 @@ Done
 
 2)
 
-phanirithvij2000@phanihp-notebook-pc:~/Junk$ ./startp.sh https://twist.moe/a/gintama
+phani200-pc:~/twist.moe-anime-downloader$ ./startp.sh https://twist.moe/a/gintama
 
 Creating gintama
 
@@ -67,18 +71,20 @@ Done
 
 3)
 
-phanirithvij2000@phanihp-notebook-pc:~/Junk/one-piece$ ./download.sh 
+Now go inside Anime/one-piece/
+
+phani200-pc:~/twist.moe-anime-downloader/Anime/one-piece$ ./download.sh 
 
 Total no of episodes : 819
 
-start at:
+start at :
 
-3
+3 (ENTER THIS where you want to BEGIN)
 
-end at:
+end at :
 
-55
+55 (ENTER THIS where you want to END)
 
-[HorribleSubs] One Piece - 003 [1080p   0%[                                                                        ]   2.76M   813KB/s    eta 13m 30s
+[HorribleSubs] One Piece - 003 [1080p   8%[=====>                                       ]   17.6M   2.12MB/s    eta 3m 30s
 
 
