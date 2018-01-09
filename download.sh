@@ -10,7 +10,7 @@ for i in `cat list.txt`
 do
 	if [ $j -ge $s -a $j -le $e ]
 	then
-		wget -q --show-progress $i
+		wget -c -q --show-progress $i
 	fi
 	j=$((j+1))
 done
