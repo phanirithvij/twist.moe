@@ -12,7 +12,7 @@ then
 else
 	link=$1
 fi
-di=`echo $link | cut -d "/" -f5`
+di=$(echo $link | cut -d "/" -f5)
 if [ ! -d $di ]
 then
 echo Creating $di
@@ -38,7 +38,7 @@ else
 	cat .temp.txt | tr "\"" "\n" | grep -E '(\.mp4$)|(\.avi$)|(\.ogg$)|(\.mkv$)' > $di/.t.txt
 fi
 echo Creating $di/list.txt
-for i in `cat $di/.t.txt`
+for i in $(cat $di/.t.txt)
 do
 j='https://twist.moe'
 j=$j$i
