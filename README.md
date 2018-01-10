@@ -21,6 +21,13 @@ chmod +x download.sh
 ./download.sh 
 
 
+
+
+animelist.txt will soon contain all the anime_names that you've used in startp.sh 
+
+
+
+
 Usage:
 
 1.	./startp.sh (url)
