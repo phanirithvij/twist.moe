@@ -16,4 +16,15 @@ echo "$name" >> animelist.txt
 #add it
 echo $name Added to animelist.txt
 fi
-
+IFS=$'\n'
+for i in $( ls -1 Anime )
+do
+if ! grep -q $i "$FILE"
+then
+#echo You like this anime?
+#echo Me too!!
+echo "$i" >> animelist.txt
+#add it
+echo $i Added to animelist.txt
+fi
+done
