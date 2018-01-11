@@ -14,6 +14,6 @@ else
 
 echo "$name" >> animelist.txt
 #add it
-
+echo $name Added to animelist.txt
 fi
 
