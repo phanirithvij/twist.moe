@@ -2,8 +2,8 @@ name=$1
 if [ ! -f animelist.txt ]
 then
 touch animelist.txt
-FILE='animelist.txt'
 fi
+FILE='animelist.txt'
 #doesn't exist in animelist.txt 
 if grep -q $name "$FILE" 
 then
