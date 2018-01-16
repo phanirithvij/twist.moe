@@ -4,6 +4,7 @@ then
 	mkdir Anime
 fi
 cd Anime
+pw=$(pwd)
 IFS=$'\n'
 if [ $# -ne 1 ]
 then
@@ -12,7 +13,13 @@ then
 else
 	link=$1
 fi
+if [[ "$link" == "https://twist.moe/a/*" ]]
+then
 di=$(echo $link | cut -d "/" -f5)
+else
+	di=$link
+	link="https://twist.moe/a/$link"
+fi
 if [ ! -d $di ]
 then
 echo Creating $di
@@ -46,30 +53,30 @@ echo making it $link
 fi
 fi
 echo Fetching info...
-curl -s $link > .temp.txt 
+curl -s $link > $pw/.temp.txt 
 if [ 0 -eq $? ]
 then
 	echo Fetching succesful by CURL
-cat .temp.txt | sed 's/\"/\n/g' | tr -s " " | egrep 'mp4|mkv|avi|ogg' | sed -e 's/^[ \t]*//' | sort -n | uniq | grep -E '(\.mp4$)' > $di/.t.txt
+cat $pw/.temp.txt | sed 's/\"/\n/g' | tr -s " " | egrep 'mp4|mkv|avi|ogg' | sed -e 's/^[ \t]*//' | sort -n | uniq | grep -E '(\.mp4$)' > $pw/$di/.t.txt
 else
 	echo CURL didn\'t respond. Trying WGET
-	wget -q -O .temp.txt $link
-	cat .temp.txt | tr "\"" "\n" | sed -e 's/^[ \t]*//' | grep -E '(\.mp4$)|(\.avi$)|(\.ogg$)|(\.mkv$)' > $di/.t.txt
+	wget -q -O $pw/.temp.txt $link
+	cat $pw/.temp.txt | tr "\"" "\n" | sed -e 's/^[ \t]*//' | grep -E '(\.mp4$)|(\.avi$)|(\.ogg$)|(\.mkv$)' > $pw/$di/.t.txt
 fi
 echo Creating $di/list.txt
-for i in $(cat $di/.t.txt)
+for i in $(cat $pw/$di/.t.txt)
 do
 j='https://twist.moe'
 j=$j$i
-echo $j >> $di/list.txt 
+echo $j >> $pw/$di/list.txt 
 done
 echo copying download.sh to $di
 cp ../download.sh $di/
 echo Done
 echo Check the Anime folder
 echo Enjoy
-rm .temp.txt
-rm $di/.t.txt
+rm $pw/.temp.txt
+rm $pw/$di/.t.txt
 cd ../
 chmod 777 list.sh
 ./list.sh $di
