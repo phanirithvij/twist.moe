@@ -4,9 +4,8 @@ Steps to follow
 
 1)
 
-chmod +x startp.sh
+chmod +x *.sh
 
-chmod +x download.sh 
 
 2)
 
@@ -52,11 +51,11 @@ Enter link from https://twist.moe/
 
 https://twist.moe/a/one-piece/1/
 
-Creating one-piece
+Creating Anime/one-piece
 
 Fetching info...
 
-Creating one-piece/list.txt
+Creating Anime/one-piece/list.txt
 
 copying download.sh to one-piece
 
@@ -66,17 +65,32 @@ Done
 
 phani200-pc:~/twist.moe-anime-downloader$ ./startp.sh https://twist.moe/a/gintama
 
-Creating gintama
+Creating Anime/gintama
 
 Fetching info...
 
-Creating gintama/list.txt
+Creating Anime/gintama/list.txt
 
 copying download.sh to gintama
 
 Done
 
 3)
+
+phani200-pc:~/twist.moe$ ./startp.sh    corpse-party                              #Just the anime name whichiis exactly from the website
+
+Creating Anime/corpse-party
+
+Fetching info...
+
+Creating Anime/corpse-party/list.txt
+
+copying download.sh to corpse-party
+
+Done
+
+
+4)
 
 Now go inside Anime/one-piece/
 
