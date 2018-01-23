@@ -13,12 +13,13 @@ then
 else
 	link=$1
 fi
-if [[ "$link" == "https://twist.moe/a/*" ]]
+if [[ "$link" == "https://twist.moe/a/"* ]]
 then
-di=$(echo $link | cut -d "/" -f5)
+	di=$(echo $link | cut -d "/" -f5)
 else
 	di=$link
 	link="https://twist.moe/a/$link"
+	echo URL: $link
 fi
 if [ ! -d $di ]
 then

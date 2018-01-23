@@ -1,5 +1,7 @@
 IFS=$'\n'
 l=`cat list.txt | wc -l`
+if [ $# -ne 2 ]
+then
 echo Total no of episodes : $l
 echo Enter \'a\' for all episodes
 echo start at:
@@ -9,9 +11,13 @@ then
 echo end at:
 read e
 fi
+else 
+s=$1
+e=$2
+fi
 if [[ "$s" == "a" ||  "$e" == "a" ]]
 then
-for i in $(cat list.txt)
+for i in $(cat list.txt | awk '{print $1}')
 do
 wget -c -q --show-progress $i
 done
