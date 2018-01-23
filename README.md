@@ -77,7 +77,7 @@ Done
 
 3)
 
-phani200-pc:~/twist.moe$ ./startp.sh    corpse-party                              #Just the anime name whichiis exactly from the website
+phani200-pc:~/twist.moe$ ./startp.sh    corpse-party                              #Just the anime name which is exactly from the website
 
 Creating Anime/corpse-party
 
