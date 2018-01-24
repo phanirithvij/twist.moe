@@ -23,6 +23,7 @@ if ! grep -q $i "$FILE"
 then
 #echo You like this anime?
 #echo Me too!!
+#removed these comments
 echo "$i" >> animelist.txt
 #add it
 echo $i Added to animelist.txt
