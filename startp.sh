@@ -1,6 +1,7 @@
 #!/bin/bash
 if [ ! -d Anime ]
 then
+	echo Making Anime directory..
 	mkdir Anime
 fi
 cd Anime
