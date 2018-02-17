@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="css/styles.css"/>
+	<title>
+		Twist mirror website
+	</title>
+</head>
+<body>
+<section class="main">
+<header>
+	
+</header>
+<main align="center" id="mainthing">
+<form>
+<input type="text" name="anisearch" placeholder="SEARCH" autocomplete="off" /><br>
+	
+</form>
+<nav>
+	<ul class="suggestions">
+
+	</ul>
+</nav>
+</main>
+<footer id='myfoot'>
+	<p id="welcome"></p>
+	<button id="death" title="Forget ME" onclick="forgetUser()">💀
+	&times;</button>
+</footer>
+</section>
+<section id="play" draggable="true" style="/*display: none;*/">
+	<div id="player">
+		<video src="" id="myvid" controls=""></video>
+	</div>
+</section>
+</body>
+<script type="text/javascript" src="twistlinks.json"></script>
+<script type="text/javascript">
+//Search functions search.js
+	
+	const sear = document.querySelector('[name=anisearch]');
+	function findMatches(wordToMatch, anime) {
+  		return anime.filter(ani => {
+    // here we need to figure out if the name matches what was searched 
+    	const regex = new RegExp(wordToMatch, 'gi');
+    	if (ani.alt){
+    	return ani.title.match(regex) || ani.name.match(regex) || ani.alt.match(regex)
+    	}else{
+    		return ani.title.match(regex) || ani.name.match(regex)
+    	}
+  		});
+	}
+	function twinkle(e){
+		console.log(e);
+		ele = e;
+	}
+	function displayMatches() {
+  		const matchArray = findMatches(this.value, anime);
+ 	 	const html = matchArray.map(ani => {
+    	const regex = new RegExp(this.value, 'gi');
+    	const aniName = ani.title;
+    	var engName = '';
+    	if(ani.alt != false){
+    	engName = ani.alt;
+    	}
+    	const title = engName || aniName;
+    	return `
+      	<a onmouseover="twinkle(this)" href="https://twist.moe/a/${ani.name}" title="${title}">
+      	<li><span class="name">${aniName}</span><br>
+      </li>
+      	</a>
+      
+    `;
+  }).join('');
+  suggestions.innerHTML = html;
+  console.clear();
+  console.log(html);
+}
+
+
+const suggestions = document.querySelector('.suggestions');
+
+</script>
+<script type="text/javascript">
+	//Video scripts video.js
+	var user = {
+		"lastplayed": "",
+		"name": ""
+	};
+	var username = '';
+	const sect = document.querySelector('#play');
+	const foot = document.querySelector('#myfoot');
+	const video = document.querySelector('#myvid');
+
+	function recentVid(){
+	return JSON.parse(localStorage.getItem('user')).lastplayed || "";
+	}
+	function playVid(){
+		video.play();
+	}
+	function pauseVid(){
+		video.pause();
+	}
+	
+</script>
+<script type="text/javascript">
+	//Set user and lastplayed manager user.js
+	function setUser(){
+	if(localStorage.getItem('user') === null){
+	localStorage.setItem('user',JSON.stringify(user));
+	}
+	
+	if(JSON.parse(localStorage.getItem('user')).name == ""){
+	username = prompt('What should we call you?');
+	user.name = username;
+	localStorage.setItem('user',JSON.stringify(user));
+	}
+		username = JSON.parse(localStorage.getItem('user')).name;
+		video.src = recentVid();
+		const welcome = document.querySelector('#welcome');
+		welcome.innerHTML = 'Welcome ' + username;
+		setTimeout(userNav,4000);
+	}
+	function forgetUser(){
+		confirm('Are you Sure?') && localStorage.clear();
+	}
+	function userNav(){
+		const welcome = document.querySelector('#welcome');
+		welcome.innerHTML = `
+		<nav>
+		<ul id="useritems">
+		</ul>
+		<button id="usernav" onclick="dispNav()">${username}</button>
+		</nav>
+		`;
+	}
+	function dispNav(){
+		const ul = document.querySelector('#useritems');
+		ul.classList.toggle("show");
+	}
+
+</script>
+<script type="text/javascript">
+	//Event listeners events.js
+
+	//search
+	sear.addEventListener('change', displayMatches);
+	sear.addEventListener('keyup', displayMatches);
+	//search
+
+	//user
+	window.addEventListener('load',setUser,false);
+	//user
+
+	//display footer or video
+	sect.addEventListener('click',()=>{
+		foot.style.zIndex = 6;
+		sect.style.zIndex = 7;
+	});
+	foot.addEventListener('click',()=>{
+		foot.style.zIndex = 7;
+		sect.style.zIndex = 6;
+	})
+	//display footer or video
+</script>
+</html>

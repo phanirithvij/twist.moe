@@ -3,14 +3,15 @@ IFS=$'\n'
 	#echo 'anime = [' > twistlinks.json
 m=0
 d=$(cat twlist.txt | wc -l)
-for i in $(cat twlist.txt| cut -d"	" -f1)
+for i in $(cat twlist.txt| awk -F"|" '{print $1}')
 	do
 	c=0
 	echo '{'
 	#echo '{' >> twistlinks.json
 	echo \"name\" : \"$i\" ,
 #	echo \"name\" : \"$i\" , >> twistlinks.json
-	echo \"title\" : \"$(cat twlist.txt | grep -E '^'${i}'\b' | cut -d "	" -f2)\" ,
+	echo \"title\" : \"$(cat twlist.txt | grep -E '^'$i'\|\|' | awk -F"|" '{print $3}')\" ,
+	echo \"alt\" : $(cat twlist.txt | grep -E '^'$i'\|\|' | awk -F"|" '{print $5}') ,
 	#echo \"title\" : \"$(cat twlist.txt | grep -E '^'${i}'\b' | cut -d "	" -f2)\" , >> twistlinks.json
 	t=$(cat Anime/$i/list.txt | wc -l)
 	for j in $(cat Anime/$i/list.txt)
