@@ -1,0 +1,3726 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+<meta name="theme-color" content="#1c1f22">
+<link rel="icon" sizes="16x16" href="/public/fav/fav16.png">
+<link rel="icon" sizes="64x64" href="/public/fav/fav64.png">
+<link rel="manifest" href="/public/manifest.json">
+<link rel='stylesheet' href='//fonts.googleapis.com/css?family=Lato:400,700,300|Source+Code+Pro:500'>
+<link rel="stylesheet" href="/public/css/elements.css">
+<link rel="stylesheet" href="/public/css/main.css">
+<link rel="stylesheet" href="/public/css/chat.css">
+<link rel="import" href="/public/components/vi/import.html">
+<title>Anime Twist</title>
+<meta name="description" content="Ad-free HQ 1080p anime streaming (4Mb/s down required).">
+<link rel="stylesheet" href="/public/css/index.css">
+</head>
+<body>
+<script src="/public/lib/idb.js"></script>
+<script src="/public/js/setup.js"></script>
+<section class="main-column scroll-container">
+<header class="main-header">
+<a class="logo" href="/" aria-label="Home">
+<svg viewBox="0 0 16 10">
+<polygon points="0,10 5,0 10,10 9,10 5,2 1,10"></polygon>
+<polygon points="11,10 6,0 16,0 15.5,1 7.5,1 11.5,9"></polygon>
+</svg>
+</a>
+<div class="toggles">
+<button data-toggletrigger="chat">
+<svg class="icon">
+<circle cx="8" cy="7" r="7"></circle>
+<path d="M 8,14 L 8,16 C 12,16 15,11 15,7 Z"></path>
+</svg>
+</button>
+<button data-toggletrigger="menus">
+<svg class="icon" viewBox="0 0 24 24">
+<path d="M0 0h24v24H0z" fill="none" />
+<path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z" />
+</svg>
+</button>
+</div>
+</header>
+<main>
+<div id="notification-msg" data-id="87348310092" style="order: -2; background: rgba(255, 255, 255, .05); padding: 1rem; max-width: none;">
+<div style="display: flex; align-items: flex-start; max-width:600px; margin: 0 auto">
+<p style="flex: auto;">
+💢 The prices on our server has gone up so we had increase our donation goal to &pound;100<br>
+🙏 Thank you to everyone who has donated before, it really means a lot!<br>
+😘 Please keep the donations coming, we've got some great changes coming up
+</p>
+<button style="flex: none;">×</button>
+</div>
+</div>
+<script>
+  var notificationMsg = document.getElementById('notification-msg');
+  if (!localStorage) notificationMsg.querySelector('button').style.display = 'none';
+  if (localStorage.getItem('notification-read') == notificationMsg.dataset.id) {
+    notificationMsg.style.display = 'none';
+  }
+  notificationMsg.querySelector('button').addEventListener('click', function(event) {
+    localStorage.setItem('notification-read', notificationMsg.dataset.id);
+    notificationMsg.style.display = 'none';
+  });
+</script>
+<input class="search" type="search" placeholder="SEARCH" autofocus>
+<nav class="series">
+<ul class="interactive">
+<li>
+<a href="/a/07-ghost" class="series-title" data-title="07-Ghost">07-Ghost
+</a>
+</li>
+<li>
+<a href="/a/18if" class="series-title" data-title="18if" data-alt="18 If">18if
+</a>
+</li>
+<li>
+<a href="/a/3-gatsu-no-lion" class="series-title" data-title="3-gatsu no Lion" data-alt="March comes in like a lion">3-gatsu no Lion
+</a>
+</li>
+<li>
+<a href="/a/3-gatsu-no-lion-2nd-season" class="series-title" data-title="3-gatsu no Lion 2nd Season" data-alt="March comes in like a lion Season 2">3-gatsu no Lion 2nd Season
+</a>
+<a href="/a/3-gatsu-no-lion-2nd-season/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/91-days" class="series-title" data-title="91 Days">91 Days
+</a>
+</li>
+<li>
+<a href="/a/a-channel" class="series-title" data-title="A-Channel">A-Channel
+</a>
+</li>
+<li>
+<a href="/a/absolute-duo" class="series-title" data-title="Absolute Duo">Absolute Duo
+</a>
+</li>
+<li>
+<a href="/a/accel-world" class="series-title" data-title="Accel World">Accel World
+</a>
+</li>
+<li>
+<a href="/a/acchi-kocchi-tv" class="series-title" data-title="Acchi Kocchi" data-alt="Place to Place">Acchi Kocchi
+</a>
+</li>
+<li>
+<a href="/a/aho-girl" class="series-title" data-title="Aho Girl">Aho Girl
+</a>
+</li>
+<li>
+<a href="/a/ai-mai-mi-4" class="series-title" data-title="Ai Mai Mi" data-alt="Ai-Mai-Mi">Ai Mai Mi
+</a>
+</li>
+<li>
+<a href="/a/ai-mai-mi-mousou-catastrophe-2" class="series-title" data-title="Ai Mai Mi: Mousou Catastrophe">Ai Mai Mi: Mousou Catastrophe
+</a>
+</li>
+<li>
+<a href="/a/ai-mai-mi-surgical-friends" class="series-title" data-title="Ai Mai Mi: Surgical Friends" data-alt="Ai-Mai-Mi: Surgical Friends">Ai Mai Mi: Surgical Friends
+</a>
+</li>
+<li>
+<a href="/a/air" class="series-title" data-title="Air">Air
+</a>
+</li>
+<li>
+<a href="/a/akagami-no-shirayuki-hime" class="series-title" data-title="Akagami no Shirayuki-hime" data-alt="Snow White with the Red Hair">Akagami no Shirayuki-hime
+</a>
+</li>
+<li>
+<a href="/a/akame-ga-kill" class="series-title" data-title="Akame ga Kill!">Akame ga Kill!
+</a>
+</li>
+<li>
+<a href="/a/akatsuki-no-yona" class="series-title" data-title="Akatsuki no Yona" data-alt="Yona of the Dawn">Akatsuki no Yona
+</a>
+</li>
+<li>
+<a href="/a/akiba-s-trip-the-animation" class="series-title" data-title="Akiba&#39;s Trip The Animation">Akiba&#39;s Trip The Animation
+</a>
+</li>
+<li>
+<a href="/a/akuma-no-riddle" class="series-title" data-title="Akuma no Riddle" data-alt="Riddle Story of Devil">Akuma no Riddle
+</a>
+</li>
+<li>
+<a href="/a/aldnoah-zero" class="series-title" data-title="Aldnoah.Zero">Aldnoah.Zero
+</a>
+</li>
+<li>
+<a href="/a/alice-to-zouroku" class="series-title" data-title="Alice to Zouroku" data-alt="Alice &amp; Zoroku">Alice to Zouroku
+</a>
+</li>
+<li>
+<a href="/a/amagami-ss" class="series-title" data-title="Amagami SS">Amagami SS
+</a>
+ </li>
+<li>
+<a href="/a/amagami-ss-plus" class="series-title" data-title="Amagami SS+ Plus">Amagami SS+ Plus
+</a>
+</li>
+<li>
+<a href="/a/amagi-brilliant-park" class="series-title" data-title="Amagi Brilliant Park">Amagi Brilliant Park
+</a>
+</li>
+<li>
+<a href="/a/amatsuki" class="series-title" data-title="Amatsuki">Amatsuki
+</a>
+</li>
+<li>
+<a href="/a/angel-beats" class="series-title" data-title="Angel Beats!">Angel Beats!
+</a>
+</li>
+<li>
+<a href="/a/animegataris" class="series-title" data-title="Animegataris" data-alt="Anime-Gataris">Animegataris
+</a>
+</li>
+<li>
+<a href="/a/ano-hi-mita-hana-no-namae-wo-bokutachi-wa-mada-shiranai" class="series-title" data-title="Ano Hi Mita Hana no Namae wo Bokutachi wa Mada Shiranai." data-alt="AnoHana: The Flower We Saw That Day">Ano Hi Mita Hana no Namae wo Bokutachi wa Mada Shiranai.
+</a>
+</li>
+<li>
+<a href="/a/ano-hi-mita-hana-no-namae-wo-bokutachi-wa-mada-shiranai-movie" class="series-title" data-title="Ano Hi Mita Hana no Namae wo Bokutachi wa Mada Shiranai. Movie" data-alt="anohana: The Flower We Saw That Day The Movie">Ano Hi Mita Hana no Namae wo Bokutachi wa Mada Shiranai. Movie
+</a>
+</li>
+<li>
+<a href="/a/ano-natsu-de-matteru" class="series-title" data-title="Ano Natsu de Matteru" data-alt="Waiting in the Summer">Ano Natsu de Matteru
+</a>
+</li>
+<li>
+<a href="/a/another" class="series-title" data-title="Another">Another
+</a>
+</li>
+<li>
+<a href="/a/ansatsu-kyoushitsu" class="series-title" data-title="Ansatsu Kyoushitsu" data-alt="Assassination Classroom (TV)">Ansatsu Kyoushitsu
+</a>
+</li>
+<li>
+<a href="/a/ansatsu-kyoushitsu-2nd-season" class="series-title" data-title="Ansatsu Kyoushitsu 2nd Season" data-alt="Assassination Classroom 2nd Season">Ansatsu Kyoushitsu 2nd Season
+</a>
+</li>
+<li>
+<a href="/a/anyamal-tantei-kiruminzoo" class="series-title" data-title="Anyamal Tantei Kiruminzoo">Anyamal Tantei Kiruminzoo
+</a>
+</li>
+<li>
+<a href="/a/ao-haru-ride" class="series-title" data-title="Ao Haru Ride" data-alt="Blue Spring Ride">Ao Haru Ride
+</a>
+</li>
+<li>
+<a href="/a/ao-no-6-gou" class="series-title" data-title="Ao no 6-gou" data-alt="Blue Submarine No. 6">Ao no 6-gou
+</a>
+</li>
+<li>
+<a href="/a/ao-no-exorcist" class="series-title" data-title="Ao no Exorcist" data-alt="Blue Exorcist">Ao no Exorcist
+</a>
+</li>
+<li>
+<a href="/a/ao-no-exorcist-kyoto-fujouou-hen" class="series-title" data-title="Ao no Exorcist: Kyoto Fujouou-hen" data-alt="Blue Exorcist: Kyoto Saga">Ao no Exorcist: Kyoto Fujouou-hen
+</a>
+</li>
+<li>
+<a href="/a/ao-oni-the-animation" class="series-title" data-title="Ao Oni The Animation">Ao Oni The Animation
+</a>
+</li>
+<li>
+<a href="/a/aoi-hana" class="series-title" data-title="Aoi Hana" data-alt="Sweet Blue Flowers">Aoi Hana
+</a>
+</li>
+<li>
+<a href="/a/aoki-hagane-no-arpeggio-ars-nova" class="series-title" data-title="Aoki Hagane no Arpeggio: Ars Nova" data-alt="Arpeggio of Blue Steel: Ars Nova">Aoki Hagane no Arpeggio: Ars Nova
+</a>
+</li>
+<li>
+<a href="/a/arakawa-under-the-bridge" class="series-title" data-title="Arakawa Under the Bridge">Arakawa Under the Bridge
+</a>
+</li>
+<li>
+<a href="/a/arakawa-under-the-bridge-x-bridge" class="series-title" data-title="Arakawa Under the Bridge x Bridge">Arakawa Under the Bridge x Bridge
+</a>
+</li>
+<li>
+<a href="/a/arata-kangatari" class="series-title" data-title="Arata Kangatari" data-alt="Arata: The Legend">Arata Kangatari
+</a>
+</li>
+<li>
+<a href="/a/arslan-senki-tv" class="series-title" data-title="Arslan Senki" data-alt="The Heroic Legend of Arslan">Arslan Senki
+</a>
+</li>
+<li>
+<a href="/a/arslan-senki-tv-fuujin-ranbu" class="series-title" data-title="Arslan Senki (TV): Fuujin Ranbu" data-alt="The Heroic Legend of Arslan: Dust Storm Dance">Arslan Senki (TV): Fuujin Ranbu
+</a>
+</li>
+<li>
+<a href="/a/asobi-ni-iku-yo" class="series-title" data-title="Asobi ni Iku yo!" data-alt="Cat Planet Cuties">Asobi ni Iku yo!
+</a>
+</li>
+<li>
+<a href="/a/astarotte-no-omocha" class="series-title" data-title="Astarotte no Omocha!" data-alt="Astarotte&#39;s Toy">Astarotte no Omocha!
+</a>
+</li>
+<li>
+<a href="/a/atom-the-beginning" class="series-title" data-title="Atom: The Beginning">Atom: The Beginning
+</a>
+</li>
+<li>
+<a href="/a/baby-steps" class="series-title" data-title="Baby Steps">Baby Steps
+</a>
+</li>
+<li>
+<a href="/a/baby-steps-2nd-season" class="series-title" data-title="Baby Steps 2nd Season">Baby Steps 2nd Season
+</a>
+</li>
+<li>
+<a href="/a/baccano" class="series-title" data-title="Baccano!">Baccano!
+</a>
+</li>
+<li>
+<a href="/a/baka-to-test-to-shoukanjuu" class="series-title" data-title="Baka to Test to Shoukanjuu" data-alt="Baka and Test - Summon the Beasts">Baka to Test to Shoukanjuu
+</a>
+</li>
+<li>
+<a href="/a/baka-to-test-to-shoukanjuu-ni" class="series-title" data-title="Baka to Test to Shoukanjuu Ni!" data-alt="Baka and Test – Summon the Beasts 2">Baka to Test to Shoukanjuu Ni!
+</a>
+</li>
+<li>
+<a href="/a/bakemonogatari" class="series-title" data-title="Bakemonogatari">Bakemonogatari
+</a>
+</li>
+<li>
+<a href="/a/bakuman" class="series-title" data-title="Bakuman.">Bakuman.
+</a>
+</li>
+<li>
+<a href="/a/bakuman-2nd-season" class="series-title" data-title="Bakuman. 2nd Season" data-alt="Bakuman Season 2">Bakuman. 2nd Season
+</a>
+</li>
+<li>
+<a href="/a/bakuman-3rd-season" class="series-title" data-title="Bakuman. 3rd Season" data-alt="Bakuman.">Bakuman. 3rd Season
+</a>
+</li>
+<li>
+<a href="/a/ballroom-e-youkoso" class="series-title" data-title="Ballroom e Youkoso" data-alt="Welcome to the Ballroom">Ballroom e Youkoso
+</a>
+</li>
+<li>
+<a href="/a/bananya" class="series-title" data-title="Bananya">Bananya
+</a>
+</li>
+<li>
+<a href="/a/barakamon" class="series-title" data-title="Barakamon">Barakamon
+</a>
+</li>
+<li>
+<a href="/a/basilisk-ouka-ninpouchou" class="series-title" data-title="Basilisk: Ouka Ninpouchou">Basilisk: Ouka Ninpouchou
+</a>
+<a href="/a/basilisk-ouka-ninpouchou/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/battle-girl-high-school" class="series-title" data-title="Battle Girl High School">Battle Girl High School
+</a>
+</li>
+<li>
+<a href="/a/beatless" class="series-title" data-title="Beatless">Beatless
+</a>
+<a href="/a/beatless/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/beck" class="series-title" data-title="Beck" data-alt="Beck: Mongolian Chop Squad">Beck
+</a>
+</li>
+<li>
+<a href="/a/beelzebub" class="series-title" data-title="Beelzebub">Beelzebub
+</a>
+</li>
+<li>
+<a href="/a/ben-to" class="series-title" data-title="Ben-To">Ben-To
+</a>
+</li>
+<li>
+<a href="/a/berserk" class="series-title" data-title="Berserk">Berserk
+</a>
+</li>
+<li>
+<a href="/a/berserk-2016" class="series-title" data-title="Berserk (2016)">Berserk (2016)
+</a>
+</li>
+<li>
+<a href="/a/berserk-2017" class="series-title" data-title="Berserk (2017)">Berserk (2017)
+</a>
+</li>
+<li>
+<a href="/a/berserk-golden-arc-movies" class="series-title" data-title="Berserk Golden Arc Movies" data-alt="Berserk: The Golden Age Arc">Berserk Golden Arc Movies
+</a>
+</li>
+<li>
+<a href="/a/black-bullet" class="series-title" data-title="Black Bullet">Black Bullet
+</a>
+</li>
+<li>
+<a href="/a/black-clover-tv" class="series-title" data-title="Black Clover (TV)">Black Clover (TV)
+</a>
+<a href="/a/black-clover-tv/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/black-lagoon" class="series-title" data-title="Black Lagoon">Black Lagoon
+</a>
+</li>
+<li>
+<a href="/a/black-lagoon-the-second-barrage" class="series-title" data-title="Black Lagoon: The Second Barrage">Black Lagoon: The Second Barrage
+</a>
+</li>
+<li>
+<a href="/a/black-rock-shooter" class="series-title" data-title="Black★Rock Shooter">Black★Rock Shooter
+</a>
+</li>
+<li>
+<a href="/a/blade-and-soul" class="series-title" data-title="Blade and Soul">Blade and Soul
+</a>
+</li>
+<li>
+<a href="/a/bleach" class="series-title" data-title="Bleach">Bleach
+</a>
+</li>
+<li>
+<a href="/a/blend-s" class="series-title" data-title="Blend S">Blend S
+</a>
+</li>
+<li>
+<a href="/a/blood-lad" class="series-title" data-title="Blood Lad">Blood Lad
+</a>
+</li>
+<li>
+<a href="/a/blood-c" class="series-title" data-title="Blood-C">Blood-C
+</a>
+</li>
+<li>
+<a href="/a/bloodivores" class="series-title" data-title="Bloodivores">Bloodivores
+</a>
+</li>
+<li>
+<a href="/a/boku-dake-ga-inai-machi-2" class="series-title" data-title="Boku dake ga Inai Machi" data-alt="ERASED">Boku dake ga Inai Machi
+</a>
+</li>
+<li>
+<a href="/a/boku-no-hero-academia" class="series-title" data-title="Boku no Hero Academia" data-alt="My Hero Academia">Boku no Hero Academia
+</a>
+</li>
+<li>
+<a href="/a/boku-no-kanojo-ga-majimesugiru-sho-bitch-na-ken" class="series-title" data-title="Boku no Kanojo ga Majimesugiru Sho-bitch na Ken" data-alt="My Girlfriend Is ShoBitch">Boku no Kanojo ga Majimesugiru Sho-bitch na Ken
+</a>
+</li>
+<li>
+<a href="/a/bokunopico" class="series-title" data-title="Boku no Pico">Boku no Pico
+</a>
+</li>
+<li>
+<a href="/a/boku-wa-tomodachi-ga-sukunai" class="series-title" data-title="Boku wa Tomodachi ga Sukunai" data-alt="Haganai">Boku wa Tomodachi ga Sukunai
+</a>
+</li>
+<li>
+<a href="/a/boku-wa-tomodachi-ga-sukunai-next" class="series-title" data-title="Boku wa Tomodachi ga Sukunai Next" data-alt="Haganai: I don&#39;t have many friends NEXT">Boku wa Tomodachi ga Sukunai Next
+</a>
+</li>
+<li>
+<a href="/a/bokura-ga-ita" class="series-title" data-title="Bokura ga Ita">Bokura ga Ita
+</a>
+</li>
+<li>
+<a href="/a/bokura-wa-minna-kawaisou" class="series-title" data-title="Bokura wa Minna Kawaisou" data-alt="The Kawai Complex Guide to Manors and Hostel Behavior">Bokura wa Minna Kawaisou
+</a>
+</li>
+<li>
+<a href="/a/boruto-naruto-next-generations" class="series-title" data-title="Boruto: Naruto Next Generations">Boruto: Naruto Next Generations
+</a>
+<a href="/a/boruto-naruto-next-generations/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/bounen-no-xamdou" class="series-title" data-title="Bounen no Xamdou" data-alt="Xam&#39;d: Lost Memories">Bounen no Xamdou
+</a>
+</li>
+<li>
+<a href="/a/brave-witches" class="series-title" data-title="Brave Witches">Brave Witches
+</a>
+</li>
+<li>
+<a href="/a/break-blade-tv" class="series-title" data-title="Break Blade (TV)" data-alt="Broken Blade">Break Blade (TV)
+</a>
+</li>
+<li>
+<a href="/a/brotherhood-final-fantasy-xv" class="series-title" data-title="Brotherhood: Final Fantasy XV">Brotherhood: Final Fantasy XV
+</a>
+</li>
+<li>
+<a href="/a/btooom" class="series-title" data-title="Btooom!">Btooom!
+</a>
+</li>
+<li>
+<a href="/a/bubuki-buranki" class="series-title" data-title="Bubuki Buranki" data-alt="BBK/BRNK">Bubuki Buranki
+</a>
+</li>
+<li>
+<a href="/a/buddy-complex" class="series-title" data-title="Buddy Complex">Buddy Complex
+</a>
+</li>
+<li>
+<a href="/a/bungou-stray-dogs" class="series-title" data-title="Bungou Stray Dogs">Bungou Stray Dogs
+</a>
+</li>
+<li>
+<a href="/a/bungou-stray-dogs-2nd-season" class="series-title" data-title="Bungou Stray Dogs 2nd Season">Bungou Stray Dogs 2nd Season
+</a>
+</li>
+<li>
+<a href="/a/busou-shoujo-machiavellianism" class="series-title" data-title="Busou Shoujo Machiavellianism" data-alt="Armed Girl&#39;s Machiavellism">Busou Shoujo Machiavellianism
+</a>
+</li>
+<li>
+<a href="/a/c" class="series-title" data-title="C³" data-alt="C3">C³
+</a>
+</li>
+<li>
+<a href="/a/campione-matsurowanu-kamigami-to-kamigoroshi-no-maou" class="series-title" data-title="Campione!: Matsurowanu Kamigami to Kamigoroshi no Maou" data-alt="Campione!">Campione!: Matsurowanu Kamigami to Kamigoroshi no Maou
+</a>
+</li>
+<li>
+<a href="/a/canaan" class="series-title" data-title="Canaan">Canaan
+</a>
+</li>
+<li>
+<a href="/a/cardcaptor-sakura-clear-card-hen" class="series-title" data-title="Cardcaptor Sakura: Clear Card-hen">Cardcaptor Sakura: Clear Card-hen
+</a>
+<a href="/a/cardcaptor-sakura-clear-card-hen/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/cardfight-vanguard-g" class="series-title" data-title="Cardfight!! Vanguard G">Cardfight!! Vanguard G
+</a>
+</li>
+<li>
+<a href="/a/carnival-phantasm" class="series-title" data-title="Carnival Phantasm">Carnival Phantasm
+</a>
+</li>
+<li>
+<a href="/a/centaur-no-nayami" class="series-title" data-title="Centaur no Nayami" data-alt="A Centaur&#39;s Life">Centaur no Nayami
+</a>
+</li>
+<li>
+<a href="/a/chain-chronicle-haecceitas-no-hikari" class="series-title" data-title="Chain Chronicle: Haecceitas no Hikari" data-alt="Chain Chronicle: The Light of Haecceitas">Chain Chronicle: Haecceitas no Hikari
+</a>
+</li>
+<li>
+<a href="/a/chaeos-child" class="series-title" data-title="ChäoS;Child">ChäoS;Child
+</a>
+</li>
+<li>
+<a href="/a/chaeos-head" class="series-title" data-title="ChäoS;HEAd" data-alt="Chaos;Head">ChäoS;HEAd
+</a>
+</li>
+<li>
+<a href="/a/charlotte" class="series-title" data-title="Charlotte">Charlotte
+</a>
+</li>
+<li>
+<a href="/a/cheer-danshi" class="series-title" data-title="Cheer Danshi!!" data-alt="Cheer Boys!!">Cheer Danshi!!
+</a>
+</li>
+<li>
+<a href="/a/chihayafuru" class="series-title" data-title="Chihayafuru">Chihayafuru
+</a>
+</li>
+<li>
+<a href="/a/chihayafuru-2" class="series-title" data-title="Chihayafuru 2">Chihayafuru 2
+</a>
+</li>
+<li>
+<a href="/a/chikyuu-shoujo-arjuna" class="series-title" data-title="Chikyuu Shoujo Arjuna" data-alt="Arjuna">Chikyuu Shoujo Arjuna
+</a>
+</li>
+<li>
+<a href="/a/chobits" class="series-title" data-title="Chobits">Chobits
+</a>
+</li>
+<li>
+<a href="/a/chrno-crusade" class="series-title" data-title="Chrno Crusade" data-alt="Chrono Crusade">Chrno Crusade
+</a>
+</li>
+<li>
+<a href="/a/chuunibyou-demo-koi-ga-shitai" class="series-title" data-title="Chuunibyou demo Koi ga Shitai!" data-alt="Love, Chunibyo &amp; Other Delusions">Chuunibyou demo Koi ga Shitai!
+</a>
+</li>
+<li>
+<a href="/a/chuunibyou-demo-koi-ga-shitai-ren" class="series-title" data-title="Chuunibyou demo Koi ga Shitai! Ren" data-alt="Love, Chunibyo &amp; Other Delusions - Heart Throb">Chuunibyou demo Koi ga Shitai! Ren
+</a>
+</li>
+<li>
+<a href="/a/cinderella-girls-gekijou" class="series-title" data-title="Cinderella Girls Gekijou" data-alt="The iDOLM@STER Cinderella Girls Theater">Cinderella Girls Gekijou
+</a>
+</li>
+<li>
+<a href="/a/cinderella-girls-gekijou-2nd-season" class="series-title" data-title="Cinderella Girls Gekijou 2nd Season" data-alt="The iDOLM@STER Cinderella Girls Theater 2nd Season">Cinderella Girls Gekijou 2nd Season
+</a>
+</li>
+<li>
+<a href="/a/citrus" class="series-title" data-title="Citrus">Citrus
+</a>
+<a href="/a/citrus/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/clannad" class="series-title" data-title="Clannad">Clannad
+</a>
+</li>
+<li>
+<a href="/a/clannad-after-story" class="series-title" data-title="Clannad: After Story" data-alt="Clannad After Story">Clannad: After Story
+</a>
+</li>
+<li>
+<a href="/a/claymore" class="series-title" data-title="Claymore">Claymore
+</a>
+</li>
+<li>
+<a href="/a/clione-no-akari" class="series-title" data-title="Clione no Akari">Clione no Akari
+</a>
+</li>
+<li>
+<a href="/a/clockwork-planet" class="series-title" data-title="Clockwork Planet">Clockwork Planet
+</a>
+</li>
+<li>
+<a href="/a/code-geass-hangyaku-no-lelouch" class="series-title" data-title="Code Geass: Hangyaku no Lelouch" data-alt="Code Geass: Lelouch of the Rebellion">Code Geass: Hangyaku no Lelouch
+</a>
+</li>
+<li>
+<a href="/a/code-geass-hangyaku-no-lelouch-r2" class="series-title" data-title="Code Geass: Hangyaku no Lelouch R2" data-alt="Code Geass: Lelouch of the Rebellion R2">Code Geass: Hangyaku no Lelouch R2
+</a>
+</li>
+<li>
+<a href="/a/code-realize-sousei-no-himegimi" class="series-title" data-title="Code:Realize: Sousei no Himegimi" data-alt="Code: Realize ~Guardian of Rebirth~">Code:Realize: Sousei no Himegimi
+</a>
+</li>
+<li>
+<a href="/a/coppelion" class="series-title" data-title="Coppelion">Coppelion
+</a>
+</li>
+<li>
+<a href="/a/corpse-party-tortured-souls-bougyakusareta-tamashii-no-jukyou" class="series-title" data-title="Corpse Party: Tortured Souls - Bougyakusareta Tamashii no Jukyou" data-alt="Corpse Party: Tortured Souls">Corpse Party: Tortured Souls - Bougyakusareta Tamashii no Jukyou
+</a>
+</li>
+<li>
+<a href="/a/cowboy-bebop" class="series-title" data-title="Cowboy Bebop">Cowboy Bebop
+</a>
+</li>
+<li>
+<a href="/a/cross-ange-tenshi-to-ryuu-no-rinbu" class="series-title" data-title="Cross Ange: Tenshi to Ryuu no Rinbu" data-alt="CROSS ANGE Rondo of Angel and Dragon">Cross Ange: Tenshi to Ryuu no Rinbu
+</a>
+</li>
+<li>
+<a href="/a/cross-game" class="series-title" data-title="Cross Game">Cross Game
+</a>
+</li>
+<li>
+<a href="/a/cuticle-tantei-inaba" class="series-title" data-title="Cuticle Tantei Inaba" data-alt="Cuticle Detective Inaba">Cuticle Tantei Inaba
+</a>
+</li>
+<li>
+<a href="/a/d-frag" class="series-title" data-title="D-Frag!">D-Frag!
+</a>
+</li>
+<li>
+<a href="/a/d-gray-man" class="series-title" data-title="D.Gray-man">D.Gray-man
+</a>
+</li>
+<li>
+<a href="/a/d-gray-man-hallow" class="series-title" data-title="D.Gray-man Hallow">D.Gray-man Hallow
+</a>
+</li>
+<li>
+<a href="/a/dagashi-kashi" class="series-title" data-title="Dagashi Kashi">Dagashi Kashi
+</a>
+</li>
+<li>
+<a href="/a/dagashi-kashi-2" class="series-title" data-title="Dagashi Kashi 2">Dagashi Kashi 2
+</a>
+<a href="/a/dagashi-kashi-2/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/dakara-boku-wa-h-ga-dekinai" class="series-title" data-title="Dakara Boku wa, H ga Dekinai." data-alt="So, I Can&#39;t Play H!">Dakara Boku wa, H ga Dekinai.
+</a>
+</li>
+<li>
+<a href="/a/dame-x-prince-anime-caravan" class="series-title" data-title="Dame x Prince Anime Caravan" data-alt="ダメプリ ANIME CARAVAN">Dame x Prince Anime Caravan
+</a>
+<a href="/a/dame-x-prince-anime-caravan/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/dance-in-the-vampire-bund" class="series-title" data-title="Dance in the Vampire Bund">Dance in the Vampire Bund
+</a>
+</li>
+<li>
+<a href="/a/danganronpa-3-the-end-of-kibougamine-gakuen-kibou-hen" class="series-title" data-title="Danganronpa 3: The End of Kibougamine Gakuen - Kibou-hen" data-alt="Danganronpa 3: The End of Hope&#39;s Peak High School - Hope Arc">Danganronpa 3: The End of Kibougamine Gakuen - Kibou-hen
+</a>
+</li>
+<li>
+<a href="/a/danganronpa-3-the-end-of-kibougamine-gakuen-mirai-hen" class="series-title" data-title="Danganronpa 3: The End of Kibougamine Gakuen - Mirai-hen" data-alt="Danganronpa 3: The End of Hope&#39;s Peak High School - Future Arc">Danganronpa 3: The End of Kibougamine Gakuen - Mirai-hen
+</a>
+</li>
+<li>
+<a href="/a/danganronpa-3-the-end-of-kibougamine-gakuen-zetsubou-hen" class="series-title" data-title="Danganronpa 3: The End of Kibougamine Gakuen - Zetsubou-hen" data-alt="Danganronpa 3: The End of Hope&#39;s Peak High School - Despair Arc">Danganronpa 3: The End of Kibougamine Gakuen - Zetsubou-hen
+</a>
+</li>
+<li>
+<a href="/a/danganronpa-kibou-no-gakuen-to-zetsubou-no-koukousei-the-animation" class="series-title" data-title="Danganronpa: Kibou no Gakuen to Zetsubou no Koukousei - The Animation" data-alt="Danganronpa: The Animation">Danganronpa: Kibou no Gakuen to Zetsubou no Koukousei - The Animation
+</a>
+</li>
+<li>
+<a href="/a/danshi-koukousei-no-nichijou" class="series-title" data-title="Danshi Koukousei no Nichijou" data-alt="Daily Lives of High School Boys">Danshi Koukousei no Nichijou
+</a>
+</li>
+<li>
+<a href="/a/darker-than-black-kuro-no-keiyakusha" class="series-title" data-title="Darker than Black: Kuro no Keiyakusha" data-alt="Darker than Black">Darker than Black: Kuro no Keiyakusha
+</a>
+</li>
+<li>
+<a href="/a/darker-than-black-ryuusei-no-gemini" class="series-title" data-title="Darker than Black: Ryuusei no Gemini" data-alt="Darker than Black: Gemini of the Meteor">Darker than Black: Ryuusei no Gemini
+</a>
+</li>
+<li>
+<a href="/a/darling-in-the-franxx" class="series-title" data-title="Darling in the FranXX">Darling in the FranXX
+</a>
+<a href="/a/darling-in-the-franxx/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/date-a-live" class="series-title" data-title="Date A Live">Date A Live
+</a>
+</li>
+<li>
+<a href="/a/date-a-live-ii" class="series-title" data-title="Date A Live II">Date A Live II
+</a>
+</li>
+<li>
+<a href="/a/days-tv" class="series-title" data-title="Days (TV)">Days (TV)
+</a>
+</li>
+<li>
+<a href="/a/deadman-wonderland" class="series-title" data-title="Deadman Wonderland">Deadman Wonderland
+</a>
+</li>
+<li>
+<a href="/a/death-march-kara-hajimaru-isekai-kyousoukyoku" class="series-title" data-title="Death March kara Hajimaru Isekai Kyousoukyoku">Death March kara Hajimaru Isekai Kyousoukyoku
+</a>
+<a href="/a/death-march-kara-hajimaru-isekai-kyousoukyoku/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/death-note" class="series-title" data-title="Death Note">Death Note
+</a>
+</li>
+<li>
+<a href="/a/death-note-dubbed" class="series-title" data-title="Death Note Dubbed">Death Note Dubbed
+</a>
+</li>
+<li>
+<a href="/a/death-parade" class="series-title" data-title="Death Parade">Death Parade
+</a>
+</li>
+<li>
+<a href="/a/demi-chan-wa-kataritai" class="series-title" data-title="Demi-chan wa Kataritai" data-alt="Interviews With Monster Girls">Demi-chan wa Kataritai
+</a>
+</li>
+<li>
+<a href="/a/denki-gai-no-honya-san" class="series-title" data-title="Denki-Gai no Honya-san" data-alt="The Bookstore in the Electric Town">Denki-Gai no Honya-san
+</a>
+</li>
+<li>
+<a href="/a/densetsu-no-yuusha-no-densetsu" class="series-title" data-title="Densetsu no Yuusha no Densetsu" data-alt="The Legend of the Legendary Heroes">Densetsu no Yuusha no Densetsu
+</a>
+</li>
+<li>
+<a href="/a/devil-may-cry" class="series-title" data-title="Devil May Cry">Devil May Cry
+</a>
+</li>
+<li>
+<a href="/a/devil-survivor-2-the-animation" class="series-title" data-title="Devil Survivor 2 The Animation">Devil Survivor 2 The Animation
+</a>
+</li>
+<li>
+<a href="/a/devilman" class="series-title" data-title="Devilman">Devilman
+</a>
+</li>
+<li>
+<a href="/a/devilman-crybaby" class="series-title" data-title="Devilman: Crybaby">Devilman: Crybaby
+</a>
+<a href="/a/devilman-crybaby/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/diabolik-lovers" class="series-title" data-title="Diabolik Lovers" data-alt="DiaLovers">Diabolik Lovers
+</a>
+</li>
+<li>
+<a href="/a/dies-irae" class="series-title" data-title="Dies Irae" data-alt="Dies irae">Dies Irae
+</a>
+</li>
+<li>
+<a href="/a/dimension-w" class="series-title" data-title="Dimension W">Dimension W
+</a>
+</li>
+<li>
+<a href="/a/dive" class="series-title" data-title="DIVE!!">DIVE!!
+</a>
+</li>
+<li>
+<a href="/a/divine-gate" class="series-title" data-title="Divine Gate">Divine Gate
+</a>
+</li>
+<li>
+<a href="/a/dog-days" class="series-title" data-title="Dog Days">Dog Days
+</a>
+</li>
+<li>
+<a href="/a/dog-days-4" class="series-title" data-title="Dog Days&#39;">Dog Days&#39;
+</a>
+</li>
+<li>
+<a href="/a/dog-days-5" class="series-title" data-title="Dog Days&#39;&#39;">Dog Days&#39;&#39;
+</a>
+</li>
+<li>
+<a href="/a/donten-ni-warau" class="series-title" data-title="Donten ni Warau" data-alt="Laughing Under the Clouds">Donten ni Warau
+</a>
+</li>
+<li>
+<a href="/a/dragon-ball" class="series-title" data-title="Dragon Ball">Dragon Ball
+</a>
+</li>
+<li>
+<a href="/a/dragon-ball-gt" class="series-title" data-title="Dragon Ball GT">Dragon Ball GT
+</a>
+</li>
+<li>
+<a href="/a/dragon-ball-z" class="series-title" data-title="Dragon Ball Z">Dragon Ball Z
+</a>
+</li>
+<li>
+<a href="/a/dragon-crisis" class="series-title" data-title="Dragon Crisis!">Dragon Crisis!
+</a>
+</li>
+<li>
+<a href="/a/dramatical-murder" class="series-title" data-title="DRAMAtical Murder">DRAMAtical Murder
+</a>
+</li>
+<li>
+<a href="/a/drifters" class="series-title" data-title="Drifters">Drifters
+</a>
+</li>
+<li>
+<a href="/a/dungeon-ni-deai-wo-motomeru-no-wa-machigatteiru-darou-ka-gaiden-sword-oratoria" class="series-title" data-title="Dungeon ni Deai wo Motomeru no wa Machigatteiru Darou ka Gaiden: Sword Oratoria">Dungeon ni Deai wo Motomeru no wa Machigatteiru Darou ka Gaiden: Sword Oratoria
+</a>
+</li>
+<li>
+<a href="/a/dungeon-ni-deai-wo-motomeru-no-wa-machigatteiru-no-darou-ka" class="series-title" data-title="Dungeon ni Deai wo Motomeru no wa Machigatteiru no Darou ka" data-alt="Is It Wrong to Try and Pick up Girls in a Dungeon?">Dungeon ni Deai wo Motomeru no wa Machigatteiru no Darou ka
+</a>
+</li>
+<li>
+<a href="/a/durarara" class="series-title" data-title="Durarara!!">Durarara!!
+</a>
+</li>
+<li>
+<a href="/a/durarara-x2-ketsu" class="series-title" data-title="Durarara!!x2 Ketsu">Durarara!!x2 Ketsu
+</a>
+</li>
+<li>
+<a href="/a/durarara-x2-shou" class="series-title" data-title="Durarara!!x2 Shou" data-alt="Durarara!!x2">Durarara!!x2 Shou
+</a>
+</li>
+<li>
+<a href="/a/durarara-x2-ten" class="series-title" data-title="Durarara!!x2 Ten">Durarara!!x2 Ten
+</a>
+</li>
+<li>
+<a href="/a/element-hunters" class="series-title" data-title="Element Hunters">Element Hunters
+</a>
+</li>
+<li>
+<a href="/a/elfen-lied" class="series-title" data-title="Elfen Lied">Elfen Lied
+</a>
+</li>
+<li>
+<a href="/a/emiya-san-chi-no-kyou-no-gohan" class="series-title" data-title="Emiya-san Chi no Kyou no Gohan" data-alt="Today&#39;s Menu for Emiya Family">Emiya-san Chi no Kyou no Gohan
+</a>
+<a href="/a/emiya-san-chi-no-kyou-no-gohan/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/enmusubi-no-youko-chan" class="series-title" data-title="Enmusubi no Youko-chan" data-alt="Fox Spirit Matchmaker (2017)">Enmusubi no Youko-chan
+</a>
+</li>
+<li>
+<a href="/a/ergo-proxy" class="series-title" data-title="Ergo Proxy">Ergo Proxy
+</a>
+</li>
+<li>
+<a href="/a/eromanga-sensei" class="series-title" data-title="Eromanga-sensei">Eromanga-sensei
+</a>
+</li>
+<li>
+<a href="/a/etotama" class="series-title" data-title="Etotama">Etotama
+</a>
+</li>
+<li>
+<a href="/a/eureka-seven" class="series-title" data-title="Eureka Seven">Eureka Seven
+</a>
+</li>
+<li>
+<a href="/a/eureka-seven-ao" class="series-title" data-title="Eureka Seven AO">Eureka Seven AO
+</a>
+</li>
+<li>
+<a href="/a/eve-no-jikan" class="series-title" data-title="Eve no Jikan" data-alt="Time of Eve">Eve no Jikan
+</a>
+</li>
+<li>
+<a href="/a/fairy-tail" class="series-title" data-title="Fairy Tail">Fairy Tail
+</a>
+</li>
+<li>
+<a href="/a/fairy-tail-2014" class="series-title" data-title="Fairy Tail (2014)">Fairy Tail (2014)
+</a>
+</li>
+<li>
+<a href="/a/fairy-tail-movie-2-dragon-cry" class="series-title" data-title="Fairy Tail Movie 2: Dragon Cry">Fairy Tail Movie 2: Dragon Cry
+</a>
+</li>
+<li>
+<a href="/a/fate-apocrypha" class="series-title" data-title="Fate/Apocrypha">Fate/Apocrypha
+</a>
+</li>
+<li>
+<a href="/a/fate-extra-last-encore" class="series-title" data-title="Fate/Extra Last Encore">Fate/Extra Last Encore
+</a>
+<a href="/a/fate-extra-last-encore/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/fate-kaleid-liner-prisma-illya" class="series-title" data-title="Fate/kaleid liner Prisma☆Illya" data-alt="Fate/Kaleid Liner Prisma Illya">Fate/kaleid liner Prisma☆Illya
+</a>
+</li>
+<li>
+<a href="/a/fate-kaleid-liner-prisma-illya-2wei-herz" class="series-title" data-title="Fate/kaleid liner Prisma☆Illya 2wei Herz!" data-alt="Fate/Kaleid Liner Prisma Illya 2Wei Herz!">Fate/kaleid liner Prisma☆Illya 2wei Herz!
+</a>
+</li>
+<li>
+<a href="/a/fate-kaleid-liner-prisma-illya-2wei" class="series-title" data-title="Fate/kaleid liner Prisma☆Illya 2wei!" data-alt="Fate/Kaleid Liner Prisma Illya 2Wei!">Fate/kaleid liner Prisma☆Illya 2wei!
+</a>
+</li>
+<li>
+<a href="/a/fate-kaleid-liner-prisma-illya-3rei" class="series-title" data-title="Fate/kaleid liner Prisma☆Illya 3rei!!">Fate/kaleid liner Prisma☆Illya 3rei!!
+</a>
+</li>
+<li>
+<a href="/a/fate-stay-night" class="series-title" data-title="Fate/stay night">Fate/stay night
+</a>
+</li>
+<li>
+<a href="/a/fate-stay-night-unlimited-blade-works-tv" class="series-title" data-title="Fate/stay night: Unlimited Blade Works (TV)">Fate/stay night: Unlimited Blade Works (TV)
+</a>
+</li>
+<li>
+<a href="/a/fate-zero" class="series-title" data-title="Fate/Zero">Fate/Zero
+</a>
+</li>
+<li>
+<a href="/a/final-approach" class="series-title" data-title="Final Approach">Final Approach
+</a>
+</li>
+<li>
+<a href="/a/flcl" class="series-title" data-title="FLCL" data-alt="Fooly Cooly">FLCL
+</a>
+</li>
+<li>
+<a href="/a/flip-flappers" class="series-title" data-title="Flip Flappers">Flip Flappers
+</a>
+</li>
+<li>
+<a href="/a/flying-witch" class="series-title" data-title="Flying Witch">Flying Witch
+</a>
+</li>
+<li>
+<a href="/a/fractale" class="series-title" data-title="Fractale">Fractale
+</a>
+</li>
+<li>
+<a href="/a/free" class="series-title" data-title="Free!" data-alt="Free! – Iwatobi Swim Club">Free!
+</a>
+</li>
+<li>
+<a href="/a/freezing" class="series-title" data-title="Freezing">Freezing
+</a>
+</li>
+<li>
+<a href="/a/freezing-vibration" class="series-title" data-title="Freezing Vibration">Freezing Vibration
+</a>
+</li>
+<li>
+<a href="/a/fruits-basket" class="series-title" data-title="Fruits Basket">Fruits Basket
+</a>
+</li>
+<li>
+<a href="/a/fudanshi-koukou-seikatsu" class="series-title" data-title="Fudanshi Koukou Seikatsu">Fudanshi Koukou Seikatsu
+</a>
+</li>
+<li>
+<a href="/a/fukumenkei-noise" class="series-title" data-title="Fukumenkei Noise">Fukumenkei Noise
+</a>
+</li>
+<li>
+<a href="/a/fullmetal-alchemist-brotherhood" class="series-title" data-title="Fullmetal Alchemist: Brotherhood">Fullmetal Alchemist: Brotherhood
+</a>
+</li>
+<li>
+<a href="/a/fuuka" class="series-title" data-title="Fuuka">Fuuka
+</a>
+</li>
+<li>
+<a href="/a/gabriel-dropout" class="series-title" data-title="Gabriel DropOut">Gabriel DropOut
+</a>
+</li>
+<li>
+<a href="/a/gakkou-gurashi" class="series-title" data-title="Gakkou Gurashi!" data-alt="School-Live!">Gakkou Gurashi!
+</a>
+</li>
+<li>
+<a href="/a/gakuen-babysitters" class="series-title" data-title="Gakuen Babysitters" data-alt="School Babysitters">Gakuen Babysitters
+</a>
+<a href="/a/gakuen-babysitters/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/gakuen-handsome" class="series-title" data-title="Gakuen Handsome">Gakuen Handsome
+</a>
+</li>
+<li>
+<a href="/a/gakusen-toshi-asterisk" class="series-title" data-title="Gakusen Toshi Asterisk" data-alt="The Asterisk War: The Academy City on the Water">Gakusen Toshi Asterisk
+</a>
+</li>
+<li>
+<a href="/a/galilei-donna" class="series-title" data-title="Galilei Donna">Galilei Donna
+</a>
+</li>
+<li>
+<a href="/a/gamers" class="series-title" data-title="Gamers!">Gamers!
+</a>
+</li>
+<li>
+<a href="/a/gangsta" class="series-title" data-title="Gangsta.">Gangsta.
+</a>
+</li>
+
+<li>
+<a href="/a/garo-honoo-no-kokuin" class="series-title" data-title="Garo: Honoo no Kokuin" data-alt="Garo: The Carved Seal of Flames">Garo: Honoo no Kokuin
+</a>
+</li>
+<li>
+<a href="/a/garo-vanishing-line" class="series-title" data-title="Garo: Vanishing Line" data-alt="GARO -VANISHING LINE-">Garo: Vanishing Line
+</a>
+<a href="/a/garo-vanishing-line/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/gatchaman-crowds" class="series-title" data-title="Gatchaman Crowds">Gatchaman Crowds
+</a>
+</li>
+<li>
+<a href="/a/gatchaman-crowds-insight" class="series-title" data-title="Gatchaman Crowds Insight">Gatchaman Crowds Insight
+</a>
+</li>
+<li>
+<a href="/a/gate-jieitai-kanochi-nite-kaku-tatakaeri-2" class="series-title" data-title="Gate: Jieitai Kanochi nite, Kaku Tatakaeri" data-alt="GATE">Gate: Jieitai Kanochi nite, Kaku Tatakaeri
+</a>
+</li>
+<li>
+<a href="/a/gate-jieitai-kanochi-nite-kaku-tatakaeri-2nd-season" class="series-title" data-title="Gate: Jieitai Kanochi nite, Kaku Tatakaeri 2nd Season" data-alt="GATE Season 2">Gate: Jieitai Kanochi nite, Kaku Tatakaeri 2nd Season
+</a>
+</li>
+<li>
+<a href="/a/gekkan-shoujo-nozaki-kun" class="series-title" data-title="Gekkan Shoujo Nozaki-kun" data-alt="Monthly Girls&#39; Nozaki-kun">Gekkan Shoujo Nozaki-kun
+</a>
+</li>
+<li>
+<a href="/a/genshiken" class="series-title" data-title="Genshiken">Genshiken
+</a>
+</li>
+<li>
+<a href="/a/getbackers" class="series-title" data-title="GetBackers" data-alt="Getbackers">GetBackers
+</a>
+</li>
+<li>
+<a href="/a/gin-no-guardian" class="series-title" data-title="Gin no Guardian" data-alt="The Silver Guardian">Gin no Guardian
+</a>
+</li>
+<li>
+<a href="/a/gin-no-guardian-2nd-season" class="series-title" data-title="Gin no Guardian 2nd Season" data-alt="The Silver Guardian Season 2">Gin no Guardian 2nd Season
+</a>
+<a href="/a/gin-no-guardian-2nd-season/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/ginga-eiyuu-densetsu" class="series-title" data-title="Ginga Eiyuu Densetsu" data-alt="Legend of the Galactic Heroes">Ginga Eiyuu Densetsu
+</a>
+</li>
+<li>
+<a href="/a/gingitsune" class="series-title" data-title="Gingitsune" data-alt="Gingitsune: Messenger Fox of the Gods">Gingitsune
+</a>
+</li>
+<li>
+<a href="/a/gintama" class="series-title" data-title="Gintama">Gintama
+</a>
+<a href="/a/gintama/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/gintama-jump-festa-2015-special" class="series-title" data-title="Gintama: Jump Festa 2015 Special">Gintama: Jump Festa 2015 Special
+</a>
+</li>
+<li>
+<a href="/a/girls-und-panzer" class="series-title" data-title="Girls und Panzer">Girls und Panzer
+</a>
+</li>
+<li>
+<a href="/a/girls-und-panzer-der-film" class="series-title" data-title="Girls und Panzer der Film">Girls und Panzer der Film
+</a>
+</li>
+<li>
+<a href="/a/gochuumon-wa-usagi-desu-ka" class="series-title" data-title="Gochuumon wa Usagi Desu ka?" data-alt="Is the order a rabbit?">Gochuumon wa Usagi Desu ka?
+</a>
+</li>
+<li>
+<a href="/a/gochuumon-wa-usagi-desu-ka-2" class="series-title" data-title="Gochuumon wa Usagi Desu ka??" data-alt="Is the order a rabbit??">Gochuumon wa Usagi Desu ka??
+</a>
+</li>
+<li>
+<a href="/a/god-eater" class="series-title" data-title="God Eater">God Eater
+</a>
+</li>
+<li>
+<a href="/a/gokicha-cockroach-girl" class="series-title" data-title="Gokicha!! Cockroach Girl!">Gokicha!! Cockroach Girl!
+</a>
+</li>
+<li>
+<a href="/a/gokukoku-no-brynhildr" class="series-title" data-title="Gokukoku no Brynhildr" data-alt="Brynhildr in the Darkness">Gokukoku no Brynhildr
+</a>
+</li>
+<li>
+<a href="/a/golden-boy" class="series-title" data-title="Golden Boy">Golden Boy
+</a>
+</li>
+<li>
+<a href="/a/golden-time" class="series-title" data-title="Golden Time">Golden Time
+</a>
+</li>
+<li>
+<a href="/a/gosick" class="series-title" data-title="Gosick">Gosick
+</a>
+</li>
+<li>
+<a href="/a/granblue-fantasy-the-animation" class="series-title" data-title="Granblue Fantasy The Animation">Granblue Fantasy The Animation
+</a>
+</li>
+<li>
+<a href="/a/grancrest-senki" class="series-title" data-title="Grancrest Senki" data-alt="Record of Grancrest War">Grancrest Senki
+</a>
+<a href="/a/grancrest-senki/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/green-green" class="series-title" data-title="Green Green">Green Green
+</a>
+</li>
+<li>
+<a href="/a/grisaia-no-kajitsu" class="series-title" data-title="Grisaia no Kajitsu" data-alt="The Fruit of Grisaia">Grisaia no Kajitsu
+</a>
+</li>
+<li>
+<a href="/a/grisaia-no-meikyuu" class="series-title" data-title="Grisaia no Meikyuu" data-alt="The Labyrinth of Grisaia">Grisaia no Meikyuu
+</a>
+</li>
+<li>
+<a href="/a/grisaia-no-rakuen" class="series-title" data-title="Grisaia no Rakuen" data-alt="The Eden of Grisaia">Grisaia no Rakuen
+</a>
+</li>
+<li>
+<a href="/a/gugure-kokkuri-san" class="series-title" data-title="Gugure! Kokkuri-san">Gugure! Kokkuri-san
+</a>
+</li>
+<li>
+<a href="/a/guilty-crown" class="series-title" data-title="Guilty Crown">Guilty Crown
+</a>
+</li>
+<li>
+<a href="/a/gundam-g-no-reconguista" class="series-title" data-title="Gundam: G no Reconguista" data-alt="Gundam Reconguista in G">Gundam: G no Reconguista
+</a>
+</li>
+<li>
+<a href="/a/gyakkyou-burai-kaiji-hakairoku-hen" class="series-title" data-title="Gyakkyou Burai Kaiji: Hakairoku Hen" data-alt="Kaiji: Against All Rules">Gyakkyou Burai Kaiji: Hakairoku Hen
+</a>
+</li>
+<li>
+<a href="/a/gyakkyou-burai-kaiji-ultimate-survivor" class="series-title" data-title="Gyakkyou Burai Kaiji: Ultimate Survivor" data-alt="Kaiji: Ultimate Survivor">Gyakkyou Burai Kaiji: Ultimate Survivor
+</a>
+</li>
+<li>
+<a href="/a/hachimitsu-to-clover" class="series-title" data-title="Hachimitsu to Clover" data-alt="Honey and Clover">Hachimitsu to Clover
+</a>
+</li>
+<li>
+<a href="/a/hacka-doll-the-animation" class="series-title" data-title="Hacka Doll The Animation">Hacka Doll The Animation
+</a>
+</li>
+<li>
+<a href="/a/hagure-yuusha-no-estetica" class="series-title" data-title="Hagure Yuusha no Estetica" data-alt="Aesthetica of a Rogue Hero">Hagure Yuusha no Estetica
+</a>
+</li>
+<li>
+<a href="/a/hai-to-gensou-no-grimgar" class="series-title" data-title="Hai to Gensou no Grimgar" data-alt="Grimgar of Fantasy and Ash">Hai to Gensou no Grimgar
+</a>
+</li>
+<li>
+<a href="/a/haikyuu" class="series-title" data-title="Haikyuu!!">Haikyuu!!
+</a>
+</li>
+<li>
+<a href="/a/haikyuu-second-season" class="series-title" data-title="Haikyuu!! Second Season">Haikyuu!! Second Season
+</a>
+</li>
+<li>
+<a href="/a/haikyuu-karasuno-koukou-vs-shiratorizawa-gakuen-koukou" class="series-title" data-title="Haikyuu!!: Karasuno Koukou VS Shiratorizawa Gakuen Koukou">Haikyuu!!: Karasuno Koukou VS Shiratorizawa Gakuen Koukou
+</a>
+</li>
+<li>
+<a href="/a/haiyore-nyaruko-san" class="series-title" data-title="Haiyore! Nyaruko-san" data-alt="Nyaruko: Crawling With Love!">Haiyore! Nyaruko-san
+</a>
+</li>
+<li>
+<a href="/a/haiyore-nyaruko-san-w" class="series-title" data-title="Haiyore! Nyaruko-san W" data-alt="Nyaruko: Crawling With Love! Second Season">Haiyore! Nyaruko-san W
+</a>
+</li>
+<li>
+<a href="/a/hajime-no-ippo" class="series-title" data-title="Hajime no Ippo" data-alt="Fighting Spirit">Hajime no Ippo
+</a>
+</li>
+<li>
+<a href="/a/hajime-no-ippo-champion-road" class="series-title" data-title="Hajime no Ippo: Champion Road" data-alt="Fighting Spirit: Champion Road">Hajime no Ippo: Champion Road
+</a>
+</li>
+<li>
+<a href="/a/hajime-no-ippo-mashiba-vs-kimura" class="series-title" data-title="Hajime no Ippo: Mashiba vs. Kimura">Hajime no Ippo: Mashiba vs. Kimura
+</a>
+</li>
+<li>
+<a href="/a/hajimete-no-gal" class="series-title" data-title="Hajimete no Gal">Hajimete no Gal
+</a>
+</li>
+<li>
+<a href="/a/hakaba-kitarou" class="series-title" data-title="Hakaba Kitarou" data-alt="Graveyard Kitaro">Hakaba Kitarou
+</a>
+</li>
+<li>
+<a href="/a/hakata-tonkotsu-ramens" class="series-title" data-title="Hakata Tonkotsu Ramens">Hakata Tonkotsu Ramens
+</a>
+<a href="/a/hakata-tonkotsu-ramens/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/hakkenden-touhou-hakken-ibun" class="series-title" data-title="Hakkenden: Touhou Hakken Ibun" data-alt="Hakkenden: Eight Dogs of the East">Hakkenden: Touhou Hakken Ibun
+</a>
+</li>
+<li>
+<a href="/a/hakumei-to-mikochi" class="series-title" data-title="Hakumei to Mikochi">Hakumei to Mikochi
+</a>
+<a href="/a/hakumei-to-mikochi/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+
+</li>
+<li>
+<a href="/a/hakyuu-houshin-engi" class="series-title" data-title="Hakyuu Houshin Engi">Hakyuu Houshin Engi
+</a>
+<a href="/a/hakyuu-houshin-engi/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/hamatora-the-animation" class="series-title" data-title="Hamatora The Animation">Hamatora The Animation
+</a>
+</li>
+<li>
+<a href="/a/hanamonogatari" class="series-title" data-title="Hanamonogatari" data-alt="Monogatari Series: Second Season +α">Hanamonogatari
+</a>
+</li>
+<li>
+<a href="/a/hanasaku-iroha" class="series-title" data-title="Hanasaku Iroha" data-alt="Hanasaku Iroha ~Blossoms for Tomorrow~">Hanasaku Iroha
+</a>
+</li>
+<li>
+<a href="/a/hanbun-no-tsuki-ga-noboru-sora" class="series-title" data-title="Hanbun no Tsuki ga Noboru Sora" data-alt="Looking Up At The Half-Moon">Hanbun no Tsuki ga Noboru Sora
+</a>
+</li>
+<li>
+<a href="/a/hand-shakers" class="series-title" data-title="Hand Shakers">Hand Shakers
+</a>
+</li>
+<li>
+<a href="/a/handa-kun" class="series-title" data-title="Handa-kun">Handa-kun
+</a>
+</li>
+<li>
+<a href="/a/hataraku-maou-sama" class="series-title" data-title="Hataraku Maou-sama!" data-alt="The Devil is a Part-Timer!">Hataraku Maou-sama!
+</a>
+</li>
+<li>
+<a href="/a/hataraku-onii-san" class="series-title" data-title="Hataraku Onii-san!" data-alt="Working Buddies!">Hataraku Onii-san!
+</a>
+<a href="/a/hataraku-onii-san/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/hatsukoi-limited" class="series-title" data-title="Hatsukoi Limited">Hatsukoi Limited
+</a>
+</li>
+<li>
+<a href="/a/hello-kiniro-mosaic" class="series-title" data-title="Hello!! Kiniro Mosaic" data-alt="Hello!! KINMOZA!">Hello!! Kiniro Mosaic
+</a>
+</li>
+<li>
+<a href="/a/hellsing" class="series-title" data-title="Hellsing">Hellsing
+</a>
+</li>
+<li>
+<a href="/a/hellsing-ultimate" class="series-title" data-title="Hellsing Ultimate">Hellsing Ultimate
+</a>
+</li>
+<li>
+<a href="/a/hentai-ouji-to-warawanai-neko" class="series-title" data-title="Hentai Ouji to Warawanai Neko." data-alt="The &quot;Hentai&quot; Prince and the Stony Cat">Hentai Ouji to Warawanai Neko.
+</a>
+</li>
+<li>
+<a href="/a/hibike-euphonium" class="series-title" data-title="Hibike! Euphonium" data-alt="Sound! Euphonium">Hibike! Euphonium
+</a>
+</li>
+<li>
+<a href="/a/hibike-euphonium-2" class="series-title" data-title="Hibike! Euphonium 2" data-alt="Sound! Euphonium 2">Hibike! Euphonium 2
+</a>
+</li>
+<li>
+<a href="/a/hidan-no-aria" class="series-title" data-title="Hidan no Aria" data-alt="Aria the Scarlet Ammo">Hidan no Aria
+</a>
+</li>
+<li>
+<a href="/a/higashi-no-eden" class="series-title" data-title="Higashi no Eden" data-alt="Eden of the East">Higashi no Eden
+</a>
+</li>
+<li>
+<a href="/a/high-school-dxd" class="series-title" data-title="High School DxD">High School DxD
+</a>
+</li>
+<li>
+<a href="/a/high-school-dxd-born" class="series-title" data-title="High School DxD BorN">High School DxD BorN
+</a>
+</li>
+<li>
+<a href="/a/high-school-dxd-new" class="series-title" data-title="High School DxD New">High School DxD New
+</a>
+</li>
+<li>
+<a href="/a/high-school-of-the-dead" class="series-title" data-title="High School of the Dead">High School of the Dead
+</a>
+</li>
+<li>
+<a href="/a/higurashi-no-naku-koro-ni" class="series-title" data-title="Higurashi no Naku Koro ni" data-alt="When They Cry">Higurashi no Naku Koro ni
+</a>
+</li>
+<li>
+<a href="/a/higurashi-no-naku-koro-ni-kai" class="series-title" data-title="Higurashi no Naku Koro ni Kai" data-alt="When They Cry 2">Higurashi no Naku Koro ni Kai
+</a>
+</li>
+<li>
+<a href="/a/himouto-umaru-chan" class="series-title" data-title="Himouto! Umaru-chan">Himouto! Umaru-chan
+</a>
+</li>
+<li>
+<a href="/a/himouto-umaru-chan-r" class="series-title" data-title="Himouto! Umaru-chan R">Himouto! Umaru-chan R
+</a>
+</li>
+<li>
+<a href="/a/hinako-note" class="series-title" data-title="Hinako Note">Hinako Note
+</a>
+</li>
+<li>
+<a href="/a/hitorijime-my-hero" class="series-title" data-title="Hitorijime My Hero">Hitorijime My Hero
+</a>
+</li>
+<li>
+<a href="/a/hitsugi-no-chaika" class="series-title" data-title="Hitsugi no Chaika" data-alt="Chaika - The Coffin Princess">Hitsugi no Chaika
+</a>
+</li>
+<li>
+<a href="/a/hitsugi-no-chaika-avenging-battle" class="series-title" data-title="Hitsugi no Chaika: Avenging Battle" data-alt="Chaika -The Coffin Princess- AVENGING BATTLE">Hitsugi no Chaika: Avenging Battle
+</a>
+</li>
+<li>
+<a href="/a/hokuto-no-ken" class="series-title" data-title="Hokuto no Ken" data-alt="Fist of the North Star">Hokuto no Ken
+</a>
+</li>
+<li>
+<a href="/a/hoozuki-no-reitetsu" class="series-title" data-title="Hoozuki no Reitetsu" data-alt="Hozuki&#39;s Coolheadedness">Hoozuki no Reitetsu
+</a>
+</li>
+<li>
+<a href="/a/hotarubi-no-mori-e" class="series-title" data-title="Hotarubi no Mori e" data-alt="To the Forest of the Firefly Lights">Hotarubi no Mori e
+</a>
+</li>
+<li>
+<a href="/a/houkago-no-pleiades" class="series-title" data-title="Houkago no Pleiades" data-alt="Wish Upon the Pleiades">Houkago no Pleiades
+</a>
+</li>
+<li>
+<a href="/a/houseki-no-kuni-tv" class="series-title" data-title="Houseki no Kuni (TV)" data-alt="Land of the Lustrous (TV)">Houseki no Kuni (TV)
+</a>
+</li>
+<li>
+<a href="/a/hundred" class="series-title" data-title="Hundred">Hundred
+</a>
+</li>
+<li>
+<a href="/a/hunter-x-hunter-2011" class="series-title" data-title="Hunter x Hunter (2011)">Hunter x Hunter (2011)
+</a>
+</li>
+<li>
+<a href="/a/hyouka" class="series-title" data-title="Hyouka">Hyouka
+</a>
+</li>
+<li>
+<a href="/a/ichiban-ushiro-no-daimaou" class="series-title" data-title="Ichiban Ushiro no Daimaou" data-alt="Demon King Daimao">Ichiban Ushiro no Daimaou
+</a>
+</li>
+<li>
+<a href="/a/idolish7" class="series-title" data-title="IDOLiSH7">IDOLiSH7
+</a>
+<a href="/a/idolish7/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/ima-soko-ni-iru-boku" class="series-title" data-title="Ima, Soko ni Iru Boku" data-alt="Now and Then, Here and There">Ima, Soko ni Iru Boku
+</a>
+</li>
+<li>
+<a href="/a/imouto-sae-ireba-ii" class="series-title" data-title="Imouto sae Ireba Ii." data-alt="A Sister`s All You Need">Imouto sae Ireba Ii.
+</a>
+</li>
+<li>
+<a href="/a/inferno-cop" class="series-title" data-title="Inferno Cop">Inferno Cop
+</a>
+</li>
+<li>
+<a href="/a/initial-d-fifth-stage" class="series-title" data-title="Initial D Fifth Stage">Initial D Fifth Stage
+</a>
+</li>
+<li>
+<a href="/a/initial-d-first-stage" class="series-title" data-title="Initial D First Stage">Initial D First Stage
+</a>
+</li>
+<li>
+<a href="/a/initial-d-fourth-stage" class="series-title" data-title="Initial D Fourth Stage">Initial D Fourth Stage
+</a>
+</li>
+<li>
+<a href="/a/initial-d-second-stage" class="series-title" data-title="Initial D Second Stage">Initial D Second Stage
+</a>
+</li>
+<li>
+<a href="/a/initial-d-third-stage" class="series-title" data-title="Initial D Third Stage">Initial D Third Stage
+</a>
+</li>
+<li>
+<a href="/a/inou-battle-wa-nichijou-kei-no-naka-de" class="series-title" data-title="Inou Battle wa Nichijou-kei no Naka de" data-alt="When Supernatural Battles Became Commonplace">Inou Battle wa Nichijou-kei no Naka de
+</a>
+</li>
+<li>
+<a href="/a/inu-to-hasami-wa-tsukaiyou" class="series-title" data-title="Inu to Hasami wa Tsukaiyou" data-alt="Dog &amp; Scissors">Inu to Hasami wa Tsukaiyou
+</a>
+</li>
+<li>
+<a href="/a/inukami" class="series-title" data-title="Inukami!">Inukami!
+</a>
+</li>
+<li>
+<a href="/a/inuyasha-movies" class="series-title" data-title="InuYasha: Movies" data-alt="InuYasha movies">InuYasha: Movies
+</a>
+</li>
+<li>
+<a href="/a/inuyashiki" class="series-title" data-title="Inuyashiki" data-alt="Inuyashiki Last Hero">Inuyashiki
+</a>
+</li>
+<li>
+<a href="/a/iriya-no-sora-ufo-no-natsu" class="series-title" data-title="Iriya no Sora, UFO no Natsu">Iriya no Sora, UFO no Natsu
+</a>
+</li>
+<li>
+<a href="/a/is-infinite-stratos" class="series-title" data-title="IS: Infinite Stratos">IS: Infinite Stratos
+</a>
+</li>
+<li>
+<a href="/a/is-infinite-stratos-2" class="series-title" data-title="IS: Infinite Stratos 2">IS: Infinite Stratos 2
+</a>
+</li>
+<li>
+<a href="/a/isekai-no-seikishi-monogatari" class="series-title" data-title="Isekai no Seikishi Monogatari" data-alt="Tenchi Muyo! War on Geminar">Isekai no Seikishi Monogatari
+</a>
+</li>
+<li>
+<a href="/a/isekai-shokudou" class="series-title" data-title="Isekai Shokudou" data-alt="Restaurant to Another World">Isekai Shokudou
+</a>
+</li>
+<li>
+<a href="/a/isekai-wa-smartphone-to-tomo-ni" class="series-title" data-title="Isekai wa Smartphone to Tomo ni.">Isekai wa Smartphone to Tomo ni.
+</a>
+</li>
+<li>
+<a href="/a/isshuukan-friends" class="series-title" data-title="Isshuukan Friends." data-alt="One Week Friends">Isshuukan Friends.
+</a>
+</li>
+<li>
+<a href="/a/itazura-na-kiss" class="series-title" data-title="Itazura na Kiss">Itazura na Kiss
+</a>
+</li>
+<li>
+<a href="/a/itou-junji-collection" class="series-title" data-title="Itou Junji: Collection" data-alt="Junji Ito &quot;Collection&quot;">Itou Junji: Collection
+</a>
+<a href="/a/itou-junji-collection/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/itsudatte-bokura-no-koi-wa-10-centi-datta" class="series-title" data-title="Itsudatte Bokura no Koi wa 10 Centi Datta." data-alt="Our love has always been 10 centimeters apart.">Itsudatte Bokura no Koi wa 10 Centi Datta.
+</a>
+</li>
+<li>
+<a href="/a/itsuka-tenma-no-kuro-usagi" class="series-title" data-title="Itsuka Tenma no Kuro Usagi" data-alt="A Dark Rabbit has Seven Lives">Itsuka Tenma no Kuro Usagi
+</a>
+</li>
+<li>
+<a href="/a/jigoku-shoujo-yoi-no-togi" class="series-title" data-title="Jigoku Shoujo: Yoi no Togi" data-alt="Hell Girl Season 4">Jigoku Shoujo: Yoi no Togi
+</a>
+</li>
+<li>
+<a href="/a/jikan-no-shihaisha" class="series-title" data-title="Jikan no Shihaisha">Jikan no Shihaisha
+</a>
+</li>
+<li>
+<a href="/a/jinrui-wa-suitai-shimashita" class="series-title" data-title="Jinrui wa Suitai Shimashita" data-alt="Humanity Has Declined">Jinrui wa Suitai Shimashita
+</a>
+</li>
+<li>
+<a href="/a/jinsei" class="series-title" data-title="Jinsei">Jinsei
+</a>
+</li>
+<li>
+<a href="/a/jitsu-wa-watashi-wa" class="series-title" data-title="Jitsu wa Watashi wa" data-alt="Actually, I am . . .">Jitsu wa Watashi wa
+</a>
+</li>
+<li>
+<a href="/a/jojo-s-bizarre-adventure" class="series-title" data-title="JoJo&#39;s Bizarre Adventure">JoJo&#39;s Bizarre Adventure
+</a>
+</li>
+<li>
+<a href="/a/jojo-s-bizarre-adventure-diamond-is-unbreakable" class="series-title" data-title="JoJo&#39;s Bizarre Adventure: Diamond Is Unbreakable">JoJo&#39;s Bizarre Adventure: Diamond Is Unbreakable
+</a>
+</li>
+<li>
+<a href="/a/jojo-s-bizarre-adventure-stardust-crusaders-2" class="series-title" data-title="JoJo&#39;s Bizarre Adventure: Stardust Crusaders">JoJo&#39;s Bizarre Adventure: Stardust Crusaders
+</a>
+</li>
+<li>
+<a href="/a/jojo-s-bizarre-adventure-stardust-crusaders-egypt-arc" class="series-title" data-title="JoJo&#39;s Bizarre Adventure: Stardust Crusaders - Egypt Arc" data-alt="JoJo&#39;s Bizarre Adventure: Stardust Crusaders 2nd Season">JoJo&#39;s Bizarre Adventure: Stardust Crusaders - Egypt Arc
+</a>
+</li>
+<li>
+<a href="/a/jormungand" class="series-title" data-title="Jormungand">Jormungand
+</a>
+</li>
+<li>
+<a href="/a/jormungand-perfect-order-first-stage-soushuuhen" class="series-title" data-title="Jormungand: Perfect Order - First Stage Soushuuhen">Jormungand: Perfect Order - First Stage Soushuuhen
+</a>
+</li>
+<li>
+<a href="/a/joshiraku" class="series-title" data-title="Joshiraku">Joshiraku
+</a>
+</li>
+<li>
+<a href="/a/just-because" class="series-title" data-title="Just Because!">Just Because!
+</a>
+</li>
+<li>
+<a href="/a/juuni-kokuki" class="series-title" data-title="Juuni Kokuki" data-alt="The Twelve Kingdoms">Juuni Kokuki
+</a>
+</li>
+<li>
+<a href="/a/juuni-taisen" class="series-title" data-title="Juuni Taisen" data-alt="Juni Taisen: Zodiac War">Juuni Taisen
+</a>
+</li>
+<li>
+<a href="/a/juuou-mujin-no-fafnir" class="series-title" data-title="Juuou Mujin no Fafnir" data-alt="Unlimited Fafnir">Juuou Mujin no Fafnir
+</a>
+</li>
+<li>
+<a href="/a/k-project" class="series-title" data-title="K Project" data-alt="K ">K Project
+</a>
+</li>
+<li>
+<a href="/a/k-on" class="series-title" data-title="K-On!">K-On!
+</a>
+</li>
+<li>
+<a href="/a/k-on-movie" class="series-title" data-title="K-On! Movie" data-alt="K-ON! The Movie">K-On! Movie
+</a>
+</li>
+<li>
+<a href="/a/k-on-3" class="series-title" data-title="K-On!!" data-alt="K-ON! Season 2">K-On!!
+</a>
+</li>
+<li>
+<a href="/a/kaiba" class="series-title" data-title="Kaiba">Kaiba
+</a>
+</li>
+<li>
+<a href="/a/kaijuu-girls-ultra-kaijuu-gijinka-keikaku-2nd-season" class="series-title" data-title="Kaijuu Girls: Ultra Kaijuu Gijinka Keikaku 2nd Season">Kaijuu Girls: Ultra Kaijuu Gijinka Keikaku 2nd Season
+</a>
+<a href="/a/kaijuu-girls-ultra-kaijuu-gijinka-keikaku-2nd-season/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/kakegurui" class="series-title" data-title="Kakegurui">Kakegurui
+</a>
+</li>
+<li>
+<a href="/a/kakumeiki-valvrave" class="series-title" data-title="Kakumeiki Valvrave" data-alt="Valvrave the Liberator">Kakumeiki Valvrave
+</a>
+</li>
+<li>
+<a href="/a/kami-nomi-zo-shiru-sekai" class="series-title" data-title="Kami nomi zo Shiru Sekai" data-alt="The World God Only Knows">Kami nomi zo Shiru Sekai
+</a>
+</li>
+<li>
+<a href="/a/kami-nomi-zo-shiru-sekai-ii" class="series-title" data-title="Kami nomi zo Shiru Sekai II" data-alt="The World God Only Knows II">Kami nomi zo Shiru Sekai II
+</a>
+</li>
+<li>
+<a href="/a/kami-nomi-zo-shiru-sekai-megami-hen" class="series-title" data-title="Kami nomi zo Shiru Sekai: Megami-hen" data-alt="The World God Only Knows: Goddess Arc">Kami nomi zo Shiru Sekai: Megami-hen
+</a>
+</li>
+<li>
+<a href="/a/kamigami-no-asobi" class="series-title" data-title="Kamigami no Asobi" data-alt="Mischief of the Gods">Kamigami no Asobi
+</a>
+</li>
+<li>
+<a href="/a/kamisama-hajimemashita" class="series-title" data-title="Kamisama Hajimemashita" data-alt="Kamisama Kiss">Kamisama Hajimemashita
+</a>
+</li>
+<li>
+<a href="/a/kamisama-hajimemashita-3" class="series-title" data-title="Kamisama Hajimemashita◎" data-alt="Kamisama Kiss 2">Kamisama Hajimemashita◎
+</a>
+</li>
+<li>
+<a href="/a/kamisama-no-inai-nichiyoubi" class="series-title" data-title="Kamisama no Inai Nichiyoubi" data-alt="The Sunday Without God">Kamisama no Inai Nichiyoubi
+</a>
+</li>
+<li>
+<a href="/a/kaempfer" class="series-title" data-title="Kämpfer">Kämpfer
+</a>
+</li>
+<li>
+<a href="/a/kangoku-gakuen" class="series-title" data-title="Kangoku Gakuen" data-alt="Prison School">Kangoku Gakuen
+</a>
+</li>
+<li>
+<a href="/a/kannagi" class="series-title" data-title="Kannagi">Kannagi
+</a>
+</li>
+<li>
+<a href="/a/kanojo-ga-flag-wo-oraretara" class="series-title" data-title="Kanojo ga Flag wo Oraretara" data-alt="If Her Flag Breaks">Kanojo ga Flag wo Oraretara
+</a>
+</li>
+<li>
+<a href="/a/kanokon" class="series-title" data-title="Kanokon" data-alt="Kanokon: The Girl Who Cried Fox">Kanokon
+</a>
+</li>
+<li>
+<a href="/a/kanon-2006" class="series-title" data-title="Kanon (2006)">Kanon (2006)
+</a>
+</li>
+<li>
+<a href="/a/kantai-collection-kancolle" class="series-title" data-title="Kantai Collection: KanColle" data-alt="KanColle">Kantai Collection: KanColle
+</a>
+</li>
+<li>
+<a href="/a/kara-no-kyoukai-1-fukan-fuukei" class="series-title" data-title="Kara no Kyoukai 1: Fukan Fuukei" data-alt="Garden of Sinners 1: Overlooking View">Kara no Kyoukai 1: Fukan Fuukei
+</a>
+</li>
+<li>
+<a href="/a/karakai-jouzu-no-takagi-san" class="series-title" data-title="Karakai Jouzu no Takagi-san">Karakai Jouzu no Takagi-san
+</a>
+<a href="/a/karakai-jouzu-no-takagi-san/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/karin" class="series-title" data-title="Karin">Karin
+</a>
+</li>
+<li>
+<a href="/a/katanagatari" class="series-title" data-title="Katanagatari">Katanagatari
+</a>
+</li>
+<li>
+<a href="/a/katsugeki-touken-ranbu" class="series-title" data-title="Katsugeki/Touken Ranbu" data-alt="Katsugeki: TOUKEN RANBU">Katsugeki/Touken Ranbu
+</a>
+</li>
+<li>
+<a href="/a/keijo" class="series-title" data-title="Keijo!!!!!!!!" data-alt="Hip Whip Girl">Keijo!!!!!!!!
+</a>
+</li>
+<li>
+<a href="/a/kekkai-sensen" class="series-title" data-title="Kekkai Sensen" data-alt="Blood Blockade Battlefront">Kekkai Sensen
+</a>
+</li>
+<li>
+<a href="/a/kekkai-sensen-and-beyond" class="series-title" data-title="Kekkai Sensen &amp; Beyond" data-alt="Blood Blockade Battlefront &amp; BEYOND">Kekkai Sensen &amp; Beyond
+</a>
+</li>
+<li>
+<a href="/a/kemono-friends" class="series-title" data-title="Kemono Friends">Kemono Friends
+</a>
+</li>
+<li>
+<a href="/a/kemono-no-souja-erin" class="series-title" data-title="Kemono no Souja Erin" data-alt="Erin">Kemono no Souja Erin
+</a>
+</li>
+<li>
+<a href="/a/kenka-banchou-otome-girl-beats-boys" class="series-title" data-title="Kenka Banchou Otome: Girl Beats Boys" data-alt="Kenka Bancho Otome -Girl Beats Boys-">Kenka Banchou Otome: Girl Beats Boys
+</a>
+</li>
+<li>
+<a href="/a/keppeki-danshi-aoyama-kun" class="series-title" data-title="Keppeki Danshi! Aoyama-kun" data-alt="Cleanliness Boy! Aoyama-kun">Keppeki Danshi! Aoyama-kun
+</a>
+</li>
+<li>
+<a href="/a/kiba" class="series-title" data-title="Kiba">Kiba
+</a>
+</li>
+<li>
+<a href="/a/kidou-senshi-gundam-tekketsu-orphans" class="series-title" data-title="Kidou Senshi Gundam: Tekketsu Orphans" data-alt="Mobile Suit Gundam: Iron-Blooded Orphans">Kidou Senshi Gundam: Tekketsu Orphans
+</a>
+</li>
+<li>
+<a href="/a/kikou-shoujo-wa-kizutsukanai" class="series-title" data-title="Kikou Shoujo wa Kizutsukanai" data-alt="Unbreakable Machine-Doll">Kikou Shoujo wa Kizutsukanai
+</a>
+</li>
+<li>
+<a href="/a/kill-la-kill" class="series-title" data-title="Kill la Kill">Kill la Kill
+</a>
+</li>
+<li>
+<a href="/a/kill-la-kill-special" class="series-title" data-title="Kill la Kill Special">Kill la Kill Special
+</a>
+</li>
+<li>
+<a href="/a/killing-bites" class="series-title" data-title="Killing Bites">Killing Bites
+</a>
+<a href="/a/killing-bites/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/kimi-ni-todoke" class="series-title" data-title="Kimi ni Todoke" data-alt="From Me to You">Kimi ni Todoke
+</a>
+</li>
+<li>
+<a href="/a/kimi-ni-todoke-2nd-season" class="series-title" data-title="Kimi ni Todoke 2nd Season" data-alt="From Me to You Season 2">Kimi ni Todoke 2nd Season
+</a>
+</li>
+<li>
+<a href="/a/kimi-no-na-wa" class="series-title" data-title="Kimi no Na wa" data-alt="Your Name">Kimi no Na wa
+</a>
+</li>
+<li>
+<a href="/a/kimikiss-pure-rouge" class="series-title" data-title="Kimikiss Pure Rouge">Kimikiss Pure Rouge
+</a>
+</li>
+<li>
+<a href="/a/kiniro-mosaic" class="series-title" data-title="Kiniro Mosaic" data-alt="KINMOZA!">Kiniro Mosaic
+</a>
+</li>
+<li>
+<a href="/a/kino-no-tabi-the-beautiful-world" class="series-title" data-title="Kino no Tabi: The Beautiful World" data-alt="Kino&#39;s Journey">Kino no Tabi: The Beautiful World
+</a>
+</li>
+<li>
+<a href="/a/kino-no-tabi-the-beautiful-world-the-animated-series" class="series-title" data-title="Kino no Tabi: The Beautiful World - The Animated Series" data-alt="Kino&#39;s Journey -the Beautiful World- the Animated Series">Kino no Tabi: The Beautiful World - The Animated Series
+</a>
+</li>
+<li>
+<a href="/a/kiseijuu-sei-no-kakuritsu" class="series-title" data-title="Kiseijuu: Sei no Kakuritsu" data-alt="Parasyte -the maxim-">Kiseijuu: Sei no Kakuritsu
+ </a>
+</li>
+<li>
+<a href="/a/kiss-x-sis" class="series-title" data-title="Kiss x Sis">Kiss x Sis
+</a>
+</li>
+<li>
+<a href="/a/kiss-x-sis-tv" class="series-title" data-title="Kiss x Sis (TV)">Kiss x Sis (TV)
+</a>
+</li>
+<li>
+<a href="/a/kiznaiver" class="series-title" data-title="Kiznaiver">Kiznaiver
+</a>
+</li>
+<li>
+<a href="/a/kizumonogatari-trilogy" class="series-title" data-title="Kizumonogatari Trilogy" data-alt="Kizumonogatari trilogy">Kizumonogatari Trilogy
+</a>
+</li>
+<li>
+<a href="/a/knight-s-and-magic" class="series-title" data-title="Knight&#39;s &amp; Magic">Knight&#39;s &amp; Magic
+</a>
+</li>
+<li>
+<a href="/a/kobato" class="series-title" data-title="Kobato." data-alt="Kobato">Kobato.
+</a>
+</li>
+<li>
+<a href="/a/kobayashi-san-chi-no-maid-dragon" class="series-title" data-title="Kobayashi-san Chi no Maid Dragon" data-alt="Miss Kobayashi&#39;s Dragon Maid">Kobayashi-san Chi no Maid Dragon
+</a>
+</li>
+<li>
+<a href="/a/koe-de-oshigoto-the-animation" class="series-title" data-title="Koe de Oshigoto! The Animation">Koe de Oshigoto! The Animation
+</a>
+</li>
+<li>
+<a href="/a/koe-no-katachi" class="series-title" data-title="Koe no Katachi">Koe no Katachi
+</a>
+</li>
+<li>
+<a href="/a/koi-to-senkyo-to-chocolate" class="series-title" data-title="Koi to Senkyo to Chocolate" data-alt="Love, Election and Chocolate">Koi to Senkyo to Chocolate
+</a>
+</li>
+<li>
+<a href="/a/koi-to-uso" class="series-title" data-title="Koi to Uso" data-alt="Love and Lies">Koi to Uso
+</a>
+</li>
+<li>
+<a href="/a/koi-wa-ameagari-no-you-ni" class="series-title" data-title="Koi wa Ameagari no You ni">Koi wa Ameagari no You ni
+</a>
+<a href="/a/koi-wa-ameagari-no-you-ni/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/kokkoku" class="series-title" data-title="Kokkoku">Kokkoku
+</a>
+<a href="/a/kokkoku/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/kokoro-connect" class="series-title" data-title="Kokoro Connect">Kokoro Connect
+</a>
+</li>
+<li>
+<a href="/a/konbini-kareshi" class="series-title" data-title="Konbini Kareshi">Konbini Kareshi
+</a>
+</li>
+<li>
+<a href="/a/kono-naka-ni-hitori-imouto-ga-iru" class="series-title" data-title="Kono Naka ni Hitori, Imouto ga Iru!" data-alt="NAKAIMO - My Little Sister Is Among Them!">Kono Naka ni Hitori, Imouto ga Iru!
+</a>
+</li>
+<li>
+<a href="/a/kono-sekai-no-katasumi-ni" class="series-title" data-title="Kono Sekai no Katasumi ni" data-alt="In This Corner of the World">Kono Sekai no Katasumi ni
+</a>
+</li>
+<li>
+<a href="/a/kono-subarashii-sekai-ni-shukufuku-wo" class="series-title" data-title="Kono Subarashii Sekai ni Shukufuku wo!" data-alt="KonoSuba: God&#39;s Blessing on This Wonderful World!">Kono Subarashii Sekai ni Shukufuku wo!
+</a>
+</li>
+<li>
+<a href="/a/kono-subarashii-sekai-ni-shukufuku-wo-2" class="series-title" data-title="Kono Subarashii Sekai ni Shukufuku wo! 2" data-alt="KonoSuba: God&#39;s Blessing on This Wonderful World! 2">Kono Subarashii Sekai ni Shukufuku wo! 2
+</a>
+</li>
+<li>
+<a href="/a/konohana-kitan" class="series-title" data-title="Konohana Kitan">Konohana Kitan
+</a>
+</li>
+<li>
+<a href="/a/kore-wa-zombie-desu-ka" class="series-title" data-title="Kore wa Zombie Desu ka?" data-alt="Is This a Zombie?">Kore wa Zombie Desu ka?
+</a>
+</li>
+<li>
+<a href="/a/kore-wa-zombie-desu-ka-of-the-dead" class="series-title" data-title="Kore wa Zombie Desu ka? of the Dead" data-alt="Is this A Zombie? of the Dead">Kore wa Zombie Desu ka? of the Dead
+</a>
+</li>
+<li>
+<a href="/a/kotonoha-no-niwa" class="series-title" data-title="Kotonoha no Niwa" data-alt="The Garden of Words">Kotonoha no Niwa
+</a>
+</li>
+<li>
+<a href="/a/kotoura-san" class="series-title" data-title="Kotoura-san">Kotoura-san
+</a>
+</li>
+<li>
+<a href="/a/koukaku-kidoutai-arise-ghost-in-the-shell-border-1-ghost-pain" class="series-title" data-title="Koukaku Kidoutai Arise: Ghost in the Shell - Border:1 Ghost Pain" data-alt="Ghost in the Shell: Arise - Border 1: Ghost Pain">Koukaku Kidoutai Arise: Ghost in the Shell - Border:1 Ghost Pain
+</a>
+</li>
+<li>
+<a href="/a/koutetsujou-no-kabaneri" class="series-title" data-title="Koutetsujou no Kabaneri" data-alt="Kabaneri of the Iron Fortress">Koutetsujou no Kabaneri
+</a>
+</li>
+<li>
+<a href="/a/koyomimonogatari" class="series-title" data-title="Koyomimonogatari">Koyomimonogatari
+</a>
+</li>
+<li>
+<a href="/a/kujira-no-kora-wa-sajou-ni-utau" class="series-title" data-title="Kujira no Kora wa Sajou ni Utau" data-alt="Children of the Whales">Kujira no Kora wa Sajou ni Utau
+</a>
+</li>
+<li>
+<a href="/a/kurokami-the-animation" class="series-title" data-title="Kurokami The Animation" data-alt="Black God">Kurokami The Animation
+</a>
+</li>
+<li>
+<a href="/a/kuroko-no-basket" class="series-title" data-title="Kuroko no Basket" data-alt="Kuroko&#39;s Basketball">Kuroko no Basket
+</a>
+</li>
+<li>
+<a href="/a/kuroshitsuji" class="series-title" data-title="Kuroshitsuji" data-alt="Black Butler">Kuroshitsuji
+</a>
+</li>
+<li>
+<a href="/a/kuroshitsuji-ii" class="series-title" data-title="Kuroshitsuji II" data-alt="Black Butler II">Kuroshitsuji II
+</a>
+</li>
+<li>
+<a href="/a/kuroshitsuji-movie-book-of-the-atlantic" class="series-title" data-title="Kuroshitsuji Movie: Book of the Atlantic" data-alt="Black Butler: Book of the Atlantic">Kuroshitsuji Movie: Book of the Atlantic
+</a>
+</li>
+<li>
+<a href="/a/kuroshitsuji-book-of-circus" class="series-title" data-title="Kuroshitsuji: Book of Circus" data-alt="Black Butler: Book of Circus	">Kuroshitsuji: Book of Circus
+</a>
+</li>
+<li>
+<a href="/a/kurozuka" class="series-title" data-title="Kurozuka">Kurozuka
+</a>
+</li>
+<li>
+<a href="/a/kuzu-no-honkai" class="series-title" data-title="Kuzu no Honkai" data-alt="Scum&#39;s Wish">Kuzu no Honkai
+</a>
+</li>
+<li>
+<a href="/a/kyou-no-go-no-ni" class="series-title" data-title="Kyou no Go no Ni" data-alt="Today in Class 5-2">Kyou no Go no Ni
+</a>
+</li>
+<li>
+<a href="/a/kyoukai-no-kanata" class="series-title" data-title="Kyoukai no Kanata" data-alt="Beyond the Boundary">Kyoukai no Kanata
+</a>
+</li>
+<li>
+<a href="/a/kyouran-kazoku-nikki" class="series-title" data-title="Kyouran Kazoku Nikki">Kyouran Kazoku Nikki
+</a>
+</li>
+<li>
+<a href="/a/ladies-versus-butlers" class="series-title" data-title="Ladies versus Butlers!">Ladies versus Butlers!
+</a>
+</li>
+<li>
+<a href="/a/little-busters" class="series-title" data-title="Little Busters!">Little Busters!
+</a>
+</li>
+<li>
+<a href="/a/little-busters-refrain" class="series-title" data-title="Little Busters!: Refrain" data-alt="Little Busters! ~Refrain~">Little Busters!: Refrain
+</a>
+</li>
+<li>
+<a href="/a/little-witch-academia-tv" class="series-title" data-title="Little Witch Academia (TV)">Little Witch Academia (TV)
+</a>
+</li>
+<li>
+<a href="/a/lodoss-tou-senki" class="series-title" data-title="Lodoss-tou Senki" data-alt="Record of Lodoss War">Lodoss-tou Senki
+</a>
+</li>
+<li>
+<a href="/a/log-horizon" class="series-title" data-title="Log Horizon">Log Horizon
+</a>
+</li>
+<li>
+<a href="/a/log-horizon-2" class="series-title" data-title="Log Horizon 2">Log Horizon 2
+</a>
+</li>
+<li>
+<a href="/a/lostorage-incited-wixoss" class="series-title" data-title="Lostorage Incited WIXOSS">Lostorage Incited WIXOSS
+</a>
+</li>
+<li>
+<a href="/a/love-hina" class="series-title" data-title="Love Hina">Love Hina
+</a>
+</li>
+<li>
+<a href="/a/love-live-school-idol-project" class="series-title" data-title="Love Live! School Idol Project">Love Live! School Idol Project
+</a>
+</li>
+<li>
+<a href="/a/love-live-school-idol-project-2nd-season" class="series-title" data-title="Love Live! School Idol Project 2nd Season" data-alt="Love Live! School Idol Project 2">Love Live! School Idol Project 2nd Season
+</a>
+</li>
+<li>
+<a href="/a/love-live-sunshine" class="series-title" data-title="Love Live! Sunshine!!">Love Live! Sunshine!!
+</a>
+</li>
+<li>
+<a href="/a/love-live-sunshine-2nd-season" class="series-title" data-title="Love Live! Sunshine!! 2nd Season" data-alt="Love Live! Sunshine!! Season 2">Love Live! Sunshine!! 2nd Season
+</a>
+</li>
+<li>
+<a href="/a/loveless" class="series-title" data-title="Loveless">Loveless
+</a>
+</li>
+<li>
+<a href="/a/lovely-complex" class="series-title" data-title="Lovely★Complex">Lovely★Complex
+</a>
+</li>
+<li>
+<a href="/a/lucky-star" class="series-title" data-title="Lucky☆Star">Lucky☆Star
+</a>
+</li>
+<li>
+<a href="/a/macross-f" class="series-title" data-title="Macross F" data-alt="Macross Frontier">Macross F
+</a>
+</li>
+<li>
+<a href="/a/macross-d" class="series-title" data-title="Macross Δ" data-alt="Macross Delta">Macross Δ
+</a>
+</li>
+<li>
+<a href="/a/madan-no-ou-to-vanadis" class="series-title" data-title="Madan no Ou to Vanadis" data-alt="Lord Marksman and Vanadis">Madan no Ou to Vanadis
+</a>
+</li>
+<li>
+<a href="/a/made-in-abyss" class="series-title" data-title="Made in Abyss">Made in Abyss
+</a>
+</li>
+<li>
+<a href="/a/magi-the-kingdom-of-magic" class="series-title" data-title="Magi: The Kingdom of Magic">Magi: The Kingdom of Magic
+</a>
+</li>
+<li>
+<a href="/a/magi-the-labyrinth-of-magic" class="series-title" data-title="Magi: The Labyrinth of Magic">Magi: The Labyrinth of Magic
+</a>
+</li>
+<li>
+<a href="/a/magic-kaito-1412" class="series-title" data-title="Magic Kaito 1412">Magic Kaito 1412
+</a>
+</li>
+<li>
+<a href="/a/mahou-sensou" class="series-title" data-title="Mahou Sensou" data-alt="Magical Warfare">Mahou Sensou
+</a>
+</li>
+<li>
+<a href="/a/mahou-shoujo-ikusei-keikaku" class="series-title" data-title="Mahou Shoujo Ikusei Keikaku" data-alt="Magical Girl Raising Project">Mahou Shoujo Ikusei Keikaku
+</a>
+</li>
+<li>
+<a href="/a/mahou-shoujo-lyrical-nanoha" class="series-title" data-title="Mahou Shoujo Lyrical Nanoha" data-alt="Magical Girl Lyrical Nanoha">Mahou Shoujo Lyrical Nanoha
+</a>
+</li>
+<li>
+<a href="/a/mahou-shoujo-madoka-magica" class="series-title" data-title="Mahou Shoujo Madoka★Magica" data-alt="Puella Magi Madoka Magica">Mahou Shoujo Madoka★Magica
+</a>
+</li>
+<li>
+<a href="/a/mahou-tsukai-no-yome" class="series-title" data-title="Mahou Tsukai no Yome" data-alt="The Ancient Magus&#39; Bride">Mahou Tsukai no Yome
+</a>
+<a href="/a/mahou-tsukai-no-yome/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/mahou-tsukai-no-yome-hoshi-matsu-hito" class="series-title" data-title="Mahou Tsukai no Yome: Hoshi Matsu Hito" data-alt="The Ancient Magus&#39; Bride: The Man Who Waits for Stars">Mahou Tsukai no Yome: Hoshi Matsu Hito
+</a>
+</li>
+<li>
+<a href="/a/mahouka-koukou-no-rettousei" class="series-title" data-title="Mahouka Koukou no Rettousei" data-alt="The Irregular at Magic High School">Mahouka Koukou no Rettousei
+</a>
+</li>
+<li>
+<a href="/a/mahoutsukai-precure" class="series-title" data-title="Mahoutsukai Precure!">Mahoutsukai Precure!
+</a>
+</li>
+<li>
+<a href="/a/maji-de-watashi-ni-koi-shinasai" class="series-title" data-title="Maji de Watashi ni Koi Shinasai!" data-alt="Majikoi - Oh! Samurai Girls">Maji de Watashi ni Koi Shinasai!
+</a>
+</li>
+<li>
+<a href="/a/makai-ouji-devils-and-realist" class="series-title" data-title="Makai Ouji: Devils and Realist">Makai Ouji: Devils and Realist
+</a>
+</li>
+<li>
+<a href="/a/manyuu-hikenchou" class="series-title" data-title="Manyuu Hikenchou">Manyuu Hikenchou
+</a>
+</li>
+<li>
+<a href="/a/maoyuu-maou-yuusha" class="series-title" data-title="Maoyuu Maou Yuusha" data-alt="Maoyu">Maoyuu Maou Yuusha
+</a>
+</li>
+<li>
+<a href="/a/maerchen-maedchen" class="series-title" data-title="Märchen Mädchen">Märchen Mädchen
+</a>
+<a href="/a/maerchen-maedchen/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/maria-holic" class="series-title" data-title="Maria†Holic">Maria†Holic
+</a>
+</li>
+<li>
+<a href="/a/maria-holic-alive" class="series-title" data-title="Maria†Holic Alive">Maria†Holic Alive
+</a>
+</li>
+<li>
+<a href="/a/masamune-kun-no-revenge" class="series-title" data-title="Masamune-kun no Revenge" data-alt="Masamune-kun&#39;s Revenge">Masamune-kun no Revenge
+</a>
+</li>
+<li>
+<a href="/a/masou-gakuen-hxh" class="series-title" data-title="Masou Gakuen HxH" data-alt="Hybrid x Heart Magias Academy Ataraxia">Masou Gakuen HxH
+</a>
+</li>
+<li>
+<a href="/a/mawaru-penguindrum" class="series-title" data-title="Mawaru Penguindrum" data-alt="Penguindrum">Mawaru Penguindrum
+</a>
+</li>
+<li>
+<a href="/a/mayo-chiki" class="series-title" data-title="Mayo Chiki!">Mayo Chiki!
+</a>
+</li>
+<li>
+<a href="/a/medaka-box" class="series-title" data-title="Medaka Box">Medaka Box
+</a>
+</li>
+<li>
+<a href="/a/medaka-box-abnormal" class="series-title" data-title="Medaka Box Abnormal">Medaka Box Abnormal
+</a>
+</li>
+<li>
+<a href="/a/mekaku-city-actors" class="series-title" data-title="Mekaku City Actors">Mekaku City Actors
+</a>
+</li>
+<li>
+<a href="/a/mermaid-forest" class="series-title" data-title="Mermaid Forest">Mermaid Forest
+</a>
+</li>
+<li>
+<a href="/a/midori-no-hibi" class="series-title" data-title="Midori no Hibi" data-alt="Midori Days">Midori no Hibi
+</a>
+</li>
+<li>
+<a href="/a/mikakunin-de-shinkoukei" class="series-title" data-title="Mikakunin de Shinkoukei" data-alt="Engaged to the Unidentified">Mikakunin de Shinkoukei
+</a>
+</li>
+<li>
+<a href="/a/mirai-nikki-tv" class="series-title" data-title="Mirai Nikki (TV)" data-alt="The Future Diary">Mirai Nikki (TV)
+</a>
+</li>
+<li>
+<a href="/a/mitsuboshi-colors" class="series-title" data-title="Mitsuboshi Colors">Mitsuboshi Colors
+</a>
+<a href="/a/mitsuboshi-colors/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/mnemosyne-mnemosyne-no-musume-tachi" class="series-title" data-title="Mnemosyne: Mnemosyne no Musume-tachi" data-alt="Rin: Daughters of Mnemosyne">Mnemosyne: Mnemosyne no Musume-tachi
+</a>
+</li>
+<li>
+<a href="/a/mob-psycho-100" class="series-title" data-title="Mob Psycho 100">Mob Psycho 100
+</a>
+</li>
+<li>
+<a href="/a/mobile-suit-gundam-thunderbolt" class="series-title" data-title="Mobile Suit Gundam Thunderbolt">Mobile Suit Gundam Thunderbolt
+</a>
+</li>
+<li>
+<a href="/a/mondaiji-tachi-ga-isekai-kara-kuru-sou-desu-yo" class="series-title" data-title="Mondaiji-tachi ga Isekai kara Kuru Sou Desu yo?" data-alt="Problem Children Are Coming From Another World, Aren&#39;t They?">Mondaiji-tachi ga Isekai kara Kuru Sou Desu yo?
+</a>
+</li>
+<li>
+<a href="/a/monogatari-series-second-season" class="series-title" data-title="Monogatari Series: Second Season">Monogatari Series: Second Season
+</a>
+</li>
+<li>
+<a href="/a/mononoke" class="series-title" data-title="Mononoke">Mononoke
+</a>
+</li>
+<li>
+<a href="/a/monster" class="series-title" data-title="Monster">Monster
+</a>
+</li>
+<li>
+<a href="/a/monster-musume-no-iru-nichijou" class="series-title" data-title="Monster Musume no Iru Nichijou" data-alt="Everyday Life with Monster Girls">Monster Musume no Iru Nichijou
+</a>
+</li>
+<li>
+<a href="/a/motto-to-love-ru" class="series-title" data-title="Motto To LOVE-Ru">Motto To LOVE-Ru
+</a>
+</li>
+<li>
+<a href="/a/mouretsu-pirates" class="series-title" data-title="Mouretsu Pirates" data-alt="Bodacious Space Pirates">Mouretsu Pirates
+</a>
+</li>
+<li>
+<a href="/a/mousou-dairinin" class="series-title" data-title="Mousou Dairinin" data-alt="Paranoia Agent">Mousou Dairinin
+</a>
+</li>
+<li>
+<a href="/a/musaigen-no-phantom-world" class="series-title" data-title="Musaigen no Phantom World" data-alt="Myriad Colors Phantom World">Musaigen no Phantom World
+</a>
+</li>
+<li>
+<a href="/a/mushishi" class="series-title" data-title="Mushishi" data-alt="Mushi-shi: The Cure Lies in The Curse">Mushishi
+</a>
+</li>
+<li>
+<a href="/a/mushishi-zoku-shou" class="series-title" data-title="Mushishi Zoku Shou" data-alt="Mushishi: The Next Chapter">Mushishi Zoku Shou
+</a>
+</li>
+<li>
+<a href="/a/mushishi-zoku-shou-2nd-season" class="series-title" data-title="Mushishi Zoku Shou 2nd Season" data-alt="Mushishi: The Next Chapter 2nd Season">Mushishi Zoku Shou 2nd Season
+</a>
+</li>
+<li>
+<a href="/a/nagasarete-airantou" class="series-title" data-title="Nagasarete Airantou" data-alt="Cast Away - Airan Island">Nagasarete Airantou
+</a>
+</li>
+<li>
+<a href="/a/nagi-no-asukara" class="series-title" data-title="Nagi no Asukara" data-alt="Nagi-Asu: A Lull in the Sea">Nagi no Asukara
+</a>
+</li>
+<li>
+<a href="/a/namiuchigiwa-no-muromi-san" class="series-title" data-title="Namiuchigiwa no Muromi-san" data-alt="Muromi-san">Namiuchigiwa no Muromi-san
+</a>
+</li>
+<li>
+<a href="/a/nana-maru-san-batsu" class="series-title" data-title="Nana Maru San Batsu" data-alt="7O3X Fastest Finger First">Nana Maru San Batsu
+</a>
+</li>
+<li>
+<a href="/a/nanatsu-no-taizai" class="series-title" data-title="Nanatsu no Taizai" data-alt="The Seven Deadly Sins">Nanatsu no Taizai
+</a>
+</li>
+<li>
+<a href="/a/nanatsu-no-taizai-imashime-no-fukkatsu" class="series-title" data-title="Nanatsu no Taizai: Imashime no Fukkatsu" data-alt="The Seven Deadly Sins: Revival of the Commandments">Nanatsu no Taizai: Imashime no Fukkatsu
+</a>
+<a href="/a/nanatsu-no-taizai-imashime-no-fukkatsu/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/nanatsu-no-taizai-seisen-no-shirushi" class="series-title" data-title="Nanatsu no Taizai: Seisen no Shirushi" data-alt="The Seven Deadly Sins: Signs of Holy War">Nanatsu no Taizai: Seisen no Shirushi
+</a>
+</li>
+<li>
+<a href="/a/nanbaka" class="series-title" data-title="Nanbaka">Nanbaka
+</a>
+</li>
+<li>
+<a href="/a/nanbaka-2017" class="series-title" data-title="Nanbaka (2017)" data-alt="Nanbaka: Season 2">Nanbaka (2017)
+</a>
+</li>
+<li>
+<a href="/a/naruto" class="series-title" data-title="Naruto">Naruto
+</a>
+</li>
+<li>
+<a href="/a/naruto-shippuden" class="series-title" data-title="Naruto: Shippuden" data-alt="Naruto Shippuuden">Naruto: Shippuden
+</a>
+</li>
+<li>
+<a href="/a/natsu-no-arashi" class="series-title" data-title="Natsu no Arashi!" data-alt="Summer Storm!">Natsu no Arashi!
+</a>
+</li>
+<li>
+<a href="/a/natsume-yuujinchou" class="series-title" data-title="Natsume Yuujinchou" data-alt="Natsume&#39;s Book of Friends">Natsume Yuujinchou
+</a>
+</li>
+<li>
+<a href="/a/natsume-yuujinchou-go" class="series-title" data-title="Natsume Yuujinchou Go" data-alt="Natsume&#39;s Book of Friends Five">Natsume Yuujinchou Go
+</a>
+</li>
+<li>
+<a href="/a/natsume-yuujinchou-roku" class="series-title" data-title="Natsume Yuujinchou Roku">Natsume Yuujinchou Roku
+</a>
+</li>
+<li>
+<a href="/a/natsume-yuujinchou-san" class="series-title" data-title="Natsume Yuujinchou San" data-alt="Natsume&#39;s Book of Friends Three">Natsume Yuujinchou San
+</a>
+</li>
+<li>
+<a href="/a/natsume-yuujinchou-shi" class="series-title" data-title="Natsume Yuujinchou Shi" data-alt="Natsume&#39;s Book of Friends Four">Natsume Yuujinchou Shi
+</a>
+</li>
+<li>
+<a href="/a/nazo-no-kanojo-x" class="series-title" data-title="Nazo no Kanojo X" data-alt="Mysterious Girlfriend X">Nazo no Kanojo X
+</a>
+</li>
+<li>
+<a href="/a/nejimaki-seirei-senki-tenkyou-no-alderamin" class="series-title" data-title="Nejimaki Seirei Senki: Tenkyou no Alderamin" data-alt="Alderamin on the Sky">Nejimaki Seirei Senki: Tenkyou no Alderamin
+</a>
+</li>
+<li>
+<a href="/a/nekomonogatari-kuro" class="series-title" data-title="Nekomonogatari: Kuro">Nekomonogatari: Kuro
+</a>
+</li>
+<li>
+<a href="/a/nekopara" class="series-title" data-title="Nekopara">Nekopara
+</a>
+</li>
+<li>
+<a href="/a/net-juu-no-susume" class="series-title" data-title="Net-juu no Susume">Net-juu no Susume
+</a>
+</li>
+<li>
+<a href="/a/netsuzou-trap" class="series-title" data-title="Netsuzou TRap" data-alt="NTR: Netsuzou Trap">Netsuzou TRap
+</a>
+</li>
+<li>
+<a href="/a/new-game" class="series-title" data-title="New Game!">New Game!
+</a>
+</li>
+<li>
+<a href="/a/new-game-4" class="series-title" data-title="New Game!!">New Game!!
+</a>
+</li>
+<li>
+<a href="/a/nhk-ni-youkoso" class="series-title" data-title="NHK ni Youkoso!" data-alt="Welcome to the N.H.K.">NHK ni Youkoso!
+</a>
+</li>
+<li>
+<a href="/a/nichijou" class="series-title" data-title="Nichijou" data-alt="Nichijou - My Ordinary Life">Nichijou
+</a>
+</li>
+<li>
+<a href="/a/nijiiro-days" class="series-title" data-title="Nijiiro Days" data-alt="Rainbow Days">Nijiiro Days
+</a>
+</li>
+<li>
+<a href="/a/nisekoi" class="series-title" data-title="Nisekoi">Nisekoi
+</a>
+</li>
+<li>
+<a href="/a/nisekoi-3" class="series-title" data-title="Nisekoi:">Nisekoi:
+</a>
+</li>
+<li>
+<a href="/a/nisemonogatari" class="series-title" data-title="Nisemonogatari">Nisemonogatari
+</a>
+</li>
+<li>
+<a href="/a/no-game-no-life" class="series-title" data-title="No Game No Life">No Game No Life
+</a>
+</li>
+<li>
+<a href="/a/no-6" class="series-title" data-title="No.6" data-alt="No. 6">No.6
+</a>
+</li>
+<li>
+<a href="/a/nobunaga-concerto" class="series-title" data-title="Nobunaga Concerto">Nobunaga Concerto
+</a>
+</li>
+<li>
+<a href="/a/nodame-cantabile" class="series-title" data-title="Nodame Cantabile">Nodame Cantabile
+</a>
+</li>
+<li>
+<a href="/a/nodame-cantabile-paris-chapter" class="series-title" data-title="Nodame Cantabile Paris Chapter">Nodame Cantabile Paris Chapter
+</a>
+</li>
+<li>
+<a href="/a/non-non-biyori" class="series-title" data-title="Non Non Biyori">Non Non Biyori
+</a>
+</li>
+<li>
+<a href="/a/non-non-biyori-repeat" class="series-title" data-title="Non Non Biyori Repeat">Non Non Biyori Repeat
+</a>
+</li>
+<li>
+<a href="/a/noragami" class="series-title" data-title="Noragami">Noragami
+</a>
+</li>
+<li>
+<a href="/a/noragami-aragoto" class="series-title" data-title="Noragami Aragoto">Noragami Aragoto
+</a>
+</li>
+<li>
+<a href="/a/nurarihyon-no-mago" class="series-title" data-title="Nurarihyon no Mago" data-alt="Nura: Rise of the Yokai Clan">Nurarihyon no Mago
+</a>
+</li>
+<li>
+<a href="/a/nurarihyon-no-mago-sennen-makyou" class="series-title" data-title="Nurarihyon no Mago: Sennen Makyou" data-alt="Nura: Rise of the Yokai Clan - Demon Capital">Nurarihyon no Mago: Sennen Makyou
+</a>
+</li>
+<li>
+<a href="/a/nyan-koi" class="series-title" data-title="Nyan Koi!">Nyan Koi!
+</a>
+</li>
+<li>
+<a href="/a/nyanko-days" class="series-title" data-title="Nyanko Days">Nyanko Days
+</a>
+</li>
+<li>
+<a href="/a/occultic-nine" class="series-title" data-title="Occultic;Nine">Occultic;Nine
+</a>
+</li>
+<li>
+<a href="/a/oda-nobuna-no-yabou" class="series-title" data-title="Oda Nobuna no Yabou" data-alt="The Ambition of Oda Nobuna">Oda Nobuna no Yabou
+</a>
+</li>
+<li>
+<a href="/a/okusama-ga-seitokaichou-2nd-season" class="series-title" data-title="Okusama ga Seitokaichou! 2nd Season" data-alt="My Wife is the Student Council President! 2nd Season">Okusama ga Seitokaichou! 2nd Season
+</a>
+</li>
+<li>
+<a href="/a/okusama-ga-seitokaichou-okusama-gekijou" class="series-title" data-title="Okusama ga Seitokaichou!: Okusama Gekijou">Okusama ga Seitokaichou!: Okusama Gekijou
+</a>
+</li>
+<li>
+<a href="/a/omiai-aite-wa-oshiego-tsuyokina-mondaiji" class="series-title" data-title="Omiai Aite wa Oshiego, Tsuyokina, Mondaiji.">Omiai Aite wa Oshiego, Tsuyokina, Mondaiji.
+</a>
+</li>
+<li>
+<a href="/a/one-piece" class="series-title" data-title="One Piece">One Piece
+</a>
+<a href="/a/one-piece/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/one-punch-man" class="series-title" data-title="One Punch Man">One Punch Man
+</a>
+</li>
+<li>
+<a href="/a/one-room" class="series-title" data-title="One Room" data-alt="OneRoom">One Room
+</a>
+</li>
+<li>
+<a href="/a/onegai-teacher" class="series-title" data-title="Onegai☆Teacher" data-alt="Please Teacher!">Onegai☆Teacher
+</a>
+</li>
+<li>
+<a href="/a/onihei" class="series-title" data-title="Onihei">Onihei
+</a>
+</li>
+<li>
+<a href="/a/onii-chan-dakedo-ai-sae-areba-kankeinai-yo-ne" class="series-title" data-title="Onii-chan Dakedo Ai Sae Areba Kankeinai yo ne!" data-alt="OniAi">Onii-chan Dakedo Ai Sae Areba Kankeinai yo ne!
+</a>
+</li>
+<li>
+<a href="/a/ookami-kakushi" class="series-title" data-title="Ookami Kakushi" data-alt="Okamikakushi ~ Masque of the Wolf">Ookami Kakushi
+</a>
+</li>
+<li>
+<a href="/a/ookami-to-koushinryou" class="series-title" data-title="Ookami to Koushinryou" data-alt="Spice and Wolf">Ookami to Koushinryou
+</a>
+</li>
+<li>
+<a href="/a/ookami-to-koushinryou-ii" class="series-title" data-title="Ookami to Koushinryou II" data-alt="Spice and Wolf II">Ookami to Koushinryou II
+</a>
+</li>
+<li>
+<a href="/a/orange" class="series-title" data-title="Orange">Orange
+</a>
+</li>
+<li>
+<a href="/a/ore-ga-ojousama-gakkou-ni-shomin-sample-toshite-gets-love-sareta-ken" class="series-title" data-title="Ore ga Ojousama Gakkou ni &quot;Shomin Sample&quot; Toshite Gets♥Sareta Ken" data-alt="Shomin Sample">Ore ga Ojousama Gakkou ni &quot;Shomin Sample&quot; Toshite Gets♥Sareta Ken
+</a>
+</li>
+<li>
+<a href="/a/ore-monogatari" class="series-title" data-title="Ore Monogatari!!" data-alt="My Love Story!!">Ore Monogatari!!
+</a>
+</li>
+<li>
+<a href="/a/ore-no-imouto-ga-konnani-kawaii-wake-ga-nai" class="series-title" data-title="Ore no Imouto ga Konnani Kawaii Wake ga Nai" data-alt="OreImo">Ore no Imouto ga Konnani Kawaii Wake ga Nai
+</a>
+</li>
+<li>
+<a href="/a/ore-no-imouto-ga-konnani-kawaii-wake-ga-nai-3" class="series-title" data-title="Ore no Imouto ga Konnani Kawaii Wake ga Nai." data-alt="OreImo Season 2">Ore no Imouto ga Konnani Kawaii Wake ga Nai.
+</a>
+</li>
+<li>
+<a href="/a/ore-no-kanojo-to-osananajimi-ga-shuraba-sugiru" class="series-title" data-title="Ore no Kanojo to Osananajimi ga Shuraba Sugiru" data-alt="Oreshura">Ore no Kanojo to Osananajimi ga Shuraba Sugiru
+</a>
+</li>
+<li>
+<a href="/a/orenchi-no-furo-jijou" class="series-title" data-title="Orenchi no Furo Jijou" data-alt="The Circumstances in My Home&#39;s Bathtub">Orenchi no Furo Jijou
+</a>
+</li>
+<li>
+<a href="/a/osake-wa-fuufu-ni-natte-kara" class="series-title" data-title="Osake wa Fuufu ni Natte kara" data-alt="Love is Like a Cocktail">Osake wa Fuufu ni Natte kara
+</a>
+</li>
+<li>
+<a href="/a/oshiete-galko-chan" class="series-title" data-title="Oshiete! Galko-chan" data-alt="Please tell me! Galko-chan">Oshiete! Galko-chan
+</a>
+</li>
+<li>
+<a href="/a/osomatsu-san-2" class="series-title" data-title="Osomatsu-san 2" data-alt="Mr. Osomatsu 2">Osomatsu-san 2
+</a>
+<a href="/a/osomatsu-san-2/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/otome-youkai-zakuro" class="series-title" data-title="Otome Youkai Zakuro" data-alt="Zakuro">Otome Youkai Zakuro
+</a>
+</li>
+<li>
+<a href="/a/ouran-koukou-host-club" class="series-title" data-title="Ouran Koukou Host Club" data-alt="Ouran High School Host Club">Ouran Koukou Host Club
+</a>
+</li>
+<li>
+<a href="/a/ousama-game-the-animation" class="series-title" data-title="Ousama Game The Animation" data-alt="King&#39;s Game">Ousama Game The Animation
+</a>
+</li>
+<li>
+<a href="/a/outbreak-company" class="series-title" data-title="Outbreak Company">Outbreak Company
+</a>
+</li>
+<li>
+<a href="/a/overlord" class="series-title" data-title="Overlord">Overlord
+</a>
+</li>
+<li>
+<a href="/a/overlord-ii" class="series-title" data-title="Overlord II" data-alt="Overlord Season 2">Overlord II
+</a>
+<a href="/a/overlord-ii/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/owari-no-seraph" class="series-title" data-title="Owari no Seraph" data-alt="Seraph of the End: Vampire Reign">Owari no Seraph
+</a>
+</li>
+<li>
+<a href="/a/owari-no-seraph-nagoya-kessen" class="series-title" data-title="Owari no Seraph: Nagoya Kessen" data-alt="Seraph of the End: Battle in Nagoya">Owari no Seraph: Nagoya Kessen
+</a>
+</li>
+<li>
+<a href="/a/owarimonogatari" class="series-title" data-title="Owarimonogatari">Owarimonogatari
+</a>
+</li>
+<li>
+<a href="/a/owarimonogatari-2nd-season" class="series-title" data-title="Owarimonogatari 2nd Season">Owarimonogatari 2nd Season
+</a>
+</li>
+<li>
+<a href="/a/panty-and-stocking-with-garterbelt" class="series-title" data-title="Panty &amp; Stocking with Garterbelt" data-alt="Panty and Stocking with Garterbelt">Panty &amp; Stocking with Garterbelt
+</a>
+</li>
+<li>
+<a href="/a/perfect-blue" class="series-title" data-title="Perfect Blue">Perfect Blue
+</a>
+</li>
+<li>
+<a href="/a/persona-4-the-animation" class="series-title" data-title="Persona 4 The Animation">Persona 4 The Animation
+</a>
+</li>
+<li>
+<a href="/a/phantom-requiem-for-the-phantom" class="series-title" data-title="Phantom: Requiem for the Phantom">Phantom: Requiem for the Phantom
+</a>
+</li>
+<li>
+<a href="/a/ping-pong-the-animation" class="series-title" data-title="Ping Pong The Animation" data-alt="Ping Pong the Animation">Ping Pong The Animation
+</a>
+</li>
+<li>
+<a href="/a/pingu-in-the-city" class="series-title" data-title="Pingu in the City">Pingu in the City
+</a>
+<a href="/a/pingu-in-the-city/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/plastic-memories" class="series-title" data-title="Plastic Memories">Plastic Memories
+</a>
+</li>
+<li>
+<a href="/a/pokemon-the-origin" class="series-title" data-title="Pokemon: The Origin">Pokemon: The Origin
+</a>
+</li>
+<li>
+<a href="/a/pop-team-epic" class="series-title" data-title="Pop Team Epic">Pop Team Epic
+</a>
+<a href="/a/pop-team-epic/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/princess-principal" class="series-title" data-title="Princess Principal">Princess Principal
+</a>
+</li>
+<li>
+<a href="/a/princess-resurrection" class="series-title" data-title="Princess Resurrection">Princess Resurrection
+</a>
+</li>
+<li>
+<a href="/a/psycho-pass" class="series-title" data-title="Psycho-Pass">Psycho-Pass
+</a>
+</li>
+<li>
+<a href="/a/psycho-pass-2" class="series-title" data-title="Psycho-Pass 2">Psycho-Pass 2
+</a>
+</li>
+<li>
+<a href="/a/punch-line" class="series-title" data-title="Punch Line">Punch Line
+</a>
+</li>
+<li>
+<a href="/a/pupa" class="series-title" data-title="Pupa">Pupa
+</a>
+</li>
+<li>
+<a href="/a/quan-zhi-gao-shou" class="series-title" data-title="Quan Zhi Gao Shou" data-alt="The King’s Avatar">Quan Zhi Gao Shou
+</a>
+</li>
+<li>
+<a href="/a/r-15" class="series-title" data-title="R-15">R-15
+</a>
+</li>
+<li>
+<a href="/a/rail-wars" class="series-title" data-title="Rail Wars!">Rail Wars!
+</a>
+</li>
+<li>
+<a href="/a/rakudai-kishi-no-cavalry" class="series-title" data-title="Rakudai Kishi no Cavalry" data-alt="Chivalry of a Failed Knight">Rakudai Kishi no Cavalry
+</a>
+</li>
+<li>
+<a href="/a/ramen-daisuki-koizumi-san" class="series-title" data-title="Ramen Daisuki Koizumi-san">Ramen Daisuki Koizumi-san
+</a>
+<a href="/a/ramen-daisuki-koizumi-san/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/ranpo-kitan-game-of-laplace" class="series-title" data-title="Ranpo Kitan: Game of Laplace" data-alt="Rampo Kitan: Game of Laplace">Ranpo Kitan: Game of Laplace
+</a>
+</li>
+<li>
+<a href="/a/re-hamatora" class="series-title" data-title="Re: Hamatora">Re: Hamatora
+</a>
+</li>
+<li>
+<a href="/a/re-creators" class="series-title" data-title="Re:Creators">Re:Creators
+</a>
+</li>
+<li>
+<a href="/a/re-zero-kara-hajimeru-isekai-seikatsu-6" class="series-title" data-title="Re:Zero kara Hajimeru Isekai Seikatsu" data-alt="Re:ZERO -Starting Life in Another World-">Re:Zero kara Hajimeru Isekai Seikatsu
+</a>
+</li>
+<li>
+<a href="/a/regalia-the-three-sacred-stars" class="series-title" data-title="Regalia: The Three Sacred Stars">Regalia: The Three Sacred Stars
+</a>
+</li>
+<li>
+<a href="/a/relife" class="series-title" data-title="ReLIFE">ReLIFE
+</a>
+</li>
+<li>
+<a href="/a/renai-boukun" class="series-title" data-title="Renai Boukun">Renai Boukun
+</a>
+</li>
+<li>
+<a href="/a/rewrite" class="series-title" data-title="Rewrite">Rewrite
+</a>
+</li>
+<li>
+<a href="/a/rewrite-2nd-season" class="series-title" data-title="Rewrite 2nd Season">Rewrite 2nd Season
+</a>
+</li>
+<li>
+<a href="/a/rinne-no-lagrange" class="series-title" data-title="Rinne no Lagrange" data-alt="Lagrange: The Flower of Rin-ne">Rinne no Lagrange
+</a>
+</li>
+<li>
+<a href="/a/robotics-notes" class="series-title" data-title="Robotics;Notes">Robotics;Notes
+</a>
+</li>
+<li>
+<a href="/a/rokka-no-yuusha" class="series-title" data-title="Rokka no Yuusha" data-alt="Rokka: Braves of the Six Flowers">Rokka no Yuusha
+</a>
+</li>
+<li>
+<a href="/a/rokudenashi-majutsu-koushi-to-akashic-records" class="series-title" data-title="Rokudenashi Majutsu Koushi to Akashic Records" data-alt="Akashic Records of Bastard Magic Instructor">Rokudenashi Majutsu Koushi to Akashic Records
+</a>
+</li>
+<li>
+<a href="/a/rokujouma-no-shinryakusha-tv" class="series-title" data-title="Rokujouma no Shinryakusha!? (TV)" data-alt="Invaders of the Rokujouma!?">Rokujouma no Shinryakusha!? (TV)
+</a>
+</li>
+<li>
+<a href="/a/rosario-vampire" class="series-title" data-title="Rosario + Vampire">Rosario + Vampire
+</a>
+</li>
+<li>
+<a href="/a/rosario-vampire-capu2" class="series-title" data-title="Rosario + Vampire Capu2">Rosario + Vampire Capu2
+</a>
+</li>
+<li>
+<a href="/a/ryuugajou-nanana-no-maizoukin-tv" class="series-title" data-title="Ryuugajou Nanana no Maizoukin (TV)" data-alt="Nanana&#39;s Buried Treasure">Ryuugajou Nanana no Maizoukin (TV)
+</a>
+</li>
+
+<li>
+<a href="/a/ryuuou-no-oshigoto" class="series-title" data-title="Ryuuou no Oshigoto!" data-alt="The Ryuo’s Work is Never Done!">Ryuuou no Oshigoto!
+</a>
+<a href="/a/ryuuou-no-oshigoto/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/saenai-heroine-no-sodate-kata" class="series-title" data-title="Saenai Heroine no Sodate-kata" data-alt="Saekano: How to Raise a Boring Girlfriend">Saenai Heroine no Sodate-kata
+</a>
+</li>
+<li>
+<a href="/a/saenai-heroine-no-sodatekata-5" class="series-title" data-title="Saenai Heroine no Sodatekata ♭" data-alt="Saekano: How to Raise a Boring Girlfriend Flat">Saenai Heroine no Sodatekata ♭
+</a>
+</li>
+<li>
+<a href="/a/saijaku-muhai-no-bahamut" class="series-title" data-title="Saijaku Muhai no Bahamut" data-alt="Undefeated Bahamut Chronicle">Saijaku Muhai no Bahamut
+</a>
+</li>
+<li>
+<a href="/a/saiki-kusuo-no-ps-nan-tv" class="series-title" data-title="Saiki Kusuo no Ψ-nan (TV)" data-alt="The Disastrous Life of Saiki K.">Saiki Kusuo no Ψ-nan (TV)
+</a>
+</li>
+<li>
+<a href="/a/saiki-kusuo-no-ps-nan-2" class="series-title" data-title="Saiki Kusuo no Ψ-nan 2" data-alt="The Disastrous Life of Saiki K. 2">Saiki Kusuo no Ψ-nan 2
+</a>
+<a href="/a/saiki-kusuo-no-ps-nan-2/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/saikin-imouto-no-yousu-ga-chotto-okashiin-da-ga" class="series-title" data-title="Saikin, Imouto no Yousu ga Chotto Okashiin da ga." data-alt="Recently, my sister is unusual.">Saikin, Imouto no Yousu ga Chotto Okashiin da ga.
+</a>
+</li>
+<li>
+<a href="/a/saiunkoku-monogatari" class="series-title" data-title="Saiunkoku Monogatari" data-alt="The Story of Saiunkoku">Saiunkoku Monogatari
+</a>
+</li>
+<li>
+<a href="/a/saiunkoku-monogatari-2nd-season" class="series-title" data-title="Saiunkoku Monogatari 2nd Season" data-alt="Tales of Saiunkoku">Saiunkoku Monogatari 2nd Season
+</a>
+</li>
+<li>
+<a href="/a/sakamichi-no-apollon" class="series-title" data-title="Sakamichi no Apollon" data-alt="Kids on the Slope">Sakamichi no Apollon
+</a>
+</li>
+<li>
+<a href="/a/sakamoto-desu-ga" class="series-title" data-title="Sakamoto desu ga?" data-alt="Haven&#39;t You Heard? I&#39;m Sakamoto">Sakamoto desu ga?
+</a>
+</li>
+<li>
+<a href="/a/sakura-quest" class="series-title" data-title="Sakura Quest">Sakura Quest
+</a>
+</li>
+<li>
+<a href="/a/sakura-trick" class="series-title" data-title="Sakura Trick">Sakura Trick
+</a>
+</li>
+<li>
+<a href="/a/sakurada-reset" class="series-title" data-title="Sakurada Reset" data-alt="Sagrada Reset">Sakurada Reset
+</a>
+</li>
+<li>
+<a href="/a/sakurasou-no-pet-na-kanojo-3" class="series-title" data-title="Sakurasou no Pet na Kanojo" data-alt="The Pet Girl of Sakurasou">Sakurasou no Pet na Kanojo
+</a>
+</li>
+<li>
+<a href="/a/samurai-champloo" class="series-title" data-title="Samurai Champloo">Samurai Champloo
+</a>
+
+</li>
+<li>
+<a href="/a/sankarea" class="series-title" data-title="Sankarea">Sankarea
+</a>
+</li>
+<li>
+<a href="/a/sanrio-danshi" class="series-title" data-title="Sanrio Danshi">Sanrio Danshi
+</a>
+<a href="/a/sanrio-danshi/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/sasameki-koto" class="series-title" data-title="Sasameki Koto" data-alt="Whispered Words">Sasameki Koto
+</a>
+</li>
+<li>
+<a href="/a/scared-rider-xechs" class="series-title" data-title="Scared Rider Xechs">Scared Rider Xechs
+</a>
+</li>
+<li>
+<a href="/a/school-rumble" class="series-title" data-title="School Rumble">School Rumble
+</a>
+</li>
+<li>
+<a href="/a/schoolgirl-strikers-animation-channel" class="series-title" data-title="Schoolgirl Strikers: Animation Channel">Schoolgirl Strikers: Animation Channel
+</a>
+</li>
+<li>
+<a href="/a/seiken-tsukai-no-world-break" class="series-title" data-title="Seiken Tsukai no World Break" data-alt="World Break: Aria of Curse for a Holy Swordsman">Seiken Tsukai no World Break
+</a>
+</li>
+<li>
+<a href="/a/seikimatsu-occult-gakuin" class="series-title" data-title="Seikimatsu Occult Gakuin" data-alt="Occult Academy">Seikimatsu Occult Gakuin
+</a>
+</li>
+<li>
+<a href="/a/seikoku-no-dragonar" class="series-title" data-title="Seikoku no Dragonar" data-alt="Dragonar Academy">Seikoku no Dragonar
+</a>
+</li>
+<li>
+<a href="/a/seikon-no-qwaser" class="series-title" data-title="Seikon no Qwaser" data-alt="Qwaser of Stigmata">Seikon no Qwaser
+</a>
+</li>
+<li>
+<a href="/a/seikon-no-qwaser-ii" class="series-title" data-title="Seikon no Qwaser II" data-alt="Qwaser of Stigmata II">Seikon no Qwaser II
+</a>
+</li>
+<li>
+<a href="/a/seirei-tsukai-no-blade-dance" class="series-title" data-title="Seirei Tsukai no Blade Dance" data-alt="Bladedance of Elementalers">Seirei Tsukai no Blade Dance
+</a>
+</li>
+<li>
+<a href="/a/seiren" class="series-title" data-title="Seiren">Seiren
+</a>
+</li>
+<li>
+<a href="/a/seitokai-no-ichizon" class="series-title" data-title="Seitokai no Ichizon" data-alt="Student Council&#39;s Discretion">Seitokai no Ichizon
+</a>
+</li>
+<li>
+<a href="/a/seitokai-yakuindomo" class="series-title" data-title="Seitokai Yakuindomo">Seitokai Yakuindomo
+</a>
+</li>
+<li>
+<a href="/a/seitokai-yakuindomo-3" class="series-title" data-title="Seitokai Yakuindomo*">Seitokai Yakuindomo*
+</a>
+</li>
+<li>
+<a href="/a/sekai-seifuku-bouryaku-no-zvezda" class="series-title" data-title="Sekai Seifuku: Bouryaku no Zvezda" data-alt="World Conquest Zvezda">Sekai Seifuku: Bouryaku no Zvezda
+</a>
+</li>
+<li>
+<a href="/a/sekirei" class="series-title" data-title="Sekirei">Sekirei
+</a>
+</li>
+<li>
+<a href="/a/sekirei-pure-engagement" class="series-title" data-title="Sekirei: Pure Engagement">Sekirei: Pure Engagement
+</a>
+ </li>
+<li>
+<a href="/a/sen-to-chihiro-no-kamikakushi" class="series-title" data-title="Sen to Chihiro no Kamikakushi" data-alt="Spirited Away">Sen to Chihiro no Kamikakushi
+</a>
+</li>
+<li>
+<a href="/a/sengoku-night-blood" class="series-title" data-title="Sengoku Night Blood">Sengoku Night Blood
+</a>
+</li>
+<li>
+<a href="/a/senjou-no-valkyria" class="series-title" data-title="Senjou no Valkyria" data-alt="Valkyria Chronicles">Senjou no Valkyria
+</a>
+</li>
+<li>
+<a href="/a/senyuu" class="series-title" data-title="Senyuu.">Senyuu.
+</a>
+</li>
+<li>
+<a href="/a/serial-experiments-lain" class="series-title" data-title="Serial Experiments Lain">Serial Experiments Lain
+</a>
+</li>
+<li>
+<a href="/a/servamp" class="series-title" data-title="Servamp">Servamp
+</a>
+</li>
+<li>
+<a href="/a/seto-no-hanayome" class="series-title" data-title="Seto no Hanayome" data-alt="My Bride is a Mermaid">Seto no Hanayome
+</a>
+</li>
+<li>
+<a href="/a/shakugan-no-shana" class="series-title" data-title="Shakugan no Shana">Shakugan no Shana
+</a>
+</li>
+<li>
+<a href="/a/shigatsu-wa-kimi-no-uso" class="series-title" data-title="Shigatsu wa Kimi no Uso" data-alt="Your Lie in April">Shigatsu wa Kimi no Uso
+</a>
+</li>
+<li>
+<a href="/a/shiki" class="series-title" data-title="Shiki">Shiki
+</a>
+</li>
+<li>
+<a href="/a/shimoneta-to-iu-gainen-ga-sonzai-shinai-taikutsu-na-sekai" class="series-title" data-title="Shimoneta to Iu Gainen ga Sonzai Shinai Taikutsu na Sekai" data-alt="SHIMONETA: A Boring World Where the Concept of Dirty Jokes Doesn&#39;t Exist">Shimoneta to Iu Gainen ga Sonzai Shinai Taikutsu na Sekai
+</a>
+</li>
+<li>
+<a href="/a/shingeki-no-bahamut-genesis" class="series-title" data-title="Shingeki no Bahamut: Genesis" data-alt="Rage of Bahamut: Genesis">Shingeki no Bahamut: Genesis
+</a>
+</li>
+<li>
+<a href="/a/shingeki-no-bahamut-virgin-soul" class="series-title" data-title="Shingeki no Bahamut: Virgin Soul">Shingeki no Bahamut: Virgin Soul
+</a>
+</li>
+<li>
+<a href="/a/shingeki-no-kyojin" class="series-title" data-title="Shingeki no Kyojin" data-alt="Attack on Titan">Shingeki no Kyojin
+</a>
+</li>
+<li>
+<a href="/a/shingeki-no-kyojin-season-2" class="series-title" data-title="Shingeki no Kyojin Season 2" data-alt="Attack on Titan Season 2">Shingeki no Kyojin Season 2
+</a>
+</li>
+<li>
+<a href="/a/shingetsutan-tsukihime" class="series-title" data-title="Shingetsutan Tsukihime" data-alt="Lunar Legend Tsukihime">Shingetsutan Tsukihime
+</a>
+</li>
+<li>
+<a href="/a/shinigami-no-ballad" class="series-title" data-title="Shinigami no Ballad" data-alt="Momo, Girl God of Death ~ Ballad of a Shinigami">Shinigami no Ballad
+</a>
+</li>
+<li>
+<a href="/a/shining-hearts-shiawase-no-pan" class="series-title" data-title="Shining Hearts: Shiawase no Pan">Shining Hearts: Shiawase no Pan
+</a>
+</li>
+<li>
+<a href="/a/shinmai-maou-no-testament" class="series-title" data-title="Shinmai Maou no Testament" data-alt="The Testament of Sister New Devil">Shinmai Maou no Testament
+</a>
+</li>
+<li>
+<a href="/a/shinmai-maou-no-testament-burst" class="series-title" data-title="Shinmai Maou no Testament Burst" data-alt="The Testament of Sister New Devil: Burst">Shinmai Maou no Testament Burst
+</a>
+</li>
+<li>
+<a href="/a/shinryaku-ika-musume" class="series-title" data-title="Shinryaku! Ika Musume" data-alt="Squid Girl">Shinryaku! Ika Musume
+</a>
+</li>
+<li>
+<a href="/a/shinseiki-evangelion" class="series-title" data-title="Shinseiki Evangelion" data-alt="Neon Genesis Evangelion">Shinseiki Evangelion
+</a>
+</li>
+<li>
+<a href="/a/shinsekai-yori" class="series-title" data-title="Shinsekai yori" data-alt="From the New World">Shinsekai yori
+</a>
+</li>
+<li>
+<a href="/a/shirobako" class="series-title" data-title="Shirobako">Shirobako
+</a>
+</li>
+<li>
+<a href="/a/shokugeki-no-souma" class="series-title" data-title="Shokugeki no Souma" data-alt="Food Wars!">Shokugeki no Souma
+</a>
+</li>
+<li>
+<a href="/a/shokugeki-no-souma-ni-no-sara" class="series-title" data-title="Shokugeki no Souma: Ni no Sara" data-alt="Food Wars! Shokugeki no Soma: The Second Plate">Shokugeki no Souma: Ni no Sara
+</a>
+</li>
+<li>
+<a href="/a/shokugeki-no-souma-san-no-sara" class="series-title" data-title="Shokugeki no Souma: San no Sara" data-alt="Food Wars! The Third Plate">Shokugeki no Souma: San no Sara
+</a>
+</li>
+<li>
+<a href="/a/shoujo-kakumei-utena" class="series-title" data-title="Shoujo Kakumei Utena" data-alt="Revolutionary Girl Utena">Shoujo Kakumei Utena
+</a>
+</li>
+<li>
+<a href="/a/shoujo-shuumatsu-ryokou" class="series-title" data-title="Shoujo Shuumatsu Ryokou" data-alt="Girls&#39; Last Tour">Shoujo Shuumatsu Ryokou
+</a>
+</li>
+<li>
+<a href="/a/shoukoku-no-altair" class="series-title" data-title="Shoukoku no Altair">Shoukoku no Altair
+</a>
+</li>
+<li>
+<a href="/a/shounen-ashibe-go-go-goma-chan" class="series-title" data-title="Shounen Ashibe: Go! Go! Goma-chan">Shounen Ashibe: Go! Go! Goma-chan
+</a>
+</li>
+<li>
+<a href="/a/shounen-ashibe-go-go-goma-chan-2" class="series-title" data-title="Shounen Ashibe: Go! Go! Goma-chan 2">Shounen Ashibe: Go! Go! Goma-chan 2
+</a>
+<a href="/a/shounen-ashibe-go-go-goma-chan-2/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/shouwa-genroku-rakugo-shinjuu" class="series-title" data-title="Shouwa Genroku Rakugo Shinjuu" data-alt="Showa Genroku Rakugo Shinju">Shouwa Genroku Rakugo Shinjuu
+</a>
+</li>
+<li>
+<a href="/a/shouwa-genroku-rakugo-shinjuu-sukeroku-futatabi-hen" class="series-title" data-title="Shouwa Genroku Rakugo Shinjuu: Sukeroku Futatabi-hen" data-alt="Descending Stories: Showa Genroku Rakugo Shinju">Shouwa Genroku Rakugo Shinjuu: Sukeroku Futatabi-hen
+</a>
+</li>
+<li>
+<a href="/a/shuffle" class="series-title" data-title="Shuffle!">Shuffle!
+</a>
+</li>
+<li>
+<a href="/a/shuumatsu-nani-shitemasu-ka-isogashii-desu-ka-sukutte-moratte-ii-desu-ka" class="series-title" data-title="Shuumatsu Nani Shitemasu ka? Isogashii desu ka? Sukutte Moratte Ii desu ka?">Shuumatsu Nani Shitemasu ka? Isogashii desu ka? Sukutte Moratte Ii desu ka?
+</a>
+</li>
+<li>
+<a href="/a/shuumatsu-no-izetta" class="series-title" data-title="Shuumatsu no Izetta">Shuumatsu no Izetta
+</a>
+</li>
+<li>
+<a href="/a/sidonia-no-kishi" class="series-title" data-title="Sidonia no Kishi" data-alt="Knights of Sidonia">Sidonia no Kishi
+</a>
+</li>
+<li>
+<a href="/a/sin-nanatsu-no-taizai" class="series-title" data-title="Sin: Nanatsu no Taizai" data-alt="Seven Mortal Sins">Sin: Nanatsu no Taizai
+</a>
+</li>
+<li>
+<a href="/a/slow-start" class="series-title" data-title="Slow Start">Slow Start
+</a>
+<a href="/a/slow-start/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/so-ra-no-wo-to" class="series-title" data-title="So Ra No Wo To" data-alt="Sound of the Sky">So Ra No Wo To
+</a>
+</li>
+<li>
+<a href="/a/soniani-super-sonico-the-animation" class="series-title" data-title="SoniAni: Super Sonico The Animation" data-alt="Soni-Ani: Super Sonico The Animation">SoniAni: Super Sonico The Animation
+</a>
+</li>
+<li>
+<a href="/a/sora-no-otoshimono" class="series-title" data-title="Sora no Otoshimono" data-alt="Heaven&#39;s Lost Property">Sora no Otoshimono
+</a>
+</li>
+<li>
+<a href="/a/sora-no-otoshimono-forte" class="series-title" data-title="Sora no Otoshimono: Forte" data-alt="Heaven&#39;s Lost Property: Forte">Sora no Otoshimono: Forte
+</a>
+</li>
+<li>
+<a href="/a/sora-no-otoshimono-tokeijikake-no-angeloid" class="series-title" data-title="Sora no Otoshimono: Tokeijikake no Angeloid" data-alt="Heaven&#39;s Lost Property the Movie: The Angeloid of Clockwork">Sora no Otoshimono: Tokeijikake no Angeloid
+</a>
+</li>
+<li>
+<a href="/a/sora-yori-mo-tooi-basho" class="series-title" data-title="Sora yori mo Tooi Basho" data-alt="A Place Further Than the Universe">Sora yori mo Tooi Basho
+</a>
+<a href="/a/sora-yori-mo-tooi-basho/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/soredemo-machi-wa-mawatteiru" class="series-title" data-title="Soredemo Machi wa Mawatteiru" data-alt="And Yet The Town Moves">Soredemo Machi wa Mawatteiru
+</a>
+</li>
+<li>
+<a href="/a/soredemo-sekai-wa-utsukushii" class="series-title" data-title="Soredemo Sekai wa Utsukushii" data-alt="The World is Still Beautiful">Soredemo Sekai wa Utsukushii
+</a>
+</li>
+<li>
+<a href="/a/soul-buster" class="series-title" data-title="Soul Buster">Soul Buster
+</a>
+</li>
+<li>
+<a href="/a/soul-eater" class="series-title" data-title="Soul Eater">Soul Eater
+</a>
+</li>
+<li>
+<a href="/a/sousei-no-onmyouji" class="series-title" data-title="Sousei no Onmyouji" data-alt="Twin Star Exorcists">Sousei no Onmyouji
+</a>
+</li>
+<li>
+<a href="/a/souten-no-ken" class="series-title" data-title="Souten no Ken" data-alt="Fist of the Blue Sky">Souten no Ken
+</a>
+</li>
+<li>
+<a href="/a/star-driver-the-movie" class="series-title" data-title="Star Driver the Movie">Star Driver the Movie
+</a>
+</li>
+<li>
+<a href="/a/star-driver-kagayaki-no-takuto" class="series-title" data-title="Star Driver: Kagayaki no Takuto" data-alt="Star Driver">Star Driver: Kagayaki no Takuto
+</a>
+</li>
+<li>
+<a href="/a/steins-gate" class="series-title" data-title="Steins;Gate">Steins;Gate
+</a>
+</li>
+<li>
+<a href="/a/steins-gate-movie-fuka-ryouiki-no-deja-vu" class="series-title" data-title="Steins;Gate Movie: Fuka Ryouiki no Déjà vu" data-alt="Steins;Gate: The Movie − Load Region of Déjà Vu">Steins;Gate Movie: Fuka Ryouiki no Déjà vu
+</a>
+</li>
+<li>
+<a href="/a/stella-no-mahou" class="series-title" data-title="Stella no Mahou" data-alt="Magic of Stella">Stella no Mahou
+</a>
+</li>
+<li>
+<a href="/a/strike-the-blood" class="series-title" data-title="Strike the Blood">Strike the Blood
+</a>
+</li>
+<li>
+<a href="/a/strike-the-blood-ii" class="series-title" data-title="Strike the Blood II" data-alt="Strike the Blood Second">Strike the Blood II
+</a>
+</li>
+<li>
+<a href="/a/suisei-no-gargantia" class="series-title" data-title="Suisei no Gargantia" data-alt="Gargantia on the Verdurous Planet">Suisei no Gargantia
+</a>
+</li>
+<li>
+<a href="/a/suki-ni-naru-sono-shunkan-wo-kokuhaku-jikkou-iinkai" class="series-title" data-title="Suki ni Naru Sono Shunkan wo.: Kokuhaku Jikkou Iinkai" data-alt="The Moment You Fall in Love">Suki ni Naru Sono Shunkan wo.: Kokuhaku Jikkou Iinkai
+</a>
+</li>
+<li>
+<a href="/a/super-lovers-2" class="series-title" data-title="Super Lovers 2">Super Lovers 2
+</a>
+</li>
+<li>
+<a href="/a/suzumiya-haruhi-no-shoushitsu" class="series-title" data-title="Suzumiya Haruhi no Shoushitsu" data-alt="The Disappearance of Haruhi Suzumiya">Suzumiya Haruhi no Shoushitsu
+</a>
+</li>
+<li>
+<a href="/a/suzumiya-haruhi-no-yuuutsu" class="series-title" data-title="Suzumiya Haruhi no Yuuutsu" data-alt="The Melancholy of Haruhi Suzumiya">Suzumiya Haruhi no Yuuutsu
+</a>
+</li>
+<li>
+<a href="/a/sword-art-online" class="series-title" data-title="Sword Art Online">Sword Art Online
+</a>
+</li>
+<li>
+<a href="/a/sword-art-online-ii" class="series-title" data-title="Sword Art Online II">Sword Art Online II
+</a>
+</li>
+<li>
+<a href="/a/sword-art-online-movie-ordinal-scale" class="series-title" data-title="Sword Art Online Movie: Ordinal Scale" data-alt="Sword Art Online the Movie -Ordinal Scale-">Sword Art Online Movie: Ordinal Scale
+</a>
+</li>
+<li>
+<a href="/a/taboo-tattoo" class="series-title" data-title="Taboo Tattoo">Taboo Tattoo
+</a>
+</li>
+<li>
+<a href="/a/taimadou-gakuen-35-shiken-shoutai" class="series-title" data-title="Taimadou Gakuen 35 Shiken Shoutai" data-alt="Anti-Magic Academy: The 35th Test Platoon">Taimadou Gakuen 35 Shiken Shoutai
+</a>
+</li>
+<li>
+<a href="/a/takunomi" class="series-title" data-title="Takunomi.">Takunomi.
+</a>
+<a href="/a/takunomi/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/tales-of-the-abyss" class="series-title" data-title="Tales of the Abyss">Tales of the Abyss
+</a>
+</li>
+<li>
+<a href="/a/tales-of-zestiria-the-x" class="series-title" data-title="Tales of Zestiria the X">Tales of Zestiria the X
+</a>
+</li>
+<li>
+<a href="/a/tamako-love-story" class="series-title" data-title="Tamako Love Story">Tamako Love Story
+</a>
+</li>
+<li>
+<a href="/a/tamako-market" class="series-title" data-title="Tamako Market">Tamako Market
+</a>
+</li>
+<li>
+<a href="/a/tanaka-kun-wa-itsumo-kedaruge" class="series-title" data-title="Tanaka-kun wa Itsumo Kedaruge" data-alt="Tanaka-kun is Always Listless">Tanaka-kun wa Itsumo Kedaruge
+</a>
+</li>
+<li>
+<a href="/a/tasogare-otome-x-amnesia" class="series-title" data-title="Tasogare Otome x Amnesia" data-alt="Dusk Maiden of Amnesia">Tasogare Otome x Amnesia
+</a>
+</li>
+<li>
+<a href="/a/teekyuu" class="series-title" data-title="Teekyuu">Teekyuu
+</a>
+</li>
+<li>
+<a href="/a/tengen-toppa-gurren-lagann" class="series-title" data-title="Tengen Toppa Gurren Lagann">Tengen Toppa Gurren Lagann
+</a>
+</li>
+<li>
+<a href="/a/texhnolyze" class="series-title" data-title="Texhnolyze">Texhnolyze
+</a>
+</li>
+<li>
+<a href="/a/the-idolm-ster" class="series-title" data-title="The iDOLM@STER">The <span class="__cf_email__" data-cfemail="7f163b3033323f2c2b3a2d">[email&#160;protected]</span>
+</a>
+</li>
+<li>
+<a href="/a/the-idolm-ster-side-m" class="series-title" data-title="The iDOLM@STER Side M" data-alt="THE IDOLM@STER SideM">The <span class="__cf_email__" data-cfemail="335a777c7f7e7360677661">[email&#160;protected]</span> Side M
+</a>
+</li>
+<li>
+<a href="/a/the-reflection" class="series-title" data-title="The Reflection">The Reflection
+</a>
+</li>
+<li>
+<a href="/a/the-rolling-girls" class="series-title" data-title="The Rolling Girls" data-alt="Rolling☆Girls">The Rolling Girls
+</a>
+</li>
+<li>
+<a href="/a/those-who-hunt-elves" class="series-title" data-title="Those Who Hunt Elves">Those Who Hunt Elves
+</a>
+</li>
+<li>
+<a href="/a/those-who-hunt-elves-ii" class="series-title" data-title="Those Who Hunt Elves II">Those Who Hunt Elves II
+</a>
+</li>
+<li>
+<a href="/a/tiger-and-bunny" class="series-title" data-title="Tiger &amp; Bunny">Tiger &amp; Bunny
+</a>
+</li>
+<li>
+<a href="/a/to-love-ru" class="series-title" data-title="To LOVE-Ru" data-alt="To-LOVE-Ru">To LOVE-Ru
+</a>
+</li>
+<li>
+<a href="/a/to-love-ru-darkness" class="series-title" data-title="To LOVE-Ru Darkness">To LOVE-Ru Darkness
+</a>
+</li>
+<li>
+<a href="/a/to-love-ru-darkness-2nd" class="series-title" data-title="To LOVE-Ru Darkness 2nd">To LOVE-Ru Darkness 2nd
+</a>
+</li>
+<li>
+<a href="/a/toaru-kagaku-no-railgun" class="series-title" data-title="Toaru Kagaku no Railgun" data-alt="A Certain Scientific Railgun">Toaru Kagaku no Railgun
+</a>
+</li>
+<li>
+<a href="/a/toaru-kagaku-no-railgun-s" class="series-title" data-title="Toaru Kagaku no Railgun S" data-alt="A Certain Scientific Railgun S">Toaru Kagaku no Railgun S
+</a>
+</li>
+<li>
+<a href="/a/toaru-majutsu-no-index" class="series-title" data-title="Toaru Majutsu no Index" data-alt="A Certain Magical Index">Toaru Majutsu no Index
+</a>
+</li>
+<li>
+<a href="/a/toaru-majutsu-no-index-ii" class="series-title" data-title="Toaru Majutsu no Index II" data-alt="A Certain Magical Index II">Toaru Majutsu no Index II
+</a>
+</li>
+<li>
+<a href="/a/toji-no-miko" class="series-title" data-title="Toji no Miko">Toji no Miko
+</a>
+<a href="/a/toji-no-miko/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/tokyo-esp" class="series-title" data-title="Tokyo ESP">Tokyo ESP
+</a>
+</li>
+<li>
+<a href="/a/tokyo-ghoul" class="series-title" data-title="Tokyo Ghoul">Tokyo Ghoul
+</a>
+</li>
+<li>
+<a href="/a/tokyo-ghoul-a" class="series-title" data-title="Tokyo Ghoul √A">Tokyo Ghoul √A
+</a>
+</li>
+<li>
+<a href="/a/tokyo-magnitude-8-0" class="series-title" data-title="Tokyo Magnitude 8.0">Tokyo Magnitude 8.0
+</a>
+</li>
+<li>
+<a href="/a/tokyo-majin-gakuen-kenpucho-tou" class="series-title" data-title="Tokyo Majin Gakuen Kenpucho: Tou" data-alt="Tokyo Majin">Tokyo Majin Gakuen Kenpucho: Tou
+</a>
+</li>
+<li>
+<a href="/a/tokyo-mew-mew" class="series-title" data-title="Tokyo Mew Mew" data-alt="Mew Mew Power">Tokyo Mew Mew
+</a>
+</li>
+<li>
+<a href="/a/tokyo-ravens" class="series-title" data-title="Tokyo Ravens">Tokyo Ravens
+</a>
+</li>
+<li>
+<a href="/a/tonari-no-totoro" class="series-title" data-title="Tonari no Totoro" data-alt="My Neighbor Totoro">Tonari no Totoro
+</a>
+</li>
+<li>
+<a href="/a/toradora" class="series-title" data-title="Toradora!">Toradora!
+</a>
+</li>
+<li>
+<a href="/a/trickster-edogawa-ranpo-shounen-tanteidan-yori" class="series-title" data-title="Trickster: Edogawa Ranpo &quot;Shounen Tanteidan&quot; yori" data-alt="Trickster">Trickster: Edogawa Ranpo &quot;Shounen Tanteidan&quot; yori
+</a>
+</li>
+<li>
+<a href="/a/trinity-blood" class="series-title" data-title="Trinity Blood">Trinity Blood
+</a>
+</li>
+<li>
+<a href="/a/trinity-seven" class="series-title" data-title="Trinity Seven">Trinity Seven
+</a>
+</li>
+<li>
+<a href="/a/trinity-seven-movie-eternity-library-to-alchemic-girl" class="series-title" data-title="Trinity Seven Movie: Eternity Library to Alchemic Girl" data-alt="Trinity Seven: Eternity Library &amp; Alchemic Girl">Trinity Seven Movie: Eternity Library to Alchemic Girl
+</a>
+</li>
+<li>
+<a href="/a/true-tears" class="series-title" data-title="True Tears">True Tears
+</a>
+</li>
+<li>
+<a href="/a/tsugumomo" class="series-title" data-title="Tsugumomo">Tsugumomo
+</a>
+</li>
+<li>
+<a href="/a/tsuki-ga-kirei" class="series-title" data-title="Tsuki ga Kirei">Tsuki ga Kirei
+</a>
+</li>
+<li>
+<a href="/a/tsukimonogatari" class="series-title" data-title="Tsukimonogatari">Tsukimonogatari
+</a>
+</li>
+<li>
+<a href="/a/tsurezure-children" class="series-title" data-title="Tsurezure Children">Tsurezure Children
+</a>
+</li>
+<li>
+<a href="/a/tsuritama" class="series-title" data-title="Tsuritama">Tsuritama
+</a>
+</li>
+<li>
+<a href="/a/two-car" class="series-title" data-title="Two Car" data-alt="TWOCAR">Two Car
+</a>
+</li>
+<li>
+<a href="/a/uchouten-kazoku-2" class="series-title" data-title="Uchouten Kazoku 2" data-alt="The Eccentric Family 2">Uchouten Kazoku 2
+</a>
+</li>
+<li>
+<a href="/a/udon-no-kuni-no-kiniro-kemari" class="series-title" data-title="Udon no Kuni no Kiniro Kemari" data-alt="Poco&#39;s Udon World">Udon no Kuni no Kiniro Kemari
+</a>
+</li>
+<li>
+<a href="/a/un-go" class="series-title" data-title="UN-GO" data-alt="Un-Go">UN-GO
+</a>
+</li>
+<li>
+<a href="/a/uq-holder-mahou-sensei-negima-2" class="series-title" data-title="UQ Holder!: Mahou Sensei Negima! 2" data-alt="UQ Holder!">UQ Holder!: Mahou Sensei Negima! 2
+</a>
+</li>
+<li>
+<a href="/a/uragiri-wa-boku-no-namae-wo-shitteiru" class="series-title" data-title="Uragiri wa Boku no Namae wo Shitteiru" data-alt="Betrayal Knows My Name">Uragiri wa Boku no Namae wo Shitteiru
+</a>
+</li>
+<li>
+<a href="/a/urahara" class="series-title" data-title="Urahara">Urahara
+</a>
+</li>
+<li>
+<a href="/a/urara-meirochou" class="series-title" data-title="Urara Meirochou">Urara Meirochou
+</a>
+</li>
+<li>
+<a href="/a/urusei-yatsura" class="series-title" data-title="Urusei Yatsura" data-alt="Those Obnoxious Aliens">Urusei Yatsura
+</a>
+</li>
+<li>
+<a href="/a/usagi-drop" class="series-title" data-title="Usagi Drop" data-alt="Bunny Drop">Usagi Drop
+</a>
+</li>
+<li>
+<a href="/a/usagi-drop-specials" class="series-title" data-title="Usagi Drop Specials" data-alt="Bunny Drop Specials">Usagi Drop Specials
+</a>
+</li>
+<li>
+<a href="/a/ushinawareta-mirai-wo-motomete" class="series-title" data-title="Ushinawareta Mirai wo Motomete" data-alt="In Search of the Lost Future">Ushinawareta Mirai wo Motomete
+</a>
+</li>
+<li>
+<a href="/a/ushio-to-tora" class="series-title" data-title="Ushio to Tora" data-alt="Ushio and Tora">Ushio to Tora
+</a>
+</li>
+<li>
+<a href="/a/uta-no-prince-sama-maji-love-legend-star" class="series-title" data-title="Uta no☆Prince-sama♪ Maji Love Legend Star">Uta no☆Prince-sama♪ Maji Love Legend Star
+</a>
+</li>
+<li>
+<a href="/a/utawarerumono" class="series-title" data-title="Utawarerumono" data-alt="The One Being Sung">Utawarerumono
+</a>
+</li>
+<li>
+<a href="/a/valkyrie-drive-mermaid" class="series-title" data-title="Valkyrie Drive: Mermaid">Valkyrie Drive: Mermaid
+</a>
+</li>
+<li>
+<a href="/a/vatican-kiseki-chosakan" class="series-title" data-title="Vatican Kiseki Chosakan">Vatican Kiseki Chosakan
+</a>
+</li>
+<li>
+<a href="/a/violet-evergarden" class="series-title" data-title="Violet Evergarden">Violet Evergarden
+</a>
+<a href="/a/violet-evergarden/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/wake-up-girls-shin-shou" class="series-title" data-title="Wake Up, Girls! Shin Shou">Wake Up, Girls! Shin Shou
+</a>
+</li>
+<li>
+<a href="/a/walkure-romanze" class="series-title" data-title="Walkure Romanze">Walkure Romanze
+</a>
+</li>
+<li>
+<a href="/a/watashi-ga-motenai-no-wa-dou-kangaetemo-omaera-ga-warui" class="series-title" data-title="Watashi ga Motenai no wa Dou Kangaetemo Omaera ga Warui!" data-alt="WATAMOTE ~ No Matter How I Look At It, It&#39;s You Guys&#39; Fault I&#39;m Unpopular!~">Watashi ga Motenai no wa Dou Kangaetemo Omaera ga Warui!
+</a>
+</li>
+<li>
+<a href="/a/watashi-ga-motete-dousunda" class="series-title" data-title="Watashi ga Motete Dousunda" data-alt="Boys, Please Kiss Him Instead of Me">Watashi ga Motete Dousunda
+</a>
+</li>
+<li>
+<a href="/a/witch-craft-works" class="series-title" data-title="Witch Craft Works">Witch Craft Works
+</a>
+</li>
+<li>
+<a href="/a/wizard-barristers-benmashi-cecil" class="series-title" data-title="Wizard Barristers: Benmashi Cecil">Wizard Barristers: Benmashi Cecil
+</a>
+</li>
+<li>
+<a href="/a/working-s1" class="series-title" data-title="Working!! S1" data-alt="Wagnaria!! S1">Working!! S1
+</a>
+</li>
+<li>
+<a href="/a/working-s3" class="series-title" data-title="Working!!! S3" data-alt="Wagnaria!!3">Working!!! S3
+</a>
+</li>
+<li>
+<a href="/a/working-s2" class="series-title" data-title="Working&#39;!! S2" data-alt="Wagnaria!!2">Working&#39;!! S2
+</a>
+</li>
+<li>
+<a href="/a/www-working" class="series-title" data-title="WWW.Working!!" data-alt="WWW.WAGNARIA!!">WWW.Working!!
+</a>
+</li>
+<li>
+<a href="/a/xxxholic" class="series-title" data-title="xxxHOLiC">xxxHOLiC
+</a>
+</li>
+<li>
+<a href="/a/yama-no-susume" class="series-title" data-title="Yama no Susume" data-alt="Encouragement of Climb">Yama no Susume
+</a>
+</li>
+<li>
+<a href="/a/yamada-kun-to-7-nin-no-majo-tv" class="series-title" data-title="Yamada-kun to 7-nin no Majo (TV)" data-alt="Yamada-kun and the Seven Witches">Yamada-kun to 7-nin no Majo (TV)
+</a>
+</li>
+<li>
+<a href="/a/yami-no-matsuei" class="series-title" data-title="Yami no Matsuei" data-alt="Descendants of Darkness">Yami no Matsuei
+</a>
+</li>
+<li>
+<a href="/a/yojouhan-shinwa-taikei" class="series-title" data-title="Yojouhan Shinwa Taikei" data-alt="The Tatami Galaxy">Yojouhan Shinwa Taikei
+</a>
+</li>
+<li>
+<a href="/a/yosuga-no-sora-in-solitude-where-we-are-least-alone" class="series-title" data-title="Yosuga no Sora: In Solitude, Where We Are Least Alone.">Yosuga no Sora: In Solitude, Where We Are Least Alone.
+</a>
+</li>
+<li>
+<a href="/a/youjo-senki" class="series-title" data-title="Youjo Senki" data-alt="Saga of Tanya the Evil">Youjo Senki
+</a>
+</li>
+<li>
+<a href="/a/youkai-apartment-no-yuuga-na-nichijou" class="series-title" data-title="Youkai Apartment no Yuuga na Nichijou" data-alt="Youkai Apato no Yuuga na Nichijou">Youkai Apartment no Yuuga na Nichijou
+</a>
+</li>
+<li>
+<a href="/a/youkoso-jitsuryoku-shijou-shugi-no-kyoushitsu-e-tv" class="series-title" data-title="Youkoso Jitsuryoku Shijou Shugi no Kyoushitsu e (TV)">Youkoso Jitsuryoku Shijou Shugi no Kyoushitsu e (TV)
+</a>
+</li>
+<li>
+<a href="/a/yowamushi-pedal" class="series-title" data-title="Yowamushi Pedal">Yowamushi Pedal
+</a>
+</li>
+<li>
+<a href="/a/yowamushi-pedal-glory-line" class="series-title" data-title="Yowamushi Pedal: Glory Line">Yowamushi Pedal: Glory Line
+</a>
+<a href="/a/yowamushi-pedal-glory-line/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/yowamushi-pedal-new-generation" class="series-title" data-title="Yowamushi Pedal: New Generation">Yowamushi Pedal: New Generation
+</a>
+</li>
+<li>
+<a href="/a/yozakura-quartet" class="series-title" data-title="Yozakura Quartet">Yozakura Quartet
+</a>
+</li>
+<li>
+<a href="/a/yozakura-quartet-hana-no-uta" class="series-title" data-title="Yozakura Quartet: Hana no Uta">Yozakura Quartet: Hana no Uta
+</a>
+</li>
+<li>
+<a href="/a/yumekui-merry" class="series-title" data-title="Yumekui Merry" data-alt="Dream Eater Merry">Yumekui Merry
+</a>
+</li>
+<li>
+<a href="/a/yuri-kuma-arashi" class="series-title" data-title="Yuri Kuma Arashi" data-alt="Yurikuma Arashi">Yuri Kuma Arashi
+</a>
+</li>
+<li>
+<a href="/a/yuri-on-ice" class="series-title" data-title="Yuri!!! on Ice">Yuri!!! on Ice
+</a>
+</li>
+<li>
+<a href="/a/yuru-camp" class="series-title" data-title="Yuru Camp△">Yuru Camp△
+</a>
+<a href="/a/yuru-camp/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/yuru-yuri" class="series-title" data-title="Yuru Yuri" data-alt="YuruYuri">Yuru Yuri
+</a>
+</li>
+<li>
+<a href="/a/yuru-yuri-san-hai" class="series-title" data-title="Yuru Yuri San☆Hai!">Yuru Yuri San☆Hai!
+</a>
+</li>
+<li>
+<a href="/a/yuru-yuri-2" class="series-title" data-title="Yuru Yuri♪♪" data-alt="YuruYuri: Happy Go Lily ♪♪">Yuru Yuri♪♪
+</a>
+</li>
+<li>
+<a href="/a/yuuki-yuuna-wa-yuusha-de-aru-washio-sumi-no-shou" class="series-title" data-title="Yuuki Yuuna wa Yuusha de Aru: Washio Sumi no Shou">Yuuki Yuuna wa Yuusha de Aru: Washio Sumi no Shou
+</a>
+</li>
+<li>
+<a href="/a/yuuki-yuuna-wa-yuusha-de-aru-yuusha-no-shou" class="series-title" data-title="Yuuki Yuuna wa Yuusha de Aru: Yuusha no Shou">Yuuki Yuuna wa Yuusha de Aru: Yuusha no Shou
+</a>
+<a href="/a/yuuki-yuuna-wa-yuusha-de-aru-yuusha-no-shou/last" tabindex="-1" class="fixed ongoing">ONGOING</a>
+</li>
+<li>
+<a href="/a/yuusha-ni-narenakatta-ore-wa-shibushibu-shuushoku-wo-ketsui-shimashita" class="series-title" data-title="Yuusha ni Narenakatta Ore wa Shibushibu Shuushoku wo Ketsui Shimashita." data-alt="Yuushibu ~ I Couldn&#39;t Become a Hero, so I Reluctantly Decided to Get a Job.">Yuusha ni Narenakatta Ore wa Shibushibu Shuushoku wo Ketsui Shimashita.
+</a>
+</li>
+<li>
+<a href="/a/yuusha-ou-gaogaigar" class="series-title" data-title="Yuusha-Ou GaoGaiGar" data-alt="King of Braves GaoGaiGar">Yuusha-Ou GaoGaiGar
+</a>
+</li>
+<li>
+<a href="/a/yuyushiki" class="series-title" data-title="Yuyushiki">Yuyushiki
+</a>
+</li>
+<li>
+<a href="/a/z-x-ignition" class="series-title" data-title="Z/X: Ignition">Z/X: Ignition
+</a>
+</li>
+<li>
+<a href="/a/zankyou-no-terror" class="series-title" data-title="Zankyou no Terror" data-alt="Terror in Resonance">Zankyou no Terror
+</a>
+</li>
+<li>
+<a href="/a/zero-kara-hajimeru-mahou-no-sho" class="series-title" data-title="Zero kara Hajimeru Mahou no Sho">Zero kara Hajimeru Mahou no Sho
+</a>
+</li>
+<li>
+<a href="/a/zero-no-tsukaima" class="series-title" data-title="Zero no Tsukaima" data-alt="The Familiar of Zero">Zero no Tsukaima
+</a>
+</li>
+<li>
+<a href="/a/zero-no-tsukaima-f" class="series-title" data-title="Zero no Tsukaima F" data-alt="The Familiar of Zero F">Zero no Tsukaima F
+</a>
+</li>
+<li>
+<a href="/a/zero-no-tsukaima-futatsuki-no-kishi" class="series-title" data-title="Zero no Tsukaima: Futatsuki no Kishi" data-alt="The Familiar of Zero: Knight of the Twin Moons">Zero no Tsukaima: Futatsuki no Kishi
+</a>
+</li>
+<li>
+<a href="/a/zero-no-tsukaima-princesses-no-rondo" class="series-title" data-title="Zero no Tsukaima: Princesses no Rondo" data-alt="The Familiar of Zero: Rondo of the Princesses">Zero no Tsukaima: Princesses no Rondo
+</a>
+</li>
+<li>
+<a href="/a/zetman" class="series-title" data-title="Zetman">Zetman
+</a>
+</li>
+<li>
+<a href="/a/zetsuen-no-tempest" class="series-title" data-title="Zetsuen no Tempest" data-alt="Blast of Tempest">Zetsuen no Tempest
+</a>
+</li>
+<li>
+<a href="/a/zettai-bouei-leviathan" class="series-title" data-title="Zettai Bouei Leviathan" data-alt="Leviathan: The Last Defense">Zettai Bouei Leviathan
+</a>
+</li>
+<li>
+<a href="/a/zoku-natsume-yuujinchou" class="series-title" data-title="Zoku Natsume Yuujinchou" data-alt="Natsume&#39;s Book of Friends Two">Zoku Natsume Yuujinchou
+</a>
+</li>
+<li>
+<a href="/a/zombie-loan" class="series-title" data-title="Zombie-Loan">Zombie-Loan
+</a>
+</li>
+<li>
+<a href="/a/zutto-mae-kara-suki-deshita-kokuhaku-jikkou-iinkai" class="series-title" data-title="Zutto Mae kara Suki deshita.: Kokuhaku Jikkou Iinkai" data-alt="I&#39;ve Always Liked You">Zutto Mae kara Suki deshita.: Kokuhaku Jikkou Iinkai
+</a>
+</li>
+</ul>
+<div class="no-result">
+<p>No result for <em>search query</em> in <span class="lang">Japanese</span></p>
+<button>Try English titles</button>
+</div>
+</nav>
+<div class="donations">
+<p>This service is community funded, and we'll need all the help we can get to keep it going. Thanks for being a part of this awesome community!</p>
+<div class="slider">
+<div style="width: 43.09%"></div>
+</div>
+<div class="row-from-right">
+<div><span class="amount">£43.09</span> / £100.00 for February</div>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+<button name="submit" value="PayPal">PayPal</button>
+<input type="hidden" name="lc" value="US">
+<input type="hidden" name="custom" value="">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="AN5ZDPXGY5AK4">
+</form>
+<button name="bitcoin">Bitcoin</button>
+</div>
+</div>
+</main>
+<footer class="page-footer">
+<nav>
+<ul class="interactive">
+<li>
+<svg class="icon bolt" viewbox="0 0 16 16">
+<path d="M 9,0 L 0,9 L 8,10 L 7,16 L 16,7 L 8,6 Z"></path>
+</svg>
+</li>
+<li>
+<a href="https://facebook.com/animetwist">
+<svg class="icon" viewBox="0 0 60.734 60.733">
+<path d="M57.378,0.001H3.352C1.502,0.001,0,1.5,0,3.353v54.026c0,1.853,1.502,3.354,3.352,3.354h29.086V37.214h-7.914v-9.167h7.914   v-6.76c0-7.843,4.789-12.116,11.787-12.116c3.355,0,6.232,0.251,7.071,0.36v8.198l-4.854,0.002c-3.805,0-4.539,1.809-4.539,4.462   v5.851h9.078l-1.187,9.166h-7.892v23.52h15.475c1.852,0,3.355-1.503,3.355-3.351V3.351C60.731,1.5,59.23,0.001,57.378,0.001z" />
+</svg>
+</a>
+</li>
+<li><a href="/chat">Chat</a></li>
+<li><a href="/cdn-cgi/l/email-protection#235746424e6357544a50570d4e4c46">Mail:team</a></li>
+<li><a href="/cdn-cgi/l/email-protection#b0c2d5c1c5d5c3c4c3f0c4c7d9c3c49edddfd5">Mail:requests</a></li>
+</ul>
+</nav>
+</footer>
+</section>
+<aside class="aside-column">
+<section class="user" data-toggletrigger="menus">
+<div class="user-details">
+<h3>Preferences</h3>
+</div>
+<div class="toggle-icon">
+<svg class="icon" viewBox="0 0 24 24">
+<path d="M0 0h24v24H0z" fill="none" />
+<path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z" />
+</svg>
+</div>
+</section>
+<section class="menus" data-toggletarget="menus">
+<div class="button-group">
+<button data-name="logout">Logout</button>
+<button disabled>soon (tm)</button>
+</div>
+<div class="settings scroll-container">
+<div class="template tick-input">
+<svg viewbox="0 0 16 16" class="icon">
+<polygon points="3,12 7,8 3,4 4,3 8,7 12,3 13,4 9,8 13,12 12,13 8,9 4,13"></polygon>
+</svg>
+<div class="label">Label</div>
+</div>
+<template id="tick-input">
+<style>
+          :host {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: background .6s;
+            -webkit-user-select: none;
+          }
+
+          :host([disabled]) {
+            pointer-events: none;
+          }
+
+          :host:active {
+            background: rgba(255, 255, 255, .05);
+            transition: background 0s;
+          }
+
+          :host svg {
+            width: 1em;
+            height: 1em;
+            fill: white;
+            flex: none;
+            background: rgba(255, 255, 255, .05);
+            border-radius:  2px;
+            overflow: hidden;
+            margin-right: 8px;
+            transition:
+              fill .1s,
+              background .6s;
+          }
+
+          :host:active svg {
+            background: rgba(255, 255, 255, .1);
+            transition:
+              fill .1s,
+              background 0s;
+          }
+
+          :host .label {
+            transition: color .1s;
+          }
+
+          :host(:not([checked])) svg,
+          :host([disabled]) svg {
+            fill: rgba(255, 255, 255, .2);
+          }
+
+          :host([disabled]) .label {
+            color: rgba(255, 255, 255, .2);
+          }
+
+          :host:hover {
+            color: white;
+          }
+        </style>
+<svg viewbox="0 0 16 16" class="icon">
+<polygon points="3,12 7,8 3,4 4,3 8,7 12,3 13,4 9,8 13,12 12,13 8,9 4,13"></polygon>
+</svg>
+<div class="label">Label</div>
+</template>
+</div>
+</section>
+<section class="chat" data-toggletarget="chat">
+<div class="alert-notifier"></div>
+<form class="login" action="/user/authenticate" method="post">
+<div class="notifier"></div>
+<input type="text" name="username" placeholder="Username">
+<input type="password" name="password" placeholder="Password">
+<div class="actions">
+<a href="/signup">sign up</a>
+<button>login</button>
+</div>
+</form>
+
+<div class="messages scroll-container">
+<svg class="icon" viewbox="0 0 16 16">
+<defs>
+<g id="t2">
+<mask id="plate">
+<rect fill="white" x="0" y="0" width="16" height="16"></rect>
+<circle fill="black" r="6" cx="8" cy="6"></circle>
+</mask>
+<circle r="6" cx="8" cy="6"></circle>
+<polygon fill="var(--color-accent)" points="6,8 4,16 8,15 12,16 10,8" mask="url(#plate)"></polygon>
+</g>
+<g id="t3">
+<mask id="plate">
+<rect fill="white" x="0" y="0" width="16" height="16"></rect>
+<path fill="black" d="M 2,0 L 2,8 Q 5,12 8,12 Q 11,12 14,8 L 14,0 L 8,1 Z"></path>
+</mask>
+<path d="M 2,0 L 2,8 Q 5,12 8,12 Q 11,12 14,8 L 14,0 L 8,1 Z"></path>
+<polygon fill="var(--color-accent)" points="6,8 4,16 8,15 12,16 10,8" mask="url(#plate)"></polygon>
+</g>
+</defs>
+<use href="#t1"></use>
+</svg>
+<template>
+<article>
+<header>
+<a href="#">username</a>
+<svg class="icon" viewbox="0 0 16 16"></svg>
+<span class="rank"></span>
+</header>
+</article>
+</template>
+</div>
+<div class="unread" data-unread="0">unread messages</div>
+<form>
+<input disabled placeholder="Login to chat" maxlength="200">
+</form>
+</section>
+</aside>
+<script data-cfasync="false" src="/cdn-cgi/scripts/d07b1474/cloudflare-static/email-decode.min.js"></script><script>
+      NodeList.prototype.forEach = Array.prototype.forEach
+    </script>
+<script async src="//radar.cedexis.com/1/23578/radar.js"></script>
+<script src="/public/js/settings.js"></script>
+<script src="/public/js/main.js"></script>
+<script src="/public/js/chat.js"></script>
+<script src="/public/js/utils.js"></script>
+<script src="/public/js/index.js"></script>
+<template id="heart-shape">
+<svg class="floating-heart" viewBox="0 0 16 16">
+<path d="M16,5.5960002C16,6.9450002,15.4180002,8.1590004,14.4919996,9H14.5l-5,5c-0.5,0.5-1,1-1.5,1s-1-0.5-1.5-1L1.5079999,9c-0.926-0.8409996-1.508-2.0539999-1.508-3.4040003c0-2.5380001,2.0580001-4.5960002,4.5960002-4.5960002c1.349,0,2.5630002,0.582,3.4039998,1.5079999c0.8409996-0.926,2.0539999-1.508,3.4040003-1.508C13.9420004,0.9999994,16,3.0579996,16,5.5960002z"></path>
+</svg>
+</template>
+<template id="heart-shape-contributor">
+<svg class="floating-heart contributor" viewBox="0 0 16 16">
+<defs>
+<mask id="heart">
+<svg>
+<rect x="0" y="0" width="16" height="16" fill="black"></rect>
+<path d="M16,5.5960002C16,6.9450002,15.4180002,8.1590004,14.4919996,9H14.5l-5,5c-0.5,0.5-1,1-1.5,1s-1-0.5-1.5-1L1.5079999,9c-0.926-0.8409996-1.508-2.0539999-1.508-3.4040003c0-2.5380001,2.0580001-4.5960002,4.5960002-4.5960002c1.349,0,2.5630002,0.582,3.4039998,1.5079999c0.8409996-0.926,2.0539999-1.508,3.4040003-1.508C13.9420004,0.9999994,16,3.0579996,16,5.5960002z" fill="white"></path>
+</svg>
+</mask>
+</defs>
+<image mask="url(#heart)" xlink:href="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Norway.svg" x="-4" y="-4" width="24" height="24"></image>
+</svg>
+</template>
+</body>
+</html>

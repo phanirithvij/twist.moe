@@ -1,0 +1,56 @@
+<html>
+<head>
+<title id='tit'>Bleach</title>
+</head>
+<body>
+<input style="position : fixed;width:150px;top:0px;right:0px;" type="search" onchange="getvid()"></input>
+<video id='myvid' style="width: 400px;height: auto;" src='[HorribleSubs] Bleach - 001 [480p].mp4' controls=''></video>
+<div>
+<button onclick="prev()" ><-</button>
+<button onclick="next()" >-></button>
+</div>
+<script>
+const vid= document.querySelector('#myvid');
+var ty = document.querySelector('input');
+function prev(){
+var vs = vid.src;
+var s = vs.split('/')[11];
+var n = parseInt(s.split('%20')[3]) - 1 ;
+var b = s.split('%20');
+var rest = b[0] + ' ' + b[1] + ' ' + b[2] + ' ' ;
+vid.src = rest + pad(n,3) + ' ' + b[4];
+tit(pad(n,3));
+}
+function pad(n, width, z) {
+  z = z || '0';
+  n = n + '';
+  return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+}
+function next(){
+var vs = vid.src;
+var s = vs.split('/')[11];
+var n = parseInt(s.split('%20')[3]) + 1 ;
+var b = s.split('%20');
+var rest = b[0] + ' ' + b[1] + ' ' + b[2] + ' ' ;
+vid.src = rest + pad(n,3) + ' ' + b[4];
+vs = vid.src;
+tit(pad(n,3));
+}
+function tit(t){
+var tw = document.querySelector('#tit');
+tw.innerHTML = t;
+}
+function getvid(){
+var val = ty.value ;
+var vs = vid.src;
+var s = vs.split('/')[11];
+//var n = parseInt(s.split('%20')[3]) + 1 ;
+var b = s.split('%20');
+var rest = b[0] + ' ' + b[1] + ' ' + b[2] + ' ' ;
+vid.src = rest + pad(val,3) + ' ' + b[4];
+vs = vid.src;
+tit(val);
+}
+</script>
+</body>
+</html>

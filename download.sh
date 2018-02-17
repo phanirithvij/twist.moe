@@ -17,9 +17,10 @@ e=$2
 fi
 if [[ "$s" == "a" ||  "$e" == "a" ]]
 then
-for i in $(cat list.txt | awk '{print $1}')
+for i in $(cat list.txt)
 do
 wget -c -q --show-progress $i
+echo $i
 done
 else
 j=1
