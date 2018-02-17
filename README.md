@@ -63,7 +63,7 @@ Done
 
 2)
 
-phani200-pc:~/twist.moe-anime-downloader$ ./startp.sh https://twist.moe/a/gintama
+phani200-pc:~/twist.moe$ ./startp.sh https://twist.moe/a/gintama
 
 Creating Anime/gintama
 
@@ -94,7 +94,7 @@ Done
 
 Now go inside Anime/one-piece/
 
-phani200-pc:~/twist.moe-anime-downloader/Anime/one-piece$ ./download.sh 
+phani200-pc:~/twist.moe/Anime/one-piece$ ./download.sh 
 
 Total no of episodes : 819
 
