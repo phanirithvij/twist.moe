@@ -10,13 +10,16 @@
     }
     main{
     	width: 70%;
-	  position: absolute;
+	  position: relative;
     }
     input {
       background-color: #e53232;
       text-align: left;
       width: 50%;
+      top: 3%;
+      left: 10%;
       padding:20px;
+      position: fixed;
       /*background-color: #e56b32;*/
       border-bottom-right-radius: 2px;
       border-top-left-radius: 2px;
@@ -33,26 +36,59 @@
     }
 
     .suggestions {
-      width: 50%;
+      width: 60%;
       margin: 0;
       padding: 0;
       position: relative;
       /*perspective:20px;*/
     }
+
+    .suggestions2 {
+      width: 60%;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      /*perspective:20px;*/
+    }
+
     .suggestions li {
+    	align-self: center;
       background-color: rgb(28, 31, 34);
       list-style: none;
       border-bottom: none;
       box-shadow: 3px -1px 0px 2px rgba(0, 0, 0, 0.14);
-      margin-left:20px;
+      margin-left:0px;
       padding:10px;
       transition:background 0.2s;
       display:block;
       position: relative;
-      left:  50%;
-      width: 100%;
+      left:  0%;
+      width: 160%;
       margin-top: 0 ! important;
       text-transform: capitalize;
+    	max-width: 200%;
+    	overflow: hidden;
+      /*border-bottom: 1px solid rgba(0, 0, 0, 0.14);    
+ 		*/   
+    }
+
+	.suggestions2 li {
+      background-color: rgb(28, 31, 34);
+      list-style: none;
+      border-bottom: none;
+      box-shadow: 3px -1px 0px 2px rgba(0, 0, 0, 0.14);
+      margin-left:0px;
+      padding:10px;
+      transition:background 0.2s;
+      display:block;
+      position: relative;
+      left:  0%;
+      width: 160%;
+      margin-top: 0 ! important;
+      align-self: center;
+      text-transform: capitalize;
+    	max-width: 200%;
+    	overflow: hidden;
       /*border-bottom: 1px solid rgba(0, 0, 0, 0.14);    
  		*/   
     }
@@ -66,15 +102,17 @@
       background: linear-gradient(to top,  #ffffff 0%,#EFEFEF 100%);
     }
     */
+    /*
     li{
-    	max-width: 100%;
+    	max-width: 200%;
     	overflow: hidden;
     	align-self: center;
-    }
+    }*/
     span.name {
       font-size: 15px;
     }
     a{
+    	max-width: 70% !important;
     	font-size: 16px;
     	text-decoration: none;
     }
@@ -114,15 +152,17 @@
 		background-color: #bbbcbd;
 	}
 	ul{
+		left: 25%;
 		align-self: center;
 		position: relative;
 	}
 	nav{
+		top:113%;
 		position: relative;
 	}
 	#play{
-		bottom: 0px;
-		left: 0px;
+		top: 0px;
+		right: 0px;
 		background-color: #bbbcbd;
 		z-index: 3;
 		position: fixed;
@@ -132,6 +172,12 @@
 		padding: 2px;
 	}
 	#useritems{
+		bottom: 9%;
+		left: 0px;
+		position: fixed;
+		z-index: 30;
+		max-height: 400px;
+		background-color: #ffffff;
 		visibility: hidden;
 	}
 	#usernav{
@@ -140,9 +186,9 @@
 		color: #ffffff;
 	}
 	.show {
-	    visibility: visible;
+	    display: block;
 	    -webkit-animation: fadeIn .4s;
-	    animation: fadeIn s;
+	    animation: fadeIn .4s;
 	}
 
 	/* Add animation (fade in the popup) */
@@ -154,4 +200,47 @@
 	@keyframes fadeIn {
 	    from {opacity: 0;}
 	    to {opacity:1 ;}
+	}
+
+	#kits{
+		top:3%;
+		left: 0px;
+		width: 70%;	
+		display: block;
+	}
+	#twis{
+		top:3%;
+		left: 0px;
+		width: 70%;	
+		display: block;
+	}
+	#tsearch{
+		z-index: 5;
+		border:0;
+		border-radius: 100%;
+		position: fixed;
+		top: 4%;
+		right: 38.5%;
+		width: 40px;
+		height: 40px;
+	}
+	.main{
+		height: 70%;
+	}
+	#conainer{
+		height: 40px;
+		overflow: scroll;
+	}
+	.kitbutt{
+		color: #ffffff;
+		background-color: #1c1f22;
+		border:0;
+	}
+	#myvid{
+		z-index: 30;
+	}
+	#useritems ul li{
+		list-style: none;
+		position: relative;
+		left: 0px;
 	}

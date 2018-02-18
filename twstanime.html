@@ -13,16 +13,45 @@
 	
 </header>
 <main align="center" id="mainthing">
+<div id="container">
+<button onclick="toggleSearch()" title="Toggle Search bar kitsu and Twist" id="tsearch">
+	<
+</button>&nbsp;
+<div id="twis">
 <form>
-<input type="text" name="anisearch" placeholder="SEARCH" autocomplete="off" /><br>
+<input type="text" name="anisearch" placeholder="SEARCH" autocomplete="off"/><br>
 	
-</form>
+</form>&nbsp;
 <nav>
 	<ul class="suggestions">
 
 	</ul>
 </nav>
+</div>
+<div id="kits">
+</form>
+<input id="ktype" type="text" name="kitssearch" placeholder="KITSU" autocomplete="off" /><br>
+<nav>
+	<ul class="suggestions2">
+
+	</ul>
+</nav>
+</div>
+</div>
 </main>
+<div id="useritems">
+	<ul>
+		<li>
+			Change Name
+		</li>
+		<li>
+			Settings
+		</li>
+		<li>
+			Logout
+		</li>
+	</ul>
+</div>
 <footer id='myfoot'>
 	<p id="welcome"></p>
 	<button id="death" title="Forget ME" onclick="forgetUser()">💀
@@ -31,61 +60,30 @@
 </section>
 <section id="play" draggable="true" style="/*display: none;*/">
 	<div id="player">
-		<video src="" id="myvid" controls=""></video>
+		<video src="/ug/ug2k17/cse/phani.rithvij/Downloads/Kissanime/hunterxhunter2011/Hunter_x_Hunter_(2011)_(Sub)_Episode_060.mp4" style="width: 340px;height: auto;" id="myvid" controls=""></video>
 	</div>
 </section>
 </body>
 <script type="text/javascript" src="twistlinks.json"></script>
-<script type="text/javascript">
-//Search functions search.js
-	
-	const sear = document.querySelector('[name=anisearch]');
-	function findMatches(wordToMatch, anime) {
-  		return anime.filter(ani => {
-    // here we need to figure out if the name matches what was searched 
-    	const regex = new RegExp(wordToMatch, 'gi');
-    	if (ani.alt){
-    	return ani.title.match(regex) || ani.name.match(regex) || ani.alt.match(regex)
-    	}else{
-    		return ani.title.match(regex) || ani.name.match(regex)
-    	}
-  		});
-	}
-	function twinkle(e){
-		console.log(e);
-		ele = e;
-	}
-	function displayMatches() {
-  		const matchArray = findMatches(this.value, anime);
- 	 	const html = matchArray.map(ani => {
-    	const regex = new RegExp(this.value, 'gi');
-    	const aniName = ani.title;
-    	var engName = '';
-    	if(ani.alt != false){
-    	engName = ani.alt;
-    	}
-    	const title = engName || aniName;
-    	return `
-      	<a onmouseover="twinkle(this)" href="https://twist.moe/a/${ani.name}" title="${title}">
-      	<li><span class="name">${aniName}</span><br>
-      </li>
-      	</a>
-      
-    `;
-  }).join('');
-  suggestions.innerHTML = html;
-  console.clear();
-  console.log(html);
-}
-
-
-const suggestions = document.querySelector('.suggestions');
-
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+	//TO GETJSONS from kitsu.io website which is like Myanimelist with no authenication 
 </script>
+<script type="text/javascript" src="kitsu.js"></script>
+<script type="text/javascript" src="search.js"></script>
+
 <script type="text/javascript">
-	//Video scripts video.js
+	//Video scripts 
+	//video.js
+
+	/*
+	user stores user's name
+	and lastplayed anime name
+	and lastplayed video src 
+	*/
+
 	var user = {
 		"lastplayed": "",
+		"lastanime": "",
 		"name": ""
 	};
 	var username = '';
@@ -94,18 +92,24 @@ const suggestions = document.querySelector('.suggestions');
 	const video = document.querySelector('#myvid');
 
 	function recentVid(){
-	return JSON.parse(localStorage.getItem('user')).lastplayed || "";
+	return  video.src || JSON.parse(localStorage.getItem('user')).lastplayed;
 	}
-	function playVid(){
+	function toggleVid(){
+		if(video.paused){
 		video.play();
+		}else{
+			video.pause();
+		}
 	}
-	function pauseVid(){
-		video.pause();
+	function randomVid(){
+
+		return video.src;
+		// Return episode 1 of a random anime;
 	}
-	
 </script>
 <script type="text/javascript">
-	//Set user and lastplayed manager user.js
+	//Set user and lastplayed manager 
+	//user.js
 	function setUser(){
 	if(localStorage.getItem('user') === null){
 	localStorage.setItem('user',JSON.stringify(user));
@@ -121,39 +125,88 @@ const suggestions = document.querySelector('.suggestions');
 		const welcome = document.querySelector('#welcome');
 		welcome.innerHTML = 'Welcome ' + username;
 		setTimeout(userNav,4000);
+		user = JSON.parse(localStorage.getItem('user'));
 	}
 	function forgetUser(){
-		confirm('Are you Sure?') && localStorage.clear();
+		//Dangerous 
+		confirm('Click Ok to make us forget you') && localStorage.clear();
 	}
 	function userNav(){
 		const welcome = document.querySelector('#welcome');
 		welcome.innerHTML = `
-		<nav>
-		<ul id="useritems">
-		</ul>
 		<button id="usernav" onclick="dispNav()">${username}</button>
-		</nav>
 		`;
 	}
 	function dispNav(){
-		const ul = document.querySelector('#useritems');
-		ul.classList.toggle("show");
+		const div = document.querySelector('#useritems');
+		//div.classList.toggle("show");
+		if(div.style.visibility == "hidden" ){
+		div.style.visibility = "visible";
+		}else{
+		div.style.visibility = "hidden";
+		}
+		//console.log('show items');
 	}
-
+	function setVideo(){
+		if(localStorage.getItem('user') === null){
+			video.src = randomVid();
+		}
+		else{
+		var lastplayed = JSON.parse(localStorage.getItem('user')).lastplayed;
+			
+		if(lastplayed != ""){
+		video.src = lastplayed;
+		}
+		else{
+		video.src = randomVid();
+		user.lastplayed = video.src;
+		localStorage.setItem('user',JSON.stringify(user));
+		}
+		
+		}
+	}
 </script>
+
 <script type="text/javascript">
-	//Event listeners events.js
+	//Event listeners 
+	//events.js
 
-	//search
-	sear.addEventListener('change', displayMatches);
-	sear.addEventListener('keyup', displayMatches);
-	//search
+	//search Kitsu
+	//after user stops typing after 1sec doneTyping executes
+	var typingTimer;                //timer identifier
+	var doneTypingInterval = 1000;  //time in ms (1 seconds)
+	//on keyup, start the countdown
+	$('#ktype').keyup(function(){
+	    clearTimeout(typingTimer);
+	    if ($('#ktype').val()) {
+	        typingTimer = setTimeout(doneTyping, doneTypingInterval);
+	    }
+	});
+	//search Kitsu
 
-	//user
+	//search twist
+	seart.addEventListener('change', displayMatches);
+	seart.addEventListener('keyup', displayMatches);
+	//search twist
+	
+	
+	//search kitsu
+	/*
+	TODO:
+			make a loading thing appear
+	*/
+	//sears.addEventListener('change', kitsSearch);
+	//sears.addEventListener('keyup', kitsSearch);
+	//search kitsu
+	
+
+	//usersetting
 	window.addEventListener('load',setUser,false);
-	//user
+	window.addEventListener('load',setVideo,false);
+	//usersetting
 
 	//display footer or video
+	/*
 	sect.addEventListener('click',()=>{
 		foot.style.zIndex = 6;
 		sect.style.zIndex = 7;
@@ -162,6 +215,21 @@ const suggestions = document.querySelector('.suggestions');
 		foot.style.zIndex = 7;
 		sect.style.zIndex = 6;
 	})
+	*/
 	//display footer or video
+
+	//video play,pause
+	video.addEventListener('play',()=>{
+		user.lastplayed = video.src;
+		localStorage.setItem('user',JSON.stringify(user));
+	},false);//setVideo);
+
+	//video.addEventListener('click',toggleVid,false);
+	//video play,pause
+
 </script>
+
+
+
+
 </html>
