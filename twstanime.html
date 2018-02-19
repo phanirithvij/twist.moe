@@ -97,7 +97,12 @@
 </section>
 <section id="play" style="/*display: none;*/">
 	<div id="player">
+	<div id="playercon">
 		<video draggable="true" src="/ug/ug2k17/cse/phani.rithvij/Downloads/Kissanime/hunterxhunter2011/Hunter_x_Hunter_(2011)_(Sub)_Episode_060.mp4" style="height: auto;" id="myvid" controls=""></video>
+		<div id="animedata">
+			
+		</div>
+		</div>
 	</div>
 </section>
 </body>
@@ -117,17 +122,38 @@
 	and lastplayed anime name
 	and lastplayed video src 
 	*/
+	var datani = document.querySelector('#animedata');
+	var username = '';
+	var currAni = {name:""};
+	const sect = document.querySelector('#play');
+	const foot = document.querySelector('#myfoot');
+	const video = document.querySelector('#myvid');
+	var run = true;
+	const divvid = document.querySelector('#playercon');
+	divvid.style.height = '100%';
+	var oldh = parseInt(divvid.style.height);
+	var oldw = parseInt(divvid.style.width);
+	let mousedown = false;
+	
+	function changeSize(id,w,h) {
+		var el = document.querySelector(id);
+		el.style.height = h + "px";
+		el.style.width = w + "px";
+	}
+
+	function touchhandler(e) {
+	e.preventDefault();
+	oldh = e.offsetY -4;
+	oldw = e.offsetX -4;
+	changeSize('#myvid',oldw,oldh);
+	}
 
 	var user = {
 		"lastplayed": "",
 		"lastanime": "",
 		"name": ""
 	};
-	var username = '';
-	const sect = document.querySelector('#play');
-	const foot = document.querySelector('#myfoot');
-	const video = document.querySelector('#myvid');
-
+	
 	function recentVid(){
 	return  video.src || JSON.parse(localStorage.getItem('user')).lastplayed;
 	}
@@ -153,6 +179,24 @@
 		return video.src;
 		// Return episode 1 of a random anime;
 	}
+
+	function changVid(ani){
+		for (var i=0;i<=anime.length;i++){
+		if(anime[i] != undefined && anime[i].name == ani)
+		{
+			currAni = anime[i];
+			localStorage.setItem('curranime',JSON.stringify(currAni));
+			video.src = currAni[1];
+		}
+
+		}
+		//Now get results from kitsu Image,descripton,next buutons etc..
+		datani.innerHTML = '';
+		console.log(sect.style.width);
+		console.log(ani);
+	}
+
+
 </script>
 <script type="text/javascript">
 	//Set user and lastplayed manager 
@@ -160,10 +204,18 @@
 	const divuser = document.querySelector('#useritems');
 	//divuser.style.opacity = '0';
 	function setUser(){
+		
+	if(localStorage.getItem('curranime') === null){
+	localStorage.setItem('curranime',JSON.stringify(currAni));
+	}
 	if(localStorage.getItem('user') === null){
 	localStorage.setItem('user',JSON.stringify(user));
 	}
 	
+	if(JSON.parse(localStorage.getItem('curranime')).name == ""){
+		const welcome = document.querySelector('#welcome');
+		welcome.innerHTML = 'Welcome to our website!!' ;
+	}
 	if(JSON.parse(localStorage.getItem('user')).name == ""){
 	username = prompt('What should we call you?');
 	user.name = username;
@@ -179,11 +231,13 @@
 
 	function changeName(){
 		var newname = prompt('Enter your new name');
+		if(newname != null){
 		user.name = newname;
 		localStorage.setItem('user',JSON.stringify(user));
 		const welcome = document.querySelector('#welcome');
 		welcome.innerHTML = 'Username changed ' + user.name;
 		setTimeout(userNav,1000);
+		}
 	}
 
 	function forgetUser(){
@@ -285,8 +339,21 @@
 		localStorage.setItem('user',JSON.stringify(user));
 	},false);//setVideo);
 
-	//video.addEventListener('click',toggleVid,false);
+	video.addEventListener('click',toggleVid,false);
 	//video play,pause
+
+	//video size stuff
+	video.addEventListener('play',()=>{ run = false;console.log(run) });
+	video.addEventListener('pause',()=>{ run = true ;console.log(run)});
+	//divvid.addEventListener('click', run && touchhandler,false);
+	divvid.addEventListener('mousemove', (e) => run && mousedown && touchhandler(e),false);
+	divvid.addEventListener('mousedown', () => {mousedown = true;console.log("mousedown = " + mousedown)} );
+	divvid.addEventListener('mouseup', () => {mousedown = false;console.log("mousedown = " + mousedown)});
+	//video size stuff
+
+	//bug kitsu opens up for no reason
+
+
 
 </script>
 

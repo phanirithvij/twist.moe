@@ -17,7 +17,7 @@
       text-align: left;
       width: 50%;
       top: 3%;
-      left: 10%;
+      left: 5%;
       padding:20px;
       position: fixed;
       /*background-color: #e56b32;*/
@@ -164,8 +164,13 @@
 		top:113%;
 		position: relative;
 	}
+	#playercon {
+	padding: 4px;
+   	resize: both;
+	overflow: hidden;
+	}
 	#player{
-		width: 30%;
+		width: 40%;
 		max-height: 700px;
 		height: 90%;
 		top: 0px;
@@ -250,8 +255,9 @@
 		border:0;
 	}
 	#myvid{
+		right: 0px;
 		position: relative;
-		width: 30%;
+		width: 100%;
 		max-width: 700px;
 		z-index: 30;
 	}
