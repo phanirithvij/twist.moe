@@ -122,7 +122,7 @@
 
 	/* visited link */
 	a:visited {
-    color: green;
+    	color: #ffffff;
 	}
 	span{
 		position: relative;
@@ -151,6 +151,10 @@
 		z-index: 7;
 		background-color: #bbbcbd;
 	}
+	li{
+		font-size: 3vh;
+		
+	}
 	ul{
 		left: 25%;
 		align-self: center;
@@ -160,7 +164,10 @@
 		top:113%;
 		position: relative;
 	}
-	#play{
+	#player{
+		width: 30%;
+		max-height: 700px;
+		height: 90%;
 		top: 0px;
 		right: 0px;
 		background-color: #bbbcbd;
@@ -168,17 +175,23 @@
 		position: fixed;
 	}
 	#welcome{
-		margin-left: 3px;
-		padding: 2px;
+		margin-left: 30px;
+		padding: 0px;
+		top: 20%;
+		left: 6%;
+		list-style: none;
 	}
 	#useritems{
-		bottom: 9%;
-		left: 0px;
+		cursor: pointer;
+		bottom: 10%;
+		left: 1%;
 		position: fixed;
+		width: 15%;
+		height: 20%;
 		z-index: 30;
-		max-height: 400px;
 		background-color: #ffffff;
 		visibility: hidden;
+		min-width: 120px;
 	}
 	#usernav{
 		border: 0;
@@ -237,10 +250,42 @@
 		border:0;
 	}
 	#myvid{
+		position: relative;
+		width: 30%;
+		max-width: 700px;
 		z-index: 30;
 	}
 	#useritems ul li{
+		width: 100%;
 		list-style: none;
-		position: relative;
-		left: 0px;
+		position: absolute;
+		align-self: center;
+		left: 0;
+		float: right;
+		text-align: -webkit-match-parent;
+	}
+	.items{
+		align-content: center;
+		border-top-left-radius: 10px;
+		border-bottom-left-radius:10px;
+		border-bottom-right-radius:10px;
+		border-top-right-radius:10px;
+		padding-top: 3px;
+		height: 33%;
+		background-color: #eee;
+		position: absolute;
+	}
+	.items:hover{
+		
+		background-color: #ffffff;
+
+	}
+	svg{
+		width: 100%;
+		height: 100%;
+	}
+	#settings{
+		left: 90%;
+		top: 100%;
+		position: absolute;
 	}
