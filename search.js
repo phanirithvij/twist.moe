@@ -36,6 +36,7 @@
     sear = m2;
     
     }
+      const slug = '\'' + inp + '\'';
       const matchArray = findMatches(sear, anime);
       var html = matchArray.map(ani => {
       const regex = new RegExp(sear, 'gi');
@@ -43,9 +44,9 @@
       //aniname is japanese(or name from twist.moe directly)
       
       const aniName = ani.title;
+      //if there is english name(ani.alt)
       var engName = '';
       const animetlink ="\'" +  ani.name + "\'";
-      //if there is english name(ani.alt)
       
       if(ani.alt != false){
       engName = ani.alt;
@@ -56,7 +57,7 @@
       const title = engName || aniName;
       //console.log(title);
       return`
-      <a onclick="changVid(${animetlink})" href="#" title="${title}">
+      <a onclick="changVidkits(${animetlink},${slug})" href="#" title="${title}">
         <li>
         <span class="name">${aniName}</span><br>
         </li>
@@ -70,14 +71,16 @@
     */
 
       if(seart.value != "" && !m2){
-      //console.log(seart.value != "");
+      console.log(seart.value != "");
+      console.log('directly requested');
       suggestions.innerHTML = html;
       //console.log("html" + html);
       //console.log(seart.value);
       }
       else{
+      console.log('requested from kitsusearch');
       toggleSearch();
-      suggestions.innerHTML += html;
+      suggestions.innerHTML = html;
       if(suggestions.innerHTML == ""){
           html += '<li><span class="name">No Results Found</span><br></li>';
       suggestions.innerHTML += html;

@@ -34,7 +34,9 @@
 
 	function processData(da){
 		resu = da;
+		console.log(resu);
 		console.log(resu.data);
+		var json = JSON.stringify(resu);
 		const html = resu.data.map((v) => {
 			const name = v.attributes.canonicalTitle;
 			const rating = v.attributes.averageRating;
@@ -44,6 +46,7 @@
 				<button class="kitbutt" onclick="twistSearch(\'${slu}\',\'${name}\')">
 				<span class="name">${name}</span>
 				<span class="name">${rating}</span>
+				<p style="display: none;" id="${slu}">${json}</p>
 				</button>
 				</li>
 
@@ -56,8 +59,8 @@
 	function twistSearch(a,b){
 		console.log(a,b);
 		suggestions.innerHTML = '';
-		displayMatches("",a);
-		displayMatches("",b);
+		displayMatches(a,a);
+		displayMatches(a,b);
 	}
 
 	function toggleSearch(){
