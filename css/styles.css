@@ -2,7 +2,7 @@
 	 	overflow-x: hidden;
 	 	width: 100%;
 	 	height: 100%;
-	    background-image: url(https://lh6.googleusercontent.com/-kyTRnJeRvpmD0EJ6qIO26VWkvKiVWfbLr5FJmv4c0X6LVKZo2q6AxErFGhBdv3UMBpQKjwvHi6YLG4uOxre=w1366-h648-rw);
+	    background-image: url(example.webp);
 	 }
 	html {
 	 	width: 100%;
@@ -187,6 +187,7 @@
 		position: fixed;
 	}
 	#welcome{
+		max-width: 30%;
 		margin-left: 30px;
 		padding: 0px;
 		padding-bottom: 20%;
@@ -318,5 +319,8 @@
 	}
 	p{
 		left: 3%;
+		position: relative;
+	}
+	#foothide{
 		position: relative;
 	}

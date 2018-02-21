@@ -54,12 +54,12 @@
 			Logout
 		</li>
 		<br>
-		<div id="settings">
+	<div id="settings">
 			<?xml version="1.0" encoding="iso-8859-1"?>
 <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg x="0px" y="0px"
-	 viewBox="0 0 54 54" style="enable-background:new 0 0 54 54;" xml:space="preserve">
-<g>
+	<svg x="0px" y="0px"
+		 viewBox="0 0 54 54" style="enable-background:new 0 0 54 54;" xml:space="preserve">
+	<g>
 	<path d="M51.22,21h-5.052c-0.812,0-1.481-0.447-1.792-1.197s-0.153-1.54,0.42-2.114l3.572-3.571
 		c0.525-0.525,0.814-1.224,0.814-1.966c0-0.743-0.289-1.441-0.814-1.967l-4.553-4.553c-1.05-1.05-2.881-1.052-3.933,0l-3.571,3.571
 		c-0.574,0.573-1.366,0.733-2.114,0.421C33.447,9.313,33,8.644,33,7.832V2.78C33,1.247,31.753,0,30.22,0H23.78
@@ -85,15 +85,16 @@
 		l-3.572,3.571c-1.148,1.148-1.476,2.794-0.854,4.294c0.621,1.5,2.016,2.432,3.64,2.432h5.052C51.65,23,52,23.35,52,23.78V30.22z"/>
 	<path d="M27,18c-4.963,0-9,4.037-9,9s4.037,9,9,9s9-4.037,9-9S31.963,18,27,18z M27,34c-3.859,0-7-3.141-7-7s3.141-7,7-7
 		s7,3.141,7,7S30.859,34,27,34z"/>
-</g>
-</svg>
+	</g>
+	</svg>
 
-		</div>
+	</div>
 	</ul>
 </div>
 <footer id='myfoot'>
 	<ul id="welcome">
 	</ul>
+	<button id="foothide">V</button>
 </footer>
 </section>
 <section id="play" style="/*display: none;*/">
@@ -102,7 +103,7 @@
 		<!--
 		Display Lastplayed at startup
 		Or Random if a random video
-		or Anime name followed by episode number if not above
+		or Anime name followed by episode number if not above cases
 		-->
 	</div>
 	<div id="playercon">
@@ -135,7 +136,7 @@
 	and lastplayed anime name
 	and lastplayed video src 
 	*/
-	var currAni = {name:""};
+	var currAni = {name:"",title:""};
 	var username = '';
 	var run = true;
 	let mousedown = false;
@@ -171,7 +172,9 @@
 		"lastplayed": "",
 		"lastanime": "",
 		"lastbackimg": "",
-		"name": ""
+		"lastposter":"",
+		"name": "",
+		"lastdesc":""
 	};
 	
 	function recentVid(){
@@ -209,9 +212,11 @@
 			console.log(link);
 			resp = $.getJSON(link,(data)=>{
 				//search exactly for matching slug(data)
+				
+				searchSlug(data,slug);
+
 				console.log("DATA BASED ON SLUG");
 				console.log(data);
-				searchSlug(data,slug);
 			});
 		}
 		for (var i=0;i<=anime.length;i++){
@@ -219,9 +224,17 @@
 		{
 			currAni = anime[i];
 			localStorage.setItem('curranime',JSON.stringify(currAni));
-			user.lastanime = currAni.name;
-			localStorage.setItem('user',JSON.stringify(user));
+			//change video src 
+			//get it from twist.moe
 			video.src = currAni[1];
+			
+			//set user lastanime and lastplayed
+			user.lastanime = currAni.name;
+			var lastplayed = video.src;
+			user.lastplayed = lastplayed;
+			localStorage.setItem('user',JSON.stringify(user));
+
+			
 		}
 
 		}
@@ -230,7 +243,8 @@
 	}
 
 	function searchSlug(data,slug){
-
+			//slug search in kitsu data just recieved
+			//for exact match
 		console.log('data,slug,recieved');
 		console.log(slug,data);
 		const testdata = data;
@@ -242,12 +256,18 @@
 			//got it contains exact anime with slug
 			console.log('gotit');
 			console.log(gotit);
-			//change background
-			body.style.backgroundImage = `url(${gotit.attributes.coverImage.original
-};`;
+
+			//set descripton
+			desc.innerHTML = `${gotit.attributes.synopsis}`;
+			user.lastdesc = gotit.attributes.synopsis;
+			
+			//change background and the poster
+			body.style.backgroundImage = `url(${gotit.attributes.coverImage.original})`;
+			user.lastposter = gotit.attributes.posterImage.tiny;
+			poster.src = user.lastposter;
 			user.lastbackimg = gotit.attributes.coverImage.original;
 			localStorage.setItem('user',JSON.stringify(user));
-			heading.innerHTML = ``;
+			heading.innerHTML = `${gotit.attributes.titles.en}`;
 			}
 		}
 	}
@@ -334,7 +354,9 @@
 		var lastanime = JSON.parse(localStorage.getItem('user')).lastanime;
 		heading.innerHTML += `<h5>${lastanime}</h5>`;
 		setTimeout(()=>{
-		heading.innerHTML = '';
+		currAni = JSON.parse(localStorage.getItem('curranime'));
+		heading.innerHTML = currAni.title;
+		desc.innerHTML = user.lastdesc;
 		},2000);
 		}
 		else{
@@ -400,11 +422,11 @@
 	//display footer or video
 
 	//video play,pause
-	video.addEventListener('play',()=>{
+/*	video.addEventListener('play',()=>{
 		user.lastplayed = video.src;
 		localStorage.setItem('user',JSON.stringify(user));
 	},false);//setVideo);
-
+*/
 	video.addEventListener('click',toggleVid,false);
 	//video play,pause
 
