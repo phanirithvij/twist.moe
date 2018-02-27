@@ -3,6 +3,7 @@
 if [[ $1 =~ ^-?[0-9]+$ ]]
 then	
 anid='id='$1
+slug=$(./slug.sh $anid)
 else
 slug=$1
 anid=$(./id.sh $slug)
@@ -31,19 +32,29 @@ page=$((currpage+1))
 echo page $page
 done
 x=0
-echo ${id[*]}
-echo "var $(echo $slug | tr '-' '_') = ["
+rm -f out.json
+#echo ${id[*]}
+id=$(echo $anid | cut -d "=" -f2)
+var=$(echo $slug | tr '-' '_')
+echo "var $var = ["
+echo "var $var = [" >> out$id.json
 for i in ${id[*]}
 do
 	x=$((x+1))
 	echo '{'
+	echo '{' >> out$id.json
 	echo \"id\":$i ,
+	echo \"id\":$i , >> out$id.json
        	echo \"thumb\":${thumb[$x]}
+       	echo \"thumb\":${thumb[$x]} >> out$id.json
 	if [[ $totids != $x ]]
 	then
 	echo '},'
+	echo '},' >> out$id.json
 	else
 	echo '}'
+	echo '}' >> out$id.json
 	fi
 done
 echo ']'
+echo ']' >> out$id.json
