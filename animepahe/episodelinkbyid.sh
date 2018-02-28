@@ -19,7 +19,7 @@ IFS=$'\n'
 rm -f links.txt sizes.txt quals.txt
 for i in $links
 do
-link=$(echo $i | sed 's/\\/ /g' | tr ' ' '\0')
+link=$(echo $i | sed 's/\\/ /g' | tr -d ' ' )
 wget -q -O node.html $link
 #echo tr $(echo $i | tr '\' '5')
 cat node.html | grep 'eval(function'| tr '>' '\n' | grep -E '^eval' > tempvid.js
@@ -30,7 +30,7 @@ node tempnode.js | cut -d "\"" -f4 >> links.txt
 done
 for i in $sizes
 do
-	echo $(echo $i|tr ',' '\0') >> sizes.txt
+	echo $(echo $i|tr -d ',') >> sizes.txt
 done
 for i in $quals
 do
