@@ -40,6 +40,66 @@ https://www.masterani.me/api/anime/filter?order=score_desc&status=0&page=1	COMPL
 https://www.masterani.me/api/anime/filter?order=score_desc&status=1&page=1	ONGOING
 https://www.masterani.me/api/anime/filter?order=score_desc&status=2&page=1	NOT YET AIRED
 
+	ANIME BY GENRES
+
+		GENRE VALUE(genres)
+ACTION		57	https://www.masterani.me/api/anime/filter?order=score_desc&genres=57&page=1
+ADVENTURE	58	genres=58
+CARS		69	genres=69
+COMEDY		59	"
+DEMENTIA	84	"
+DEMONS		86	
+DRAMA		60	
+ECCHI		79	
+FANTASY		77	
+GAME		93	
+HAREM		89	
+HISTORICAL	82	
+HORROR 		71	
+JOSEI 		66	
+KIDS 		95	
+MAGIC 		88	
+MARTIAL ARTS 	75	
+MECHA 		85	
+MILITARY 	83	
+MUSIC 		90	
+MYSTERY 	63	
+PARODY 		94	
+POLICE 		72	
+PSYCHOLOGICAL 	73	
+ROMANCE 	67	
+SAMURAI 	87	
+SCHOOL 		78	
+SCI-FI 		61	
+SEINEN 		70	
+SHOUJO 		91	
+SHOUJO AI 	92	
+SHOUNEN 	64	
+SHOUNEN AI 	96	
+SLICE OF LIFE 	68	
+SPACE 		62	
+SPORTS 		65	
+SUPER POWER 	76	
+SUPERNATURAL 	80	
+THRILLER 	74	
+VAMPIRE 	81	
+YAOI 		98	
+YURI		97	
+
+
+
+
+	FOR COMBINED GENRE SEARCH
+
+	EG:
+	ACTION+THRILLER
+https://www.masterani.me/api/anime/filter?order=score_desc&genres=57,74&page=1	
+	or
+https://www.masterani.me/api/anime/filter?order=score_desc&genres=74,75&page=1
+
+
+
+
 
 ///////////////////////		64 is id	////////////////////////////////
 
