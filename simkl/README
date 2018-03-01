@@ -1,0 +1,14 @@
+CORS 	NOT ALLOWED
+
+CLARITY 	LOW
+
+API page	https://simkl.docs.apiary.io/#reference/anime/get-detail-info-about-the-anime
+
+
+RESPONSE	JSON
+
+
+AUTHENICATION	MUST
+
+
+USE	cURL or NODEjs and php to interact(AS THERE IS NO CORS)

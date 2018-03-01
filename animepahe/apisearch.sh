@@ -4,8 +4,8 @@
 
 #TO GET FULL RESPONSE IN ONE PAGE
 
-#Do a https://animepahe.com/api?m=search&l=     1     &q=<ITEM>
 
+#Do a https://animepahe.com/api?m=search&l=     1     &q=<ITEM> to get the total value then
 #store total vlaue 
 
 #then do a https://animepahe.com/api?m=search&l=    <TOT>   &q=<ITEM>

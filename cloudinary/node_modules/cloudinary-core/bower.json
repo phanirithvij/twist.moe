@@ -1,0 +1,61 @@
+{
+  "name": "cloudinary-core",
+  "version": "2.5.0",
+  "homepage": "http://cloudinary.com",
+  "authors": [
+    {
+      "name": "Cloudinary",
+      "email": "info@cloudinary.com",
+      "homepage": "http://cloudinary.com"
+    }
+  ],
+  "description": "Official Cloudinary JavaScript library. Cloudinary is an end-to-end solution for all your image and video needs.",
+  "main": "cloudinary-core.js",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cloudinary/pkg-cloudinary-core.git"
+  },
+  "dependencies": {
+    "lodash": "3.x"
+  },
+  "keywords": [
+    "CDN",
+    "cloud",
+    "cloudinary",
+    "convert",
+    "conversion",
+    "effects",
+    "files",
+    "images",
+    "manipulation",
+    "multiple",
+    "performance",
+    "picture",
+    "pictures",
+    "preview",
+    "progress",
+    "responsive",
+    "storage",
+    "thumbnail",
+    "thumbnails",
+    "transformations",
+    "uploads",
+    "videos",
+    "widgets"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "samples/",
+    "test",
+    "tests",
+    "docs/"
+  ]
+}

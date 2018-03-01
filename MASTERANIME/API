@@ -1,0 +1,39 @@
+	Search
+
+
+https://www.masterani.me/api/anime/search?search=One+&sb=true
+
+
+
+	Latest releases
+
+
+https://www.masterani.me/api/releases
+
+
+///////////////////////		64 is id	////////////////////////////////
+
+
+	Link formats 
+
+
+https://www.masterani.me/anime/info/64-one-piece
+
+
+
+	episode thumbs
+
+
+https://cdn.masterani.me/episodes/1338OxgqmXcq.jpg
+
+
+	GET DATA BY AN_ID
+
+
+https://www.masterani.me/api/anime/64/detailed
+
+
+	WALLPAPERS specific to an anime
+
+https://cdn.masterani.me/wallpaper/1/641d62EAWC.jpg
+

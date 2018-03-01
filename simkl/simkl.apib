@@ -1,0 +1,2713 @@
+FORMAT: 1A
+HOST: https://api.simkl.com
+
+# Simkl API
+
+<table>
+    <tr>
+        <td width="85" align="center" valign="top"><a href="https://simkl.com" target="_blank"><img src="https://i.simkl.com/img_tv/apiary_logo_api.png" alt="Simkl" width="68" height="67"/></a></td>
+      <td>We’ve worked very hard to make <a href="https://simkl.com/" target="_blank">Simkl</a>  the dream "TV, Anime and Movie Tracker". However, chances are it doesn’t do 100% of what you need it to do. Luckily for you, we added an API so you can extend Simkl’s functionality.<br><br>If you need some API method which we do not have, do not hesitate to <a href="mailto:support@simkl.com" target="_blank">contact us</a> and we'll add it as soon as possible. </td>
+  </tr>
+    <tr>
+      <td colspan="2"><br><b>Useful Links:</b><br>
+      <a href="https://simkl.com/">Simkl.com</a> &nbsp; ∙ &nbsp;
+      <a href="https://simkl.com/settings/developer/new/">Get an API key</a> &nbsp; ∙ &nbsp;
+      <a href="https://discord.gg/MJsWNE4">Feature Requests</a> &nbsp; ∙ &nbsp;
+      <a href="https://discord.gg/MJsWNE4">Discord Server</a> &nbsp; ∙ &nbsp;
+      <a href="https://github.com/SIMKL/API/issues">Report Issues</a> &nbsp; ∙ &nbsp;
+      <a href="https://twitter.com/Simkl">Twitter</a>
+      
+</table>
+
+# Getting Started
+***
+
+This guide will walk you through how to use Simkl API on your website, media server app, browser extension or in your mobile app. 
+
+
+## Before You Start
+To successfully start using Simkl API, you need to:
+
+1. **[Sign up for a Simkl account](https://passport.simkl.com/register/)**.
+2. **[Create a new app in your account](https://simkl.com/settings/developer/new/)** to get your API key (`client_id`).
+3. **[Join the Discord Server to chat](https://discord.gg/MJsWNE4)**
+<br><br>Join the [community](https://discord.gg/MJsWNE4) to talk, learn about and discuss the Simkl APIs. Or DM directly on Discord.
+## Requirements
+### When using the API, a link is required back to https://simkl.com/ or directly to an item related to the API request. If not sure how to implement, let us know at support@simkl.com.
+
+
+## Ho to use the API
+1. Get user's `token` using [OAuth](/#reference/authentication-oauth-2.0) or [PIN Authentication](/#reference/authentication-pin) and save it on user's device.
+2. Post API requests with the user's `token` and your API Key (`client_id`)
+
+<br><br><br><br>
+
+# Apps Using Simkl API
+***
+
+Check out some of the apps that are using the Simkl API.
+
+## List of Apps
+
+Browser Extensions|Windows apps|Web apps|iOS apps|Android Apps
+---|----|----|----|----
+[Simkl for Netflix, Hulu, Crunchyroll and others](https://chrome.google.com/webstore/detail/simkl-for-netflix-hulu-cr/dbpjfmehfpcgmlpfnfilcnhbckmecmca)| [Sublight](http://www.sublight.me/Article/299/Improved-watched-videos-functionality-integration-with-Simklcom-service)|[Netflix Enhancer](https://simkl.com/apps/chrome/)|[Simkl Lists](https://itunes.apple.com/us/app/simkl-lists-track-tv-shows-anime-and-movies/id1229691035?ls=1&mt=8)|[Simkl Lists](https://play.google.com/store/apps/details?id=com.simkl.lists)
+
+<a href="mailto:support@simkl.com?subject=Add an app to the list" target="_blank">Contact us</a> to add your app to the list.
+
+<br><br><br><br>
+
+# About Simkl API
+***
+
+All API access is over HTTPS. All responses are returned as JSON. The API is (mostly) RESTful.<br>
+Please [contact us](http://support.simkl.com) if you're interested in an API we don't yet support.
+
+
+Here's what you need to know to get started quickly:
+
+## Use Cases
+The Simkl API lets you build a variety of applications and scripts to integrate Simkl with your apps, show Simkl data in other contexts, and update your watch history from various locations.
+
+Here are some examples of the things you can build with the Simkl API:
+
+- A browser extension to quickly mark as watched or add to your watchlist from any web page.
+- A Movie, TV or Anime app for iOS or Android.
+- Plugin for your favorite media center app to sync your watch history with Simkl.
+
+## Api URL
+`https://api.simkl.com/`
+## Verbs
+HTTP Verb|Description
+---|----
+`GET`| Retrieve the item.  Success returns `200` status code.
+`POST`| Create a new item.  Success returns `201` status code.
+`DELETE`| Delete the item. Success returns `200` or `204` status code.
+
+## HTTP Status Codes
+The Simkl API attempts to return appropriate HTTP status codes for every request.
+
+Code|Text|Description
+---|---|----
+`200`| OK | Success!
+`201`| OK | Success - *new resource created (POST)*
+`204`| OK | Success - *no content to return (DELETE)*
+`302`| Found | Redirected to correct URL
+`400`| Bad Request | The request was invalid or cannot be otherwise served. An accompanying error message will explain further.
+`401`| Unauthorized | [Authentication credentials](#reference/authentication-oauth-2.0) were missing or incorrect.
+`403`| Forbidden | The request is understood, but it has been refused or access is not allowed. An accompanying error message will explain why. This code is used whe using invalid API key or unapproved app or requests are being denied due to API limits.
+`404`| Not Found | The URI requested is invalid or the resource requested. Also returned when the requested format is not supported by the requested method.
+`405`| Not Found | *[IN_DEV]*
+`409`| Unauthorized | *[IN_DEV]* Conflict - resource already created
+`412`| *[IN_DEV]* | *[IN_DEV]*
+`422`| *[IN_DEV]* | *[IN_DEV]*
+`429`| *[IN_DEV]* | Rate Limit Exceeded
+`500`| Internal Server Error | Something is broken. Please post to the [developer forums](https://plus.google.com/u/0/communities/106081147921797342801) so the Simkl team can investigate.
+`502`| Bad Gateway | Simkl is down or being upgraded.
+`503`| Service Unavailable | The Simkl servers are up, but overloaded with requests. Try again later.
+
+## Required Headers
+When making API calls you'lll need to send some headers to identify your app.
+
+Header|Value
+---|----
+`Content-Type` * | `application/json`
+`simkl-api-key` * | Your `client_id` listed under [your Simkl applications](https://simkl.com/settings/developer/).
+
+## Full Info
+
+By default methods are not returnig additional data for movies, anime, show etc. They return minimal info you need to match in the local database. But, if you need more information just add `extended={level}` to the URL.
+
+*Level*|*Description*
+---|---|----
+`full`| Complete info
+
+## Dates
+[In Development] Currently dates are returned as (GMT - 05:00 New York time zone)
+
+All dates will be GMT and returned in the ISO 8601 format like `2015-03-15T15:30:11.000Z. Adjust 
+accordingly in your app for the user's local timezone.
+
+## Pagination
+Some of our endpoints are paginated. Endpoints which have 📄 Pagination will load 1 page of 10 items by default. If you want to change this, append query string `?page={page}&limit={limit}` to the URL
+
+Parameter|Type|Default|Value
+---|---|---|---
+`page`|integer|1|Number of page
+`limit`|integer|10|Results per page
+
+additionally, all paginated endpoints will return these HTTP headers as well
+Header|Value
+-|-
+X-Pagination-Page|Current page
+X-Pagination-Limit|Items per page
+X-Pagination-Page-Count|Total number of pages
+X-Pagination-Item-Count|Total number of items
+
+## Images
+Use `https://simkl.in` domain for images.
+
+We have different types of images, choose the one that best suits your needs.
+JSON DATA|Prefix URL
+---|---
+poster|`/posters/`
+fanart|`/fanart/`
+[IN DEV]|`/episodes/`
+[IN DEV]|`/comments/`
+
+Url structure: <b>{domain}{prefix}{image_url}{suffix}{extension}</b>
+
+prefix|suffix|Size|extension|Example
+---|---|---|---|---
+`posters`|`_w` (landscape, cropped}|600x338|`.jpg` or `.webp`|[Example](https://simkl.net/posters/74/74415673dcdc9cdd_w.jpg)
+`posters`|`_m`|340x *|`.jpg` or `.webp`|[Example](https://simkl.net/posters/74/74415673dcdc9cdd_m.jpg)
+`posters`|`_ca`|190x279(285)|`.jpg` or `.webp`|[Example](https://simkl.net/posters/74/74415673dcdc9cdd_ca.jpg)
+`posters`|`_c`|170x250(256)|`.jpg` or `.webp`|[Example](https://simkl.net/posters/74/74415673dcdc9cdd_c.jpg)
+`posters`|`_cm`|84x124|`.jpg` or `.webp`|[Example](https://simkl.net/posters/74/74415673dcdc9cdd_cm.jpg)
+`posters`|`_s`|40x57|`.jpg` or `.webp`|[Example](https://simkl.net/posters/74/74415673dcdc9cdd_s.jpg)
+||||
+`fanart`|`_d` (darker, small KB)|* x * (original size)|`.jpg`|[Example](https://simkl.net/fanart/71/710408ec0a1bd207_d.jpg)
+`fanart`|`_medium`|1920x1080|`.jpg` or `.webp`|[Example](https://simkl.net/fanart/71/710408ec0a1bd207_medium.jpg)
+`fanart`|`_mobile`|960x540|`.jpg` or `.webp`|[Example](https://simkl.net/fanart/71/710408ec0a1bd207_mobile.jpg)
+`fanart`|`_w`|600x338|`.jpg` or `.webp`|[Example](https://simkl.net/fanart/71/710408ec0a1bd207_w.jpg)
+
+### Caching images
+It is required that you cache images in your app or server by `image_url` forever. The images with the same URL never change. Do not redownload the same image multiple times.
+
+## Standard Media Objects
+
+All methods will accept or return standard media objects for `movie`, `show`, `episode` items. 
+Here are examples for all objects:
+
+<table>
+    <tr>
+        <td align="center" valign="top"><strong>movie</strong></td>
+      <td>
+<pre>Movie example:<code>{
+    "title":"Terminator 3: Rise of the Machines",
+    "year":2003,
+    "ids":{
+        "simkl":53536,
+        "imdb":"tt0181852",
+        "tmdb":296
+    }
+}</code></pre>
+<pre>Example when only id is known:<code>{
+    "ids":{
+        "simkl":53536
+    }
+}</code></pre></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top"><strong>show</strong></td>
+      <td><pre>TV Show example:<code>"title":"The Walking Dead",
+    "year":2010,
+    "ids":{
+        "simkl":2090,
+        "tvdb":153021,
+        "imdb":"tt1520211"
+    },
+    "seasons": [
+            {
+                "number": 1,
+                "episodes": [
+                    {
+                        "number": 1
+                    },
+                    {
+                        "number": 2
+                    }
+                ]
+            }
+        ]
+    ]
+}</code></pre>
+      <pre>Anime example:<code>{
+    "title": "Attack on Titan",
+    "year": 2013,
+    "ids": {
+        "simkl": 39687,
+        "mal": 16498,
+        "tvdb": 267440,
+        "imdb": "tt2560140",
+        "anidb": 9541
+    },
+    "seasons":[ 
+        {
+            "number": 2
+        }
+    ]
+}</code></pre></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top"><strong>episode</strong></td>
+      <td>
+<pre>Episode example:<code>{
+    {
+        "watched_at": "2014-09-01 09:10:11",
+        "ids": {
+            "hulu": 681868,
+            "crunchyroll": 656647
+        }
+    }
+}</code></pre>
+
+</table>
+
+
+## API Terms of Use
+Thank you for using the Simkl application programming interfaces (the "Simkl APIs"). By using the Simkl APIs, you UNCONDITIONALLY CONSENT AND AGREE TO BE BOUND BY AND A PARTY TO THE TERMS AND CONDITIONS LISTED AT [https://simkl.com/about/policies/terms/api/](https://simkl.com/about/policies/terms/api/) and also agree to display information about Simkl in all parts of your application or website where Simkl API or content from Simkl API is used as deemed necessary by request of Simkl Team. If you disagree with any of these terms, Simkl does not grant you a license to use the Simkl APIs. 
+
+## Help us improve!
+If you find any error or omission on the documentation, or you’d like us to cover or clarify something, just [let us know](https://support.simkl.com/forums/264009-top-ideas-from-the-community/category/86437-api) and we’ll try to make you happy. You are also welcome to [join our development community](https://plus.google.com/u/0/communities/106081147921797342801).
+
+<br><br>
+
+# Group Authentication - OAuth 2.0
+There's no reinventing the wheel here so the API uses OAuth2. 
+
+Requesting user assosiated information requires `token` that needs to be included in all request headers made to the API.
+
+
+To obtain the `client_id` and `client_secret` please [create an app first](https://simkl.com/settings/developer/new/). 
+
+
+To make calls on behalf of a user you have to obtain an `access_token`. To do this, first use **https://simkl.com/oauth/authorize** method to get `code` and then post it in JSON format to **https://api.simkl.com/oauth/token** url. In response you'll get the `access_token`.
+For more details see Authorize and Token sections below.
+
+  
++ Request https://simkl.com/oauth/authorize?response_type=code&client_id=c7be48f1559a6d794w1925237c626326c7bsdfsa559a6d794w1925137c626316&redirect_uri=http://yourdomain.com/oauth.html
+        
+        
++ Response 200
+
+## Authorize [/oauth/authorize{?response_type,client_id,redirect_uri,state}]
+
+### Authorize Application [GET]
+Redirect a user to this URL. There the user will grant permissions for you app and if everything is fine you'll get a `code` which you can exchange for `access_token`. 
+Once you have an access token you can use it to make calls on behalf of a user.
+
+**Note:** You should use the https://simkl.com domain when creating this URL and not the API URL.
+
++ Parameters
+    + response_type (string, `code`) ... must be "code"
+    + client_id (string) ... Get this from your app settings
+    + redirect_uri (string, `http://yourdomain.com/oauth.html`) ...  [URI in your app settings](https://simkl.com/settings/developer/)
+    + state (optional, string, `state`) ... your custom variable
+
++ Request https://simkl.com/oauth/authorize?response_type=code&client_id=c7be48f1559a6d794w1925237c626326c7bsdfsa559a6d794w1925137c626316&redirect_uri=http://yourdomain.com/oauth.html
+
+    + Body
+
++ Response 200
+
+    + Body
+
+## Token [/oauth/token]
+### Exchange code for access_token [POST]
+The redirect to your application in the step above will include a `code` parameter which you can exchange for an `access_token` using this method. 
+
+Save the `access_token` somewhere safe. From that moment your app can authenticate the user by sending the `Authorization` header.
+
+<h4>JSON POST DATA</h4>
+Key|Type|Value
+---|----|-----
+code|string|code you've get from authorize method
+client_id|string|Get this in your app settings
+client_secret|string|Get this in your app settings
+redirect_uri|string|Your URI in your app settings 
+grant_type|string|`authorization_code`
+
+`access_token` do not have expiration date (Never expire).
+
+`access_token` can be deleted by user when revoking app access rights in [Connected Apps settings](https://simkl.com/settings/connected-apps/).
+
++ Request (application/json)
+
+        {
+            "code"          : "d7be48f1559a6d794w1925237c626326c7dddfsa559a6d794w1925137c626313",
+            "client_id"     : "c7be48f1559a6d794w1925237c626326c7bsdfsa559a6d794w1925137c626352",
+            "client_secret" : "a9be48f1529a2d794w1925237c626326c7dddfsa559a6d794w1925137c626321",
+            "redirect_uri"  : "http://yourdomain.com/oauth.html",
+            "grant_type"    : "authorization_code"
+        }
++ Response 200 (application/json)
+Valid `code` will generate you the `access_token`
+    + Body
+
+            { 
+                "access_token"  : "b5be48f1529a2d794f1925237c626326c7dddfsa559a6d794w1925137c622329",
+                "token_type"    : "bearer", 
+                "scope"         : "public"
+            }
++ Response 401 (application/json)
+Invalid code will give you a 401 error
+    + Body
+
+            { 
+                "error"  : "grant_error"
+            }
+        
+
+# Group Authentication - PIN
+This flow is designed for devices that have limited input capabilities, such as media center plugins, game consoles, smart watches, smart TVs, command line scripts, and system services, etc.
+Your app displays an alphanumeric code (typically 5 characters) to the user. They are then instructed to visit the verification URL on their computer or mobile device. After entering the code, the user will be prompted to grant permission for your app. After your app gets permissions, the device receives an access_token and works like standard OAuth from that point on.
+
+You should do the following step to authorize user's device:
+
+1. [Request a device code](#reference/authentication-pin/request-a-device-code/get-code).
+
+2. Display `user_code` and instruct the user to visit the [`verification_url`](https://simkl.com/pin/).
+<img src="https://us.simkl.in/img_tv/api_demo_pin.png" alt="Simkl PIN" width="779" height="479"/>
+
+3. [Begin polling Simkl's authorization server](#reference/authentication-pin/get-code-status/check-user_code).
+
+4. User enters `user_code` at  the [`verification_url`](https://simkl.com/pin/) on their computer or mobile device.
+
+5. Simkl returns `access_token` to the device where the polling is in progress. Your app will be polling to see if the user successfully authorizes your app. Use `expires_in` to stop polling after that many seconds, and gracefully instruct the user to restart the process. **It is important to poll at the correct interval and also stop polling when expired**.
+
+6. Once they have, refresh your UI to indicate a successful connection has been made. 
+
+## Request a device code [/oauth/pin{?client_id,redirect}]
+
+### Get CODE [GET]
+ 
+In response you'll get `user_code` and `verification_url` (in most cases [https://simkl.com/pin/](https://simkl.com/pin/)) which should be displayed to the user. Store `expires_in` and `interval` values for step 3.
+
+<h4>JSON POST DATA</h4>
+Key|Type|Value
+---|----|-----
+client_id|string|Get this in your app settings
+
++ Parameters
+    + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from your app settings
+    + redirect (string,optional,`http://yourdomain.com/welcome`) ... URL where you want to redirect user when he approved you application
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            { 
+                'result': 'OK', 
+                'device_code': DEVICE_CODE, 
+                'user_code': USER_CODE, 
+                'verification_url': https://simkl.com/pin/, 
+                'expires_in': 900, 
+                'interval': 5 
+            }
+
+## Get CODE status [/oauth/pin/{USER_CODE}{?client_id}]
+
+### Check USER_CODE [GET]
+
+Application can poll this url to get `USER_CODE` status or `ACCESS_TOKEN`. Returned interval in step 1 response specifies the minimum amount of time(seconds), that your app should wait between polling requests.
+
++ Parameters
+    + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from your app settings
+    + USER_CODE (string) ... Get this from previous step
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            { 
+                'result': 'KO', 
+                'message': 'Authorization pending'
+            }
+
++ Response 200 (application/json)
+
+    + Body
+    
+            { 
+                'result': 'KO', 
+                'message': 'Slow down'
+            }
+
++ Response 200 (application/json)
+
+    + Body
+    
+            { 
+                'result': 'OK', 
+                'access_token': ACCESS_TOKEN
+            }
+
+
+# Group Checkin
+Mobile apps can do checkin manually. If you are curretlty watching a movie or an episode you can simply do checkin from your phone or tablet and the episode will be automatically marked as watched in 15-40 minutes (based on the episode\movie lenth).
+
+If you wish to instantly mark episode\movie as watched please use [Sync, Add to History method](/#reference/sync/add-to-history/check-into-an-item)
+
+## Checkin [/checkin]
+
+### Check into an item [GET]
+<h4>&#128274; Token Required</h4>
+This should be tied to a user manual action. The item will be as watching on the site and if the time has elapsed it will switch to completed. 
+
+Pass as much data as possible into the item including `title`, `year` and `ids` fields so Simkl could detect the item better.
+
+<h4>JSON POST DATA</h4>
+Key|Type|Value
+---|----|-----
+item*|object|[episode or movie object](/#introduction/about-simkl-api/standard-media-objects).
+
+<b>Note</b>: If there is checkin in progress, 409 code will be returned and response will contain an expires_at datetime when you will be able to ckeckin again.
+
++ Request (application/json)
+    
+    + Body
+
+            {
+                "movie": {
+                    "title": "Guardians of the Galaxy",
+                    "year": 2014,
+                    "ids": {
+                        "slug": "guardians-of-the-galaxy-2014",
+                        "imdb": "tt2015381",
+                        "tmdb": 118340
+                    }
+                }
+            }
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "movie": {
+                    "title": "Guardians of the Galaxy",
+                    "year": 2014,
+                    "ids": {
+                        "simkl": 212566,
+                        "imdb": "tt2015381",
+                        "tmdb": 118340
+                    }
+                }
+            }
+            
++ Request (application/json)
+    
+    + Body
+    
+            {
+                "show": {
+                    "title": "Breaking Bad",
+                    "year": 2008,
+                    "ids": {
+                      "tvdb": 81189,
+                      "imdb": "tt0903747"
+                    },
+                    "episode": {
+                        "season": 2,
+                        "number": 7
+                    }
+                }
+            }
+    
++ Response 200 (application/json)
+
+     + Body
+    
+            {
+                "show": {
+                    "title": "Breaking Bad",
+                    "year": 2008,
+                    "ids": {
+                      "tvdb": 81189,
+                      "imdb": "tt0903747"
+                    },
+                    "episode": {
+                        "season": 2,
+                        "number": 7
+                    }
+                }
+            }
+
++ Request
+    
+    + Body
+    
+            {
+                "show": {
+                    "netflix": 70236425
+                }
+            }
+    
++ Response 200
+
+    + Body
+    
+            {
+                "show": {
+                    "netflix": 70236425
+                }
+            }
+    
++ Response 409
+
+    There is already a checkin in progress.
+
+    + Body
+        
+            {
+                "expires_at": "2015-05-10T20:11:25.000Z"
+            }
+            
+
+# Group Ratings
+## Ratings API [/ratings]
+
+### Get movie, tv show or anime rating [GET]
+<h4>&#128275; Token Not Required</h4>
+Returns rating (between 0 and 10), rank (movie, tv, anime have their own rank), external ratings (IMDB, MAL), drop rate and if we have trailers for the movie or not(add /trailer parameter to the link and the best trailer will be opened).
+
+Possible url parameters: [see Redirect method](/#reference/redirect/redirect-to-simkl-trailer-or-twitter/redirect).
+            
++ Request
+`https://api.simkl.com/ratings?simkl=10280&fields=rank,droprate,simkl,ext,has_trailer&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`
+
+    + Header
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "id":202806,
+                "link": "https://simkl.com/tv/10280/the-big-bang-theory",
+                "simkl":{
+                    "rating":7.7,
+                    "votes":58
+                },
+                "rank":{
+                    "type":"movie",
+                    "value":"1436"
+                },
+                "IMDB":{
+                    "rating":7.7,
+                    "votes":348221
+                },
+                "has_trailer":true
+            }
+# Group Redirect
+
+## Redirect to Simkl, trailer or Twitter [/redirect{?to,title,year,season,episode,client_id}]
+In situations when you want to link directly to the Movie or TV show episode on Simkl from your Website or APP but don't know Simkl URL, you can use the  Redirect API.
+Redirect users directly **to Simkl** page or **to Twitter** (to Share a Simkl link on Twitter with prefilled data).
+
+### Use Cases
+
+Here are some examples of the things you can build with the Redirect API:
+
+- A browser extension to quickly link to Simkl based on page content.
+- A website page linking directly to Simkl based on IMDB ID or TV Show name.
+- Link to a trailer knowing only Movie name and year.
+- Share an episode on Twitter from your browser extension.
+- Get all Simkl IDs for your own API.
+
+### Redirect [GET]
+<h4>&#128275; Token Not Required</h4>
+Use this if you want to make a redirect to Simkl or (fast post) to Twitter using show's title or id. It will return "location" header.
+
+The more parameters you'll pass, the more accurate redirect will be.
+
++ Parameters
+
+    + to =`Simkl` (optional, string, `trailer`) ... can be "Simkl" "trailer" or "twitter". 
+        + Values
+            + `Simkl`
+            + `trailer`
+            + `twitter`
+    + title (optional, string, `The Walking Dead`) ... TV show, anime, or movie title.
+    + year (optional, integer, `2010`) ... release year.
+    + season = `1` (optional, integer, `1`) ... if set, movies will be ignored. Anime do not have seasons.
+    + episode (optional, integer, `4`) ... if set, movies will be ignored.
+    + hulu (optional, integer, `752375`) ... hulu_id. All other parameters can be empty if this one specified.
+    + netflix (optional, integer, `70210890`) ... Netflix `movieid`, this parameter is in beta and may not work.
+    + mal (optional, integer, `4246`) ... MyAnimeList `id`.
+    + tvdb (optional, integer, `153021`) ... TVDB ID. All other parameters can be empty if this one specified.
+    + type (optional, integer, `show`) ... Required for tmdb, if is searching for a TV Show
+        + Values
+            + `show`
+            + `movie`
+    + tmdb (optional, integer, `76757`) ... The Movie Database (TMDb) ID. To search TV Shows specify `type` parameter. All other parameters can be empty if this one specified.
+    + imdb (optional, string, `tt1520211`) ... can be IMDB ID or full IMDB URL. All other parameters can be empty if this one specified.
+        + Values
+            + `tt1520211`
+            + `http://www.imdb.com/title/tt1520211/`
+    + anidb (optional, integer, `10846`) ... AniDB ID. All other parameters can be empty if this one specified.
+    + crunchyroll (optional, integer, `656641`) ... Crunchyroll ID. You can pass episode ID or url ID(sword-art-online)
+    + client_id (string) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+
+
++ Request
+    
+    **Redirect to Simkl**, episode page example:
+    
+    https://api.simkl.com/redirect?to=Simkl&title=The%20walking%20dead&year=2010&season=1&episode=4&type=show&tmdb=1402&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+
+    PS: Please use your `client_id`.
+    
+    + Body
+    
++ Response 302
+
+    You will get "location" header (browser redirect) where the user should be redirected.
+    
+    In this example user will be redirected to [Simkl: The Walking Dead S01E4](https://simkl.com/tv/2090/the-walking-dead/season-1/episode-4/)
+
+    + Headers
+    
+            location: //simkl.com/tv/2090/the-walking-dead/season-1/episode-4/
+
+    + Body
+
++ Request
+    
+    **Redirect to Simkl**, based on Hulu ID example:
+    
+    https://api.simkl.com/redirect?to=Simkl&hulu=740489&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+
+    PS: Please use your `client_id`.
+    
+    + Body
+    
++ Response 302
+
+    You will get "location" header (browser redirect) where the user should be redirected.
+    
+    In this example user will be redirected to [Simkl: The Vampire Diaries S06E11](https://simkl.com/tv/15578/the-vampire-diaries/season-6/episode-11/)
+
+    + Headers
+    
+            location: //simkl.com/tv/15578/the-vampire-diaries/season-6/episode-11/
+    
+    + Body
+
++ Request
+    
+    **Redirect to Simkl**, based on IMDB link example:
+    
+    https://api.simkl.com/redirect?to=Simkl&imdb=http://www.imdb.com/title/tt1520211/&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+
+    PS: Please use your `client_id`. You can specify IMDB ID `tt1520211` or full IMDB URL.
+    
+    + Body
+    
++ Response 302
+
+    You will get "location" header (browser redirect) where the user should be redirected.
+    
+    In this example user will be redirected to [Simkl: The Walking Dead](https://simkl.com/tv/2090/the-walking-dead)
+
+    + Headers
+    
+            location: //simkl.com/tv/2090/the-walking-dead
+    
+    + Body
+
++ Request
+    
+    **Redirect to trailer** page example:
+    
+    https://api.simkl.com/redirect?to=trailer&title=Guardians%20of%20the%20Galaxy&year=2014&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+
+    PS: Please use your `client_id`.
+    
+    + Body
+    
++ Response 302
+
+    You will get "location" header (browser redirect) where the user should be redirected.
+    
+    In this example user will be redirected to [Simkl: Guardians of the Galaxy (2014)](https://simkl.com/movies/212566/guardians-of-the-galaxy)
+
+    + Headers
+    
+            location: //simkl.com/movies/212566/guardians-of-the-galaxy
+
+    + Body
+
+
++ Request
+    
+    **Post to twitter** example:
+    
+    https://api.simkl.com/redirect?to=twitter&title=The%20walking%20dead&year=2010&season=1&episode=4&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+
+    PS: Please use your `client_id`.
+
+    + Body
+    
++ Response 302
+
+    You will get "location" header (browser redirect) where the user should be redirected.
+    
+    In this example user will be redirected to [twitter: Share a link with your followers](https://twitter.com/intent/tweet?text=The%20Walking%20Dead+1x04+%22Vatos%22&url=https%3A%2F%2Fsimkl.com%2Ftv%2F2090%2Fthe-walking-dead%2Fseason-1%2Fepisode-4%2F)
+
+    + Headers
+    
+            location: //twitter.com/intent/tweet?text=The Walking Dead+1x04+%22Vatos%22&url=https%3A%2F%2Fsimkl.com%2Ftv%2F2090%2Fthe-walking-dead%2Fseason-1%2Fepisode-4%2F
+
+    + Body
+
+# Group Search
+
+## ID Lookup [/search/id{?imdb,client_id}]
+### Get items by ID[GET]
+<h4>&#128275; Token Not Required &#10024; Full Info</h4>
+You can lookup items by their ID using this endpoint. Supports IMDB, TVDB, TMDB, AniDB, Hulu, Netflix, MAL, Crunchyroll ID. This method will respond with [`Standard Media Object`](/introduction/about-simkl-api/standard-media-objects).
+
++ Parameters
+
+    + simkl (optional, integer, `2090`) ... Simkl `id`. 
+    + hulu (optional, integer, `752375`) ... hulu_id. All other parameters can be empty if this one specified.
+    + netflix (optional, integer, `70210890`) ... Netflix `movieid`, this parameter is in beta and may not work.
+    + mal (optional, integer, `4246`) ... MyAnimeList `id`.
+    + tvdb (optional, integer, `153021`) ... TVDB ID. All other parameters can be empty if this one specified.
+    + type (optional, integer, `show`) ... Required for tmdb, if is searching for a TV Show
+        + Values
+            + `show`
+            + `movie`
+    + tmdb (optional, integer, `76757`) ... The Movie Database (TMDb) ID. All other parameters can be empty if this one specified. `type` parameter is required if you want to search for TV Shows
+    + imdb (optional, string, `tt1972591`) ... can be IMDB ID or full IMDB URL. All other parameters can be empty if this one specified.
+        + Values
+            + `tt1972591`
+            + `http://www.imdb.com/title/tt1972591/`
+    + anidb (optional, integer, `10846`) ... AniDB ID. All other parameters can be empty if this one specified.
+    + crunchyroll (optional, integer, `656641`) ... Crunchyroll ID. You can pass episode ID or url ID(sword-art-online)
+    + type  (optional, string) ... Only used when sending tmdb. 
+        + Values
+            + `show`
+            + `movie`
+    + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+
+
+
++ Request 
+
+    **Search by ID**, IMDB example:
+    
+    https://api.simkl.com/search/id?imdb=tt1972591&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+
+    PS: Please use your `client_id`.
+    
+    + Body
+    
++ Response 200 (application/json)
+        
+    + Body
+
+            [{
+                "type": "movie",
+                "title": "King Arthur: Legend of the Sword",
+                "year": 2017,
+                "ids": {
+                    "simkl": 388306,
+                    "slug": "king-arthur-legend-of-the-sword"
+                }
+            }]
+            
+## Text [/search/{type}{?q,client_id}]
+### Get items based on text query[GET]
+<h4>📄 Pagination &#128275; Token Not Required &#10024; Full Info</h4>
+Search items by title, sorted by relevance (what people search most). This method will respond with [`Standard Media Object`](/introduction/about-simkl-api/standard-media-objects) + additional fields if `extended` parameter passed.
+
+Page limit is 20, max items per page is 50.
+
++ Parameters
+
+    + type (required, string, `movie`) ... Search type.
+        + Values
+            + `tv`
+            + `anime`
+            + `movie`
+    + q (required, string, `john wick`) ...
+    + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+
+
++ Request 
+    **Search for text**, movie title, john wick example:
+    
+    https://api.simkl.com/search/movie?q=john%20wick&page=1&limit=10&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+    
+    PS: Please use your `client_id`.
+
+ + Body
+    
++ Response 200 (application/json)
+
+    + Headers
+    
+            Content-Type:application/json
+            X-Pagination-Page:1
+            X-Pagination-Limit:10
+            X-Pagination-Page-Count:20
+            X-Pagination-Item-Count:50
+        
+    + Body
+
+        [  
+           {  
+              "title":"John Wick: Chapter 2",
+              "year":2017,
+              "ids":{  
+                 "simkl_id":471618,
+                 "slug":"john-wick-chapter-2"
+              }
+           },
+           {  
+              "title":"John Wick",
+              "year":2014,
+              "ids":{  
+                 "simkl_id":342994,
+                 "slug":"john-wick"
+              }
+           },
+           {  
+              "title":"John Wick: Chapter 3",
+              "year":2019,
+              "ids":{  
+                 "simkl_id":687232,
+                 "slug":"john-wick-chapter-3"
+              }
+           }
+        ]
+
+
+
+
++ Request 
+    **Search for text with full info**, movie title, john wick example:
+    
+    https://api.simkl.com/search/movie?q=john%20wick&page=1&limit=10&extended=full&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+    
+    PS: Please use your `client_id`.
+
+ + Body
+    
++ Response 200 (application/json)
+
+    + Headers
+    
+            Content-Type:application/json
+            X-Pagination-Page:1
+            X-Pagination-Limit:10
+            X-Pagination-Page-Count:20
+            X-Pagination-Item-Count:50
+        
+    + Body
+
+        [{
+            "title": "John Wick: Chapter 2",
+            "year": 2017,
+            "poster": "50\/501682403c298b56c",
+            "url": "\/movies\/471618\/john-wick-chapter-2",
+            "rank": 2326,
+            "ids": {
+                "simkl_id": 471618,
+                "slug": "john-wick-chapter-2"
+            }
+        }, {
+            "title": "John Wick",
+            "year": 2014,
+            "poster": "28\/2893788382afb90ce",
+            "url": "\/movies\/342994\/john-wick",
+            "rank": 3998,
+            "ids": {
+                "simkl_id": 342994,
+                "slug": "john-wick"
+            }
+        }, {
+            "title": "John Wick: Chapter 3",
+            "year": 2019,
+            "poster": "57\/5747702654de3d19d",
+            "url": "\/movies\/687232\/john-wick-chapter-3",
+            "rank": null,
+            "ids": {
+                "simkl_id": 687232,
+                "slug": "john-wick-chapter-3"
+            }
+        }]
+
+            
+## File [/search/file]
+### Find show, anime or movie by file[POST]
+<h4>&#128275; Token Not Required</h4>
+Use it if you have a filename and want to get simkl_id based on it. Right now TV Shows and Anime files can be recognized the best. Movies are harder to recognize without using the hash.
+
+You can search by filename or by full folder+filename (see request examples).
+
+This method will respond with [`Standard Media Object`](/introduction/about-simkl-api/standard-media-objects) + some new fields.
+
+`multipart` = we have 2+ episodes in one filename, use `part` parameter to get necessary episode.
+
+<h4>POSSIBLE JSON RESPONSE DATA</h4>
+Key|Value|Description
+---|----|-----
+type|`episode`| this is an episode of a TV Show or Anime
+type|`movie`| this is movie
+episode: multipart |`false`| not multipart
+episode: multipart |`0`| no more episodes left
+episode: multipart |`1`| you can get info on one more episode after this one in this filename
+
+
++ Request (application/json)
+This is an example with a file that has 2 episodes at the same time, and we're trying to get information about the first episode (part 1 of 2).
+    + Headers
+            simkl-api-key: [client_id]
+    + Attributes
+        + file: `Were.The.Fugawis.S01E01E02.WS.DSR.x264-NY2.mkv` (required, string) - Trying to find this file in our DB
+        + part: `1` (optional, number) - Some filenames consist of 2 or more parts. If you want to get info about second part for example you can pass `2` to this parameter
+        + hash (optional, string) - [IN_DEV]
+
++ Response 200 (application/json)
+        
+    + Body
+
+            {
+                "type": "episode",
+                "show": {
+                    "title": "We're the Fugawis",
+                    "year": 2013,
+                    "ids": {
+                        "simkl": 43283,
+                        "zap2it": "EP01767728",
+                        "tvdb": 272581
+                    }
+                },
+                "episode": {
+                    "title": "The Fug Life",
+                    "season": 1,
+                    "episode": 1,
+                    "multipart": 1,
+                    "ids": {
+                        "simkl": 967216
+                    }
+                }
+            }
+            
++ Request (application/json)
+This is an example with a full file location including folders.
+
+    + Header
+            simkl-api-key: [client_id]
+    + Attributes
+        + file: `/series/The Office/Season 4/The Office [401] Fun Run.avi` (required, string) - You can use folders in the file request as well
+
++ Response 200 (application/json)
+        
+    + Body
+
+            {
+                "type": "episode",
+                "show": {
+                    "title": "The Office (US)",
+                    "year": 2005,
+                    "ids": {
+                        "simkl": 2753,
+                        "imdb": "tt0386676",
+                        "zap2it": "SH00726133",
+                        "netflix": "70136120",
+                        "tvdb": "73244"
+                    }
+                },
+                "episode": {
+                    "title": "Fun Run (1)",
+                    "season": 4,
+                    "episode": 1,
+                    "multipart": false,
+                    "ids": {
+                        "simkl": 343712
+                    }
+                }
+            }
+
+
+## Random [/search/random{?service,type,genre,rating_from,rating_to,year_from,year_to,client_id}]
+### Find random show, anime or movie [POST]
+<h4>&#128275; Token Optional</h4>
+Use it if you want to find random item based on your filters. If Token is passed, wacthed items will be excluded.
+
+### Use Cases
+
+Here are some examples of the things you can build with the Random Search API:
+
+- Find random Netflix TV Show, Anime or Movie to watch
+- Find random TV Show, Anime or Movie in Simkl database
+
+### Requirements
+
+"Powered by SIMKL" with a link to https://simkl.com is required on the web page or inside your app where this functionality is used.
+
++ Parameters
+    + service = `simkl` (optional, string) ... Finds random TV Show, Anime or Movie.
+        + Values
+            + `netflix`
+            + `simkl`
+    + type (optional, integer, `tv`) ... 
+        + Values
+            + `tv`
+            + `anime`
+            + `movie`
+    + genre = (optional, string, `comedy`) ... TV Shows, Anime and Movies have their own genres. <br><br><b>Movies</b>: <br>action, adventure, animation, comedy, crime, drama, family, fantasy, foreign, history, horror, music, mystery, romance, science-fiction, thriller, tv-movie, war, western<br><b>TV:</b><br>action-and-adventure, adventure, animation, children, comedy, crime, documentary, drama, family, fantasy, food, game-show, home-and-garden, horror, mini-serie, mystery, news, reality, science-fiction, soap, special-interes, sport, suspense, talk-show, thriller, travel, western<br><b>Anime:</b><br>action, adventure, angst, anthropomorphism, blackmail, comedy, detective, ecchi, fantasy, harem, henshin, horror, mahou-shoujo, romance, sci-fi, sexual-abuse, thriller, under-one-roof, western. 
+    + rating_from = `1` (optional, integer, `5`) ... max value is 10. Random search for TV Shows and Movies will be performed using IMDB ratings. Anime are based on MAL ratings.
+    + rating_to (optional, integer, `10`)
+    + year_from (optional, integer, `2004`) ...  First released movie starts from 1920.
+    + year_to (optional, integer, `2010`)
+    + client_id (required, integer, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... If using [POST] with OAuth, it can be set in headers. If using without OAuth it's required. 
+   
+            
++ Request
+    
+    **Netflix** random example:
+    
+    https://api.simkl.com/search/random/netflix/?rating_from=5&rating_to=10&year_from=2008&year_to=2015&genre=science-fiction&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+
+    PS: Please use your `client_id`
+    
+       + Body
+    
++ Response 302
+
+    EDIT HERE
+
+
+    + Body
+    
++ Request (application/json)
+    
+    **Simkl** random example:
+
+    https://api.simkl.com/search/random/?rating_from=5&rating_to=10&year_from=2008&year_to=2015&genre=science-fiction&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+
+    + Header
+            
+            authorization: Bearer [token]
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "id": 179868
+                "url": "https://simkl.com/movies/179868/terminator-genisys"
+            }
+
+
+# Group TV
+
+## Summary [/tv/{id}{?client_id}]
+### Get detail info about the TV Show [GET]
+<h4>&#128275; Token Not Required &#10024; Full Info</h4>
+Returns a signle detail info of the tv show. 
+
+The `status` field can have these values `ended`,`tba`,`airing`
+
++ Parameters
+
+    + id (required, string, `tt0944947`) ... Simkl ID or IMDB ID.
+    + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+
++ Request
+
+    **Short info**, IMDB example:
+    
+   https://api.simkl.com/tv/tt0944947?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+
+    PS: Please use your `client_id`.
+    
+    + Body
+
++ Response 200 (application/json)
+        
+    + Body
+
+        {
+            "title": "Game of Thrones",
+            "year": 2011,
+            "type": "show",
+            "ids": {
+                "simkl": 17465,
+                "slug": "game-of-thrones"
+            }
+        }
+
++ Request  
+
+    **Full info**, IMDB example:
+    
+   https://api.simkl.com/tv/tt0944947?extended=full&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+
+    PS: Please use your `client_id`.
+    
+    + Body
+
++ Response 200 (application/json)
+        
+    + Body
+
+        {
+            "title": "Game of Thrones",
+            "year": 2011,
+            "type": "show",
+            "ids": {
+                "simkl": 17465,
+                "slug": "game-of-thrones",
+                "tvdb": "121361",
+                "imdb": "tt0944947",
+                "zap2it": "EP01389809"
+            },
+            "rank": 6,
+            "poster": "57\/5742576cd8f59fcb0",
+            "fanart": "65\/651708e80d87bb93",
+            "first_aired": "2011-04-18T01:00:00.000Z",
+            "airs": {
+                "day": "Sunday",
+                "time": "09:00 PM",
+                "timezone": "America\/New_York"
+            },
+            "runtime": 55,
+            "certification": "TV-MA",
+            "overview": "Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night's Watch, is all that stands between the realms of men and the icy horrors beyond.",
+            "genres": ["Drama", "Fantasy", "Adventure"],
+            "country": "US",
+            "total_episodes": 67,
+            "status": "airing",
+            "network": "HBO",
+            "ratings": {
+                "simkl": {
+                    "rating": 9.1,
+                    "votes": 1270
+                },
+                "imdb": {
+                    "rating": 9.5,
+                    "votes": 1234933
+                }
+            },
+            "trailers": null
+        }
+            
+
+# Group Anime
+
+## Summary [/anime/{id}{?client_id}]
+### Get detail info about the Anime [GET]
+<h4>&#128275; Token Not Required &#10024; Full Info</h4>
+Returns a signle detail info of the anime. Same as `/tv/summary` endpoint + added `anime_type` field, possible values are `tv`,`special`,`ova`, `movie`.
+
++ Parameters
+
+    + id (required, string, `40398`) ... Simkl ID or IMDB ID. 
+    + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+
++ Request
+   
+    **Short info**, SIMKL ID example:
+    
+   https://api.simkl.com/anime/40398?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+
+    PS: Please use your `client_id`.
+    
+    + Body
+    
++ Response 200 (application/json)
+        
+    + Body
+
+        {
+            "title": "Hunter x Hunter",
+            "year": 2011,
+            "type": "anime",
+            "ids": {
+                "simkl": 40398,
+                "slug": "hunter-x-hunter"
+            }
+        }
+
++ Request
+    **Full info**, SIMKL ID example:
+    
+   https://api.simkl.com/anime/40398?extended=full&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+
+    PS: Please use your `client_id`.
+    
+    + Body
+    
++ Response 200 (application/json)
+        
+    + Body
+
+        {
+            "title": "Hunter x Hunter",
+            "year": 2011,
+            "type": "anime",
+            "ids": {
+                "simkl": 40398,
+                "slug": "hunter-x-hunter",
+                "anidb": "8550",
+                "ann": "13262",
+                "mal": "11061",
+                "anfo": "4947",
+                "wikien": "Hunter_x_hunter",
+                "allcin": "340525",
+                "imdb": "tt2098220",
+                "offjp": "https:\/\/twitter.com\/hunter_anime",
+                "crunchyroll": "hunter-x-hunter"
+            },
+            "rank": 7,
+            "poster": "83\/83975f751784587",
+            "fanart": "83\/839789583130112",
+            "first_aired": "2011-10-02T02:00:00.000Z",
+            "airs": {
+                "day": "Sunday",
+                "time": "11:00 AM",
+                "timezone": "Asia\/Tokyo"
+            },
+            "runtime": 25,
+            "certification": null,
+            "overview": "A remake of the original series with different staff and cast.<br><br>Gon is a youth who lives on Kujira Isle. His dream is to become a Hunter like his father, to search out lost treasures, artefacts, and mythical creatures.<br><br>Determined to become a professional Hunter willing to stake his life in challenging the unknown, he sets off on a journey and meets fellow Hunter wannabes Killua, Kurapika, and Leorio.",
+            "genres": ["Action", "Adventure", "Comedy"],
+            "country": "JP",
+            "total_episodes": 148,
+            "status": "ended",
+            "network": "NTV",
+            "anime_type": "tv",
+            "ratings": {
+                "simkl": {
+                    "rating": 8.9,
+                    "votes": 248
+                },
+                "imdb": {
+                    "rating": 7.6,
+                    "votes": 1077
+                },
+                "mal": {
+                    "rating": 9.1,
+                    "votes": 324100,
+                    "rank": 7
+                }
+            },
+            "trailers": null
+        }
+        
+# Group Movies
+
+## Summary [/movies/{id}{?client_id}]
+### Get detail info about the movie [GET]
+<h4>&#128275; Token Not Required &#10024; Full Info</h4>
+Returns a signle detail info about the movie.
+
+
++ Parameters
+
+    + id (required, string, `tt1201607`) ... Simkl ID or IMDB ID.
+    + client_id (string, `c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316`) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+
++ Request
+
+    **Short info**, IMDB example:
+    
+   https://api.simkl.com/movies/tt1201607?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+
+    PS: Please use your `client_id`.
+    
+    + Body
+    
++ Response 200 (application/json)
+        
+    + Body
+
+        {
+            
+            "title": "Harry Potter and the Deathly Hallows: Part 2",
+            "year": 2011,
+            "type": "movie",
+            "ids": {
+                "simkl": 67144,
+                "slug": "harry-potter-and-the-deathly-hallows-part-2"
+            }
+        }
+        
++ Request
+
+    **Full info**, IMDB example:
+    
+   https://api.simkl.com/movies/tt1201607?extended=full&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+
+    PS: Please use your `client_id`.
+    
+    + Body
+    
++ Response 200 (application/json)
+        
+    + Body
+
+        {
+            "title": "Harry Potter and the Deathly Hallows: Part 2",
+            "year": 2011,
+            "type": "movie",
+            "ids": {
+                "simkl": 67144,
+                "slug": "harry-potter-and-the-deathly-hallows-part-2",
+                "tmdb": "12445",
+                "imdb": "tt1201607",
+                "offen": "http:\/\/www.harrypotter.com"
+            },
+            "rank": 641,
+            "poster": "96\/967506e32f7921d4",
+            "fanart": "96\/967624d7a281067c",
+            "released": "2011-07-15",
+            "runtime": 130,
+            "director": "David Yates",
+            "certification": "PG",
+            "budget": 125000000,
+            "revenue": 1342000000,
+            "overview": "Harry, Ron and Hermione continue their quest to vanquish the evil Voldemort once and for all. Just as things begin to look hopeless for the young wizards, Harry discovers a trio of magical objects that endow him with powers to rival Voldemort's formidable skills.",
+            "genres": ["Adventure", "Family", "Fantasy"],
+            "country": "US",
+            "ratings": {
+                "simkl": {
+                    "rating": 8.1,
+                    "votes": 427
+                },
+                "imdb": {
+                    "rating": 8.1,
+                    "votes": 607002
+                }
+            },
+            "trailers": [{
+                "name": "Official Trailer 1",
+                "youtube": "mObK5XD8udk",
+                "size": 1080
+            }, {
+                "name": "Official Trailer 2",
+                "youtube": "5NYt1qirBWg",
+                "size": 1080
+            }, {
+                "name": "The Story of Snape",
+                "youtube": "2nPyasEm3g0",
+                "size": 720
+            }],
+            "release_dates": [{
+                "iso_3166_1": "BR",
+                "results": [{
+                    "type": 3,
+                    "release_date": "2011-07-15"
+                }]
+            }, {
+                "iso_3166_1": "CZ",
+                "results": [{
+                    "type": 3,
+                    "release_date": "2011-07-14"
+                }]
+            }, {
+                "iso_3166_1": "DE",
+                "results": [{
+                    "type": 5,
+                    "release_date": "2013-08-30"
+                }]
+            }, {
+                "iso_3166_1": "DK",
+                "results": [{
+                    "type": 3,
+                    "release_date": "2011-07-13"
+                }]
+            }, {
+                "iso_3166_1": "EG",
+                "results": [{
+                    "type": 3,
+                    "release_date": "2011-07-13"
+                }]
+            }, {
+                "iso_3166_1": "FI",
+                "results": [{
+                    "type": 3,
+                    "release_date": "2011-07-13"
+                }]
+            }, {
+                "iso_3166_1": "FR",
+                "results": [{
+                    "type": 3,
+                    "release_date": "2011-07-12"
+                }]
+            }, {
+                "iso_3166_1": "GB",
+                "results": [{
+                    "type": 3,
+                    "release_date": "2011-07-07"
+                }]
+            }, {
+                "iso_3166_1": "US",
+                "results": [{
+                    "type": 5,
+                    "release_date": "2011-11-11"
+                }, {
+                    "type": 3,
+                    "release_date": "2011-07-15"
+                }]
+            }]
+        }
+
+# Group Sync
+
+Simkl can be one central place where you store all your watch history. Syncing allows all your devices and apps have your watch history up to date. Use Simkl as your a cloud backup for all your Media history.
+
+
+<h3>All Items</h3>
+is a list of all your movies and episodes that you watched.
+
+<h3>Collection</h3> 
+is a list of movies and episodes that you have on your hard drive, CDs or elsewhere.
+
+## Last Activities [/sync/activities]
+### Get last activity [POST]
+<h4>&#128274; Token Required</h4>
+
+When syncing it's best to check user's last activity first. Then you'll be able to sync only the watchlists that have changed since the last sync. 
+
+This method will decrease sync time or minimize wait time to zero if nothing changed so you do not need to download user's full history every time.
+
+<b>NOTE:</b> when user rates the movie, tv show or anime and it is not in his list, it will be automatically moved to `Completed`, `Watching` depending on it's type(movie or serie)
+
+<h4>Fields definition and HOWTO</h4>
+Name|Description
+---|----
+`all`| latest update time within the category, use it as first check
+`rated_at`| if updated check the <i>Get Ratings</i> endpoint with <i>date_from</i> parameter to get latest rating updates/deletes.<br><br> Update ratings and statuses(automove won't update corresponding list update time) in your app
+`plantowatch`<br>`watching`<br>`completed`<br>`notinteresting`| Items were added to one of the lists(exc. ratings automove function which won't update this fields) or some episodes were marked/unmarked<br><br>If updated check the <i>Get All Items</i> endpoint with <i>date_from</i> and <i>extended</i> parameters
+`removed_from_list`| Check the <i>Get All Items</i> endpoint without <i>date_from</i> and <i>extended</i> parameters to determine which items were removed. <br>If removed items from the lists had ratings, they would be removed
+
+If you have any ideas how to make sync even better for you, please [let us know](mailto:support@simkl.com).
+
+
++ Request (application/json)
+`https://api.simkl.com/sync/activities` 
+    + Header
+        authorization: Bearer [token]
+        simkl-api-key: [client_id]
+
++ Response 200 (application/json)
+
+      + Body
+        {
+            "all": "2016-10-29T09:03:45.000Z",
+            "tv_shows": {
+                "all": "2016-10-29T09:03:45.000Z",
+                "rated_at": "2016-10-29T09:03:45.000Z",
+                "plantowatch": "2016-10-29T09:03:45.000Z",
+                "watching": "2016-10-29T09:03:45.000Z",
+                "completed": "2016-10-29T09:03:45.000Z",
+                "notinteresting": "2016-10-29T09:03:45.000Z",
+                "removed_from_list": "2016-10-29T09:03:45.000Z"
+            },
+            "anime": {
+                "all": "2016-10-29T09:03:45.000Z",
+                "rated_at": "2016-10-29T09:03:45.000Z",
+                "plantowatch": "2016-10-29T09:03:45.000Z",
+                "watching": "2016-10-29T09:03:45.000Z",
+                "completed": "2016-10-29T09:03:45.000Z",
+                "notinteresting": "2016-10-29T09:03:45.000Z",
+                "removed_from_list": "2016-10-29T09:03:45.000Z",
+            },
+            "movies": {
+                "all": "2016-10-29T09:03:45.000Z",
+                "rated_at": "2016-10-29T09:03:45.000Z",
+                "plantowatch": "2016-10-29T09:03:45.000Z",
+                "completed": "2016-10-29T09:03:45.000Z",
+                "notinteresting": "2016-10-29T09:03:45.000Z",
+                "removed_from_list": "2016-10-29T09:03:45.000Z"
+            }
+        }
+
+
+## Get All Items [/sync/all-items/{type}/{status}{?extended}{?date_from}]
+### Get all items in the user's watchlist [POST]
+<h4>&#128274; Token Required &#10024; Full Info</h4>
+Returns all items that user has in his watchlist (watching, plan to watch, notinteresting, completed), shows, anime, movies. 
++ Request (application/json)
+<h6>Get list of all the shows, anime and movies in a format of <a href="https://simkl.com/51/tv/">https://simkl.com/51/tv/</a></h6>
+`https://api.simkl.com/sync/all-items/` 
+    + Header
+        authorization: Bearer [token]
+        simkl-api-key: [client_id]
+
++ Parameters
+    + type (optional, string, `anime`) ... 
+        + Values
+            + `shows`
+            + `movies`
+            + `anime`
+    + status (optional, string, `completed`) ... 
+        + Values
+            + `watching`
+            + `plantowatch`
+            + `completed`
+            + `notinteresting`
+    + extended (optional, string, `full`) ... `full` returns more info including watched episodes.
+        + Values
+            + `full`
+    + date_from (optional, string, `2016-09-12T13:00:30.000Z`) ... returns the items updated from the passed value
+        + Values
+            + `2016-09-12T13:00:30.000Z`
+            
++ Response 200 (application/json)
+
+      + Body
+        {
+          "shows": [
+            {
+            
+              "last_watched_at": "2016-09-12T13:00:30.000Z",
+              "user_rating": null,
+              "status": "notinteresting",
+              "last_watched": null,
+              "next_to_watch": "S01E01",
+              "show": {
+                "title": "The Last Ship",
+                "year": 2014,
+                "ids": {
+                  "simkl": 42040,
+                  "imdb": "tt2402207",
+                  "tvdb": "269533"
+                }
+              }
+            }
+          ],
+          "anime": [
+            {
+              "last_watched_at": "2014-11-06T22:05:52.000Z",
+              "user_rating": 10,
+              "status": "completed",
+              "last_watched": "E148",
+              "next_to_watch": null,
+              "show": {
+                "title": "Hunter x Hunter",
+                "year": 2011,
+                "ids": {
+                  "simkl": 40398,
+                  "imdb": "tt2098220",
+                  "mal": "11061",
+                  "anidb": "8550"
+                }
+              }
+            },
+            {
+              "last_watched_at": "2016-10-19T08:34:23.000Z",
+              "user_rating": null,
+              "status": "plantowatch",
+              "last_watched": null,
+              "next_to_watch": "E01",
+              "show": {
+                "title": "Ajin 2",
+                "year": 2016,
+                "ids": {
+                  "simkl": 581835,
+                  "mal": "33253",
+                  "anidb": "12111"
+                }
+              }
+            }
+          ],
+          "movies": [
+            {
+              "last_watched_at": "2014-08-09T07:25:55.000Z",
+              "user_rating": null,
+              "status": "completed",
+              "movie": {
+                "title": "Captain America: The First Avenger",
+                "year": 2011,
+                "ids": {
+                  "simkl": 55328,
+                  "imdb": "tt0458339",
+                  "tmdb": "1771"
+                }
+              }
+            },
+            {
+              "last_watched_at": "2014-08-16T18:45:20.000Z",
+              "user_rating": null,
+              "status": "completed",
+              "movie": {
+                "title": "Maleficent",
+                "year": 2014,
+                "ids": {
+                  "simkl": 195258,
+                  "imdb": "tt1587310",
+                  "tmdb": "102651"
+                }
+              }
+            }
+          ]
+        }
+
++ Request (application/json)
+<h6>Get Anime list and watched episodes:</h6> `https://api.simkl.com/sync/all-items/anime/?extended=full`
+
+    + Header
+            authorization: Bearer [token]
+            simkl-api-key: [client_id]
+            
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "movies": [
+                    {
+                        "last_watched_at": "2014-08-09T07:25:55.000Z",
+                        "rate": null,
+                        "status": "completed",
+                        "movie": {
+                            "title": "Captain America: The First Avenger",
+                            "year": 2011,
+                            "ids": {
+                                "simkl": 55328,
+                                "imdb": "tt0458339",
+                                "tmdb": "1771"
+                            }
+                        }
+                    }
+                ],
+                "anime": [
+                    {
+                        "last_watched_at": "2015-01-06T13:43:26.000Z",
+                        "rate": null,
+                        "status": "watching",
+                        "last_watched": "S01E01",
+                        "next_to_watch": "S01E02",
+                        "show": {
+                            "title": "Fate/Stay Night: Unlimited Blade Works",
+                            "year": 2014,
+                            "ids": {
+                                "simkl": 46116,
+                                "imdb": "tt3621796",
+                                "mal": "22297",
+                                "anidb": "9977"
+                            }
+                        }
+                    }
+                ]
+            }
+
+
+
+            
+    + Body            
+            {
+                "anime": [
+                    {
+                        "last_watched_at": "2015-01-06T13:43:26.000Z",
+                        "rate": 9,
+                        "status": "watching",
+                        "last_watched": "S01E01",
+                        "next_to_watch": "S01E02",
+                        "show": {
+                            "title": "Fate/Stay Night: Unlimited Blade Works",
+                            "year": 2014,
+                            "ids": {
+                                "simkl": 46116,
+                                "imdb": "tt3621796",
+                                "mal": "22297",
+                                "anidb": "9977"
+                            }
+                        },
+                        "seasons": [
+                            {
+                                "number": 1,
+                                "episodes": [
+                                    {
+                                        "number": 1
+                                    },
+                                    {
+                                        "number": 2
+                                    },
+                                    {
+                                        "number": 3
+                                    },
+                                    {
+                                        "number": 4
+                                    },
+                                    {
+                                        "number": 5
+                                    },
+                                    {
+                                        "number": 6
+                                    },
+                                    {
+                                        "number": 7
+                                    },
+                                    {
+                                        "number": 8
+                                    },
+                                    {
+                                        "number": 9
+                                    },
+                                    {
+                                        "number": 10
+                                    },
+                                    {
+                                        "number": 11
+                                    },
+                                    {
+                                        "number": 12
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+            
+            
+## Add Items to History [/sync/history]
+### Add items to watched/watching history [POST]
+<h4>&#128274; Token Required</h4>
+Add items to the user's watched history. You can pass shows, seasons, episodes and movies. If no episodes for the show is passed then it will be marked as completed. If seasons will be specified then only episodes in those seasons will be marked.
+
+if `watched_at` UTC datetime is passed then all will be marked as watched in the past. 
+
+Pass as much data as possible into the item including `title`, `year` and `ids` fields so Simkl could detect the item better.
+
+<h4>JSON POST DATA</h4>
+Key|Type|Value
+---|----|-----
+`movies`|array| Array of `movie` objects ([see examples](#introduction/about-simkl-api/standard-media-objects)) 
+`shows`|array| Array of `show` objects ([see examples](#introduction/about-simkl-api/standard-media-objects))
+`episodes`|array| Array of `episode` objects ([see examples](#introduction/about-simkl-api/standard-media-objects))
+
+<h4>MEDIA OBJECTS POST DATA</h4>
+Key|Type|Value
+---|----|-----
+`item*`|object|movie, show or episode objects 
+`watched_at`|datetime|UTC datetime when the item was watched
+
++ Request (application/json)
+    + Header
+            
+            authorization: Bearer [token]
+            simkl-api-key: [client_id]
+
+    + Body
+    
+            {
+                "movies": [
+                    {
+                        "watched_at": "2011-12-03 13:44:00",
+                        "title": "Terminator 3: Rise of the Machines",
+                        "year": "2003",
+                        "ids": {
+                            "imdb": "tt0181852",
+                            "tmdb": 296,
+                            "simkl": 53536
+                        }
+                    },
+                    {
+                        "ids": {
+                            "simkl": 210728
+                        }
+                    }
+                ],
+                "shows": [
+                    {
+                        "title": "Attack on Titan",
+                        "year": 2013,
+                        "ids": {
+                            "simkl": 39687,
+                            "mal": 16498,
+                            "tvdb": 267440,
+                            "imdb": "tt2560140",
+                            "anidb": 9541
+                        }
+                    },
+                    {
+                        "title": "The Walking Dead",
+                        "year": 2010,
+                        "ids": {
+                            "simkl": 2090,
+                            "tvdb": 153021,
+                            "imdb": "tt1520211"
+                        },
+                        "seasons": [
+                            {
+                                "watched_at": "2011-09-01 14:44:00",
+                                "number": 2
+                            },
+                            {
+                                "number": 1,
+                                "episodes": [
+                                    {
+                                        "number": 1
+                                    },
+                                    {
+                                        "number": 2
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "episodes": [
+                    {
+                        "watched_at": "2014-09-01 09:10:11",
+                        "ids": {
+                            "hulu": 681868,
+                            "crunchyroll": 656647
+                        }
+                    }
+                ]
+            }   
+
++ Response 200 (application/json)
+    + Body
+
+## Remove Items from History [/sync/history/remove]
+### Remove items from watched/watching history [POST]
+<h4>&#128274; Token Required</h4>
+Remove the items from the user's watched history. You can pass shows, seasons, episodes and movies. If no episodes are passed and the season is specified then all episodes within this season will be unmarked. If seasons were skipped too then the show will be removed completely.
+
+When removing show or movie, ratings are removed automatically as well for that item.
+<h4>JSON POST DATA</h4>
+Key|Type|Value
+---|----|-----
+`movies`|array| Array of `movie` objects ([see examples](#introduction/about-simkl-api/standard-media-objects)) 
+`shows`|array| Array of `show` objects ([see examples](#introduction/about-simkl-api/standard-media-objects))
+
+<h4>MEDIA OBJECTS POST DATA</h4>
+Key|Type|Value
+---|----|-----
+`item*`|object|movie, show objects 
+
++ Request (application/json)
+    + Header
+            
+            authorization: Bearer [token]
+            simkl-api-key: [client_id]
+
+    + Body
+    
+            {
+                "movies": [
+                    {
+                        "title": "Terminator 3: Rise of the Machines",
+                        "year": "2003",
+                        "ids": {
+                            "imdb": "tt0181852",
+                            "tmdb": 296,
+                            "simkl": 53536
+                        }
+                    },
+                    {
+                        "ids": {
+                            "simkl": 210728
+                        }
+                    }
+                ],
+                "shows": [
+                    {
+                        "title": "Attack on Titan",
+                        "year": 2013,
+                        "ids": {
+                            "simkl": 39687,
+                            "mal": 16498,
+                            "tvdb": 267440,
+                            "imdb": "tt2560140",
+                            "anidb": 9541
+                        }
+                    },
+                    {
+                        "title": "The Walking Dead",
+                        "year": 2010,
+                        "ids": {
+                            "simkl": 2090,
+                            "tvdb": 153021,
+                            "imdb": "tt1520211"
+                        },
+                        "seasons": [
+                            {
+                                "number": 2
+                            },
+                            {
+                                "number": 1,
+                                "episodes": [
+                                    {
+                                        "number": 1
+                                    },
+                                    {
+                                        "number": 2
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }   
+
++ Response 200 (application/json)
+    + Body
+    
+
+## Get Ratings [/sync/ratings/{type}/{rating}{?date_from}]
+### Get all user's ratings [POST]
+<h4>&#128274; Token Required &#10024; Full Info</h4>
+Returns all rated items in user's lists filtered by `type`. You can also filter items by rating score. Send a comma separated string if you need multiple ratings item.
+
++ Request (application/json)
+    + Header
+        authorization: Bearer [token]
+        simkl-api-key: [client_id]
+
++ Parameters
+    + type (optional, string, `anime`) ... 
+        + Values
+            + `shows`
+            + `movies`
+            + `anime`
+    + rating (optional, integer, `8`) ... 
+        + Values
+            + `1`
+            + `2`
+            + `3`
+            + `4`
+            + `5`
+            + `6`
+            + `7`
+            + `8`
+            + `9`
+            + `10`
+    + date_from (optional, string, `2016-09-12T13:00:30.000Z`) ... returns the items updated from the passed value
+        + Values
+            + `2016-09-12T13:00:30.000Z`
+            
++ Response 200 (application/json)
+
+      + Body
+        {
+          "shows": [
+            {
+            
+              "last_watched_at": "2016-09-12T13:00:30.000Z",
+              "rating": 5,
+              "status": "notinteresting",
+              "last_watched": null,
+              "next_to_watch": "S01E01",
+              "show": {
+                "title": "The Last Ship",
+                "year": 2014,
+                "ids": {
+                  "simkl": 42040,
+                  "imdb": "tt2402207",
+                  "tvdb": "269533"
+                }
+              }
+            }
+          ],
+          "anime": [
+            {
+              "last_watched_at": "2014-11-06T22:05:52.000Z",
+              "rating": 10,
+              "status": "completed",
+              "last_watched": "E148",
+              "next_to_watch": null,
+              "show": {
+                "title": "Hunter x Hunter",
+                "year": 2011,
+                "ids": {
+                  "simkl": 40398,
+                  "imdb": "tt2098220",
+                  "mal": "11061",
+                  "anidb": "8550"
+                }
+              }
+            }
+          ],
+          "movies": [
+            {
+              "last_watched_at": "2014-08-16T18:45:20.000Z",
+              "rating": 6,
+              "status": "completed",
+              "movie": {
+                "title": "Maleficent",
+                "year": 2014,
+                "ids": {
+                  "simkl": 195258,
+                  "imdb": "tt1587310",
+                  "tmdb": "102651"
+                }
+              }
+            }
+          ]
+        }
+
+
+## Add Ratings [/sync/ratings]
+### Add new ratings [POST]
+<h4>&#128274; Token Required</h4>
+Rate the movies or tv shows. You cannot rate the seasons or episodes right now.
+
+If the show or movie is rated before it was in user's list, show will be automatically added to "Watching" list and the movie will be added to "I've seen this" list.
+
+Keep in mind, when removing the show or movie user's ratings will be removed as well for that item.
+
+<h4>JSON POST DATA</h4>
+Key|Type|Value
+---|----|-----
+`movies`|array| Array of `movie` objects ([see examples](#introduction/about-simkl-api/standard-media-objects)) 
+`shows`|array| Array of `show` objects ([see examples](#introduction/about-simkl-api/standard-media-objects))
+
+<h4>MEDIA OBJECTS POST DATA</h4>
+Key|Type|Value
+---|----|-----
+`item*`|object|movie, show objects 
+
++ Parameters
+    + rating (required, integer, `10`) ... 
+        + Values
+            + `1`
+            + `2`
+            + `3`
+            + `4`
+            + `5`
+            + `6`
+            + `7`
+            + `8`
+            + `9`
+            + `10`
+    + rated_at (optional, string, `2014-09-01T09:10:11.000Z`) ... UTC datetime
+
++ Request (application/json)
+    + Header
+            
+            authorization: Bearer [token]
+            simkl-api-key: [client_id]
+
+    + Body
+    
+            {
+                "movies": [
+                    {
+                        "title": "Terminator 3: Rise of the Machines",
+                        "rating": 8,
+                        "rated_at": "2014-09-01T09:10:11.000Z",
+                        "year": "2003",
+                        "ids": {
+                            "imdb": "tt0181852",
+                            "tmdb": 296,
+                            "simkl": 53536
+                        }
+                    },
+                    {
+                        "rating": 6,
+                        "ids": {
+                            "simkl": 210728
+                        }
+                    }
+                ],
+                "shows": [
+                    {
+                        "title": "Attack on Titan",
+                        "year": 2013,
+                        "rating": 10,
+                        "ids": {
+                            "simkl": 39687,
+                            "mal": 16498,
+                            "tvdb": 267440,
+                            "imdb": "tt2560140",
+                            "anidb": 9541
+                        }
+                    }
+                ]
+            }   
+
++ Response 200 (application/json)
+    + Body
+
+## Remove Ratings [/sync/ratings/remove]
+### Remove ratings [POST]
+<h4>&#128274; Token Required</h4>
+Any movies or tv shows passed here will be unrated 
+
+<h4>JSON POST DATA</h4>
+Key|Type|Value
+---|----|-----
+`movies`|array| Array of `movie` objects ([see examples](#introduction/about-simkl-api/standard-media-objects)) 
+`shows`|array| Array of `show` objects ([see examples](#introduction/about-simkl-api/standard-media-objects))
+
+<h4>MEDIA OBJECTS POST DATA</h4>
+Key|Type|Value
+---|----|-----
+`item*`|object|movie, show objects 
+
++ Request (application/json)
+    + Header
+            
+            authorization: Bearer [token]
+            simkl-api-key: [client_id]
+
+    + Body
+    
+            {
+                "movies": [
+                    {
+                        "title": "Terminator 3: Rise of the Machines",
+                        "year": "2003",
+                        "ids": {
+                            "imdb": "tt0181852",
+                            "tmdb": 296,
+                            "simkl": 53536
+                        }
+                    },
+                    {
+                        "ids": {
+                            "simkl": 210728
+                        }
+                    }
+                ],
+                "shows": [
+                    {
+                        "title": "Attack on Titan",
+                        "year": 2013,
+                        "ids": {
+                            "simkl": 39687,
+                            "mal": 16498,
+                            "tvdb": 267440,
+                            "imdb": "tt2560140",
+                            "anidb": 9541
+                        }
+                    }
+                ]
+            }   
+
++ Response 200 (application/json)
+    + Body
+
+
+
+## Add Item to List [/sync/add-to-list]
+### Add items to specific list [POST]
+<h4>&#128274; Token Required</h4>
+Add items to a user's Simkl lists. For example you can add a Show directly to Plan to Watch or move existing show from Watching to Not Interesting. You can pass shows and movies. 
+
+Pass as much data as possible into the item including `title`, `year` and `ids` fields so Simkl could detect the item better.
+
+<h4>JSON POST DATA</h4>
+Key|Type|Value
+---|----|-----
+`movies`|array| Array of `movie` objects ([see examples](#introduction/about-simkl-api/standard-media-objects)) 
+`shows`|array| Array of `show` objects ([see examples](#introduction/about-simkl-api/standard-media-objects))
+
+<h4>MEDIA OBJECTS POST DATA</h4>
+Key|Type|Value
+---|----|-----
+item*|object|[tv show or movie object](#introduction/about-simkl-api/standard-media-objects).
+`to`|string|possible values "plantowatch","completed","watching","notinteresting"
+`to`|array| custom lists **IN DEV**
+`watched_at`|datetime|UTC datetime when the item was watched, available only for "completed" status
+
+
++ Request (application/json)
+    + Header
+            
+            authorization: Bearer [token]
+            simkl-api-key: [client_id]
+
+    + Body
+    
+            {
+                "movies": [
+                    {
+                        "title": "Terminator 3: Rise of the Machines",
+                        "to": "completed",
+                        "year": "2003",
+                        "watched_at": "2014-10-10T22:10:00",
+                        "ids": {
+                            "imdb": "tt0181852",
+                            "tmdb": 296,
+                            "simkl": 53536
+                        }
+                    },
+                    {
+                        "to": "plantowatch",
+                        "ids": {
+                            "simkl": 210728
+                        }
+                    }
+                ],
+                "shows": [
+                    {
+                        "to" : "watching",
+                        "title": "Attack on Titan",
+                        "year": 2013,
+                        "ids": {
+                            "simkl": 39687,
+                            "mal": 16498,
+                            "tvdb": 267440,
+                            "imdb": "tt2560140",
+                            "anidb": 9541
+                        }
+                    },
+                    {
+                        "title": "The Walking Dead",
+                        "year": 2010,
+                        "to": "completed",
+                        "ids": {
+                            "simkl": 2090,
+                            "tvdb": 153021,
+                            "imdb": "tt1520211"
+                        }
+                    }
+                ]
+            }   
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "added": {
+                    "movies": [
+                        {
+                            "title": "Terminator 3: Rise of the Machines",
+                            "to": "completed",
+                            "year": "2003",
+                            "ids": {
+                                "imdb": "tt0181852",
+                                "tmdb": 296,
+                                "simkl": 53536
+                            }
+                        },
+                        {
+                            "to": "plantowatch",
+                            "ids": {
+                                "simkl": 210728
+                            }
+                        }
+                    ],
+                    "shows": [
+                        {
+                            "to" : "watching",
+                            "title": "Attack on Titan",
+                            "year": 2013,
+                            "ids": {
+                                "simkl": 39687,
+                                "mal": 16498,
+                                "tvdb": 267440,
+                                "imdb": "tt2560140",
+                                "anidb": 9541
+                            }
+                        },
+                        {
+                            "title": "The Walking Dead",
+                            "year": 2010,
+                            "to": "watching",
+                            "ids": {
+                                "simkl": 2090,
+                                "tvdb": 153021,
+                                "imdb": "tt1520211"
+                            }
+                        }
+                    ]
+                },
+                "not_found": {
+                    "movies": [
+                        {
+                            "ids": {
+                              "imdb": "tt0000222"
+                            }
+                        }
+                    ],
+                    "shows": []
+                }
+            }
+
+
+## Check if watched [/sync/watched]
+### Get specific user's watched items [POST]
+<h4>&#128274; Token Required</h4>
+Use this method if you want to see which shows or episodes user has seen. You can pass different ids and get their appropriate statuses in a user's list.
+
+<h4>POSSIBLE JSON RESPONSE DATA</h4>
+Key|Value|Description
+---|----|-----
+type|`movie`| Found the movie
+type|`tv`| Found the TV or Anime show
+result|`true`|Found a match and found in user's watchlist
+result|`false`|Found a match but could not find in user's watchlist
+result|`not_found`|Could not find a match in Simkl database with such Title\Year or ID
+list|`completed`|User watched the movie or seen all episodes
+list|`plantowatch`|Found in users's Plan to Watch list
+list|`notinteresting`|Found in users's Not Interesting list
+watched|`YYYY-MM-DDTHH:MM:SS.000Z`|Datetime in UTC format when the last episode or movie was watched
+
+
++ Parameters
+
+    + type (optional, string, `movie`).
+        + Values
+            + `movie`
+            + `tv`
+    + title (optional, string, `Pixels`) ...  Movie or TV Show\Anime name
+    + year (optional, integer, `2015`) ...  Release year
+    + season (optional, integer, `1`) ...  TV Show Season
+    + episode (optional, integer, `2`) ...  TV Show Episode number
+    + hulu (optional, integer, `752375`) ... [IN_DEV] hulu_id. All other parameters can be empty if this one specified.
+    + netflix (optional, integer, `70210890`) ... Netflix `movieid`, this parameter is in beta and may not always work.
+    + mal (optional, integer, `4246`) ... MyAnimeList `id`.
+    + tvdb (optional, integer, `153021`) ... [IN_DEV] TVDB ID. All other parameters can be empty if this one specified.
+    + type (optional, integer, `show`) ... Required for tmdb, if is searching for a TV Show
+        + Values
+            + `show`
+            + `movie`
+    + tmdb (optional, integer, `76757`) ... The Movie Database (TMDb) ID. If you are searching for a TV Show, specify `type` param as well. All other parameters can be empty if this one specified.
+    + imdb (optional, string, `tt3659388`) ... can be IMDB ID or full IMDB URL. All other parameters can be empty if this one specified.
+        + Values
+            + `tt3659388`
+            + `http://www.imdb.com/title/tt3659388/`
+    + anidb (optional, integer, `10846`) ... [IN_DEV] AniDB ID. All other parameters can be empty if this one specified.
+
+    
++ Request (application/json)
+    + Header
+            
+            authorization: Bearer [token]
+            simkl-api-key: [client_id]
+
+    + Body
+    
+            [{
+                "netflix": 70262639,
+                "type": "movie"
+            },{
+                "netflix": 70080650
+            },{
+                "hulu":764084
+            }]
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            [{
+                "netflix": 70262639,
+                "list": "watching",
+                "result": true,
+                "watched": "2017-02-04T16:10:51.000Z"
+            },
+            {
+                "netflix": 70080650,
+                "result": false
+            },
+            {
+                "hulu":764084,
+                "result": "not_found"
+            }]
+
+
+## Add to Collection [/sync/collection]
+Collection is a list of Shows\Movies that user has on his hard drive, CDs, DVDs, etc. This feature is currently only supported in API and is not implemented on the website.
+### Add items to Collection [POST]
+<h4>&#128274; Token Required</h4>
+If you want to add something to a user's collection use this method. Accepts shows, season and movies. If seasons skipped then all seasons for the show will be collected otherwise only specified seasons.
+Items colletcted in the past should send `collected_at` UTC datetime. If you send item second time then it will be updated with new values.
+
+<h4>JSON POST DATA</h4>
+Key|Type|Value
+---|----|-----
+`movies`|array| Array of `movie` objects ([see examples](#introduction/about-simkl-api/standard-media-objects)) 
+`shows`|array| Array of `show` objects ([see examples](#introduction/about-simkl-api/standard-media-objects))
+
+<h4>MEDIA OBJECTS POST DATA</h4>
+Key|Type|Value
+---|----|-----
+`item*`|object|movie, show or episode objects 
+`collected_at`|datetime|UTC datetime when the item was collected. Will be used current if the parameter is skipped.
+
++ Request (application/json)
+    + Header
+            
+            authorization: Bearer [token]
+            simkl-api-key: [client_id]
+
+    + Body
+    
+            {
+                "movies": [
+                    {
+                        "collected_at": "2014-09-01T09:10:11.000Z",
+                        "title": "Terminator 3: Rise of the Machines",
+                        "year": "2003",
+                        "ids": {
+                            "imdb": "tt0181852",
+                            "tmdb": 296,
+                            "simkl": 53536
+                        }
+                    },
+                    {
+                        "ids": {
+                            "simkl": 210728
+                        }
+                    }
+                ],
+                "shows": [
+                    {
+                        "title": "Attack on Titan",
+                        "year": 2013,
+                        "ids": {
+                            "simkl": 39687,
+                            "mal": 16498,
+                            "tvdb": 267440,
+                            "imdb": "tt2560140",
+                            "anidb": 9541
+                        }
+                    },
+                    {
+                        "title": "The Walking Dead",
+                        "year": 2010,
+                        "collected_at": "2014-09-01T09:10:11.000Z",
+                        "ids": {
+                            "simkl": 2090,
+                            "tvdb": 153021,
+                            "imdb": "tt1520211"
+                        },
+                        "seasons": [
+                            {
+                                "number": 2
+                            },
+                            {
+                                "number": 1
+                            }
+                        ]
+                    }
+                ]
+            }   
+
++ Response 201 (application/json)
+        
+    + Body
+
+            {
+                "added": {
+                    "movies": 2,
+                    "episodes": 2
+                },
+                "updated": {
+                    "movies": 0,
+                    "episodes": 0
+                },
+                "existing": {
+                    "movies": 0,
+                    "episodes": 0
+                },
+                "not_found": {
+                    "movies": [
+                        {
+                            "ids": {
+                              "imdb": "tt0000222"
+                            }
+                        }
+                    ],
+                    "shows": []
+                    "seasons": []
+                    "episodes": []
+                }
+            }
+            
+## Remove from Collection [/sync/collection/remove]
+### Delete items from collection [POST]
+<h4>&#128274; Token Required</h4>
+Using this method you can remove one or more items from a user's collection.
+
+<h4>JSON POST DATA</h4>
+Key|Type|Value
+---|----|-----
+`movies`|array| Array of `movie` objects ([see examples](#introduction/about-simkl-api/standard-media-objects)) 
+`shows`|array| Array of `show` objects ([see examples](#introduction/about-simkl-api/standard-media-objects))
+
+
++ Request (application/json)
+    + Header
+            
+            authorization: Bearer [token]
+            simkl-api-key: [client_id]
+
+    + Body
+    
+            {
+                "movies": [
+                    {
+                        "collected_at": "2014-09-01T09:10:11.000Z",
+                        "title": "Terminator 3: Rise of the Machines",
+                        "year": "2003",
+                        "ids": {
+                            "imdb": "tt0181852",
+                            "tmdb": 296,
+                            "simkl": 53536
+                        }
+                    },
+                    {
+                        "ids": {
+                            "simkl": 210728
+                        }
+                    }
+                ],
+                "shows": [
+                    {
+                        "title": "Attack on Titan",
+                        "year": 2013,
+                        "ids": {
+                            "simkl": 39687,
+                            "mal": 16498,
+                            "tvdb": 267440,
+                            "imdb": "tt2560140",
+                            "anidb": 9541
+                        }
+                    },
+                    {
+                        "title": "The Walking Dead",
+                        "year": 2010,
+                        "collected_at": "2014-09-01T09:10:11.000Z",
+                        "ids": {
+                            "simkl": 2090,
+                            "tvdb": 153021,
+                            "imdb": "tt1520211"
+                        },
+                        "seasons": [
+                            {
+                                "number": 2
+                            },
+                            {
+                                "number": 1
+                            }
+                        ]
+                    }
+                ]
+            }   
+
++ Response 201 (application/json)
+        
+    + Body
+
+            {
+                "deleted": {
+                    "movies": 2,
+                    "episodes": 2
+                },
+                "not_found": {
+                    "movies": [
+                        {
+                            "ids": {
+                              "imdb": "tt0000222"
+                            }
+                        }
+                    ],
+                    "shows": []
+                    "seasons": []
+                    "episodes": []
+                }
+            }
+
+
+
+
+
+
+# Group Users
+User's public data will return all info with GET methods without OAuth\PIN authorization.
+
+## Last Watched Arts [/users/recently-watched-background/{user_id}{?image,client_id}]
+Get images for user's last watched TV Show or Movie. Useful for example to create an app that will update user's wallpaper on computer or phone
+
+### Get last watched images and data [GET]
+
+Will reply with user's id, Show\Movie URL, Show\Movie title, large poster, and large fanart image.
+
+*Please cache the image on the device, do not redownload if the same image url.*
+
++ Parameters
+    + user_id = (required, integer, `51`) ... Simkl user id which has public privacy settings.
+    + client_id (string) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+            
++ Request https://api.simkl.com/users/recently-watched-background/51?client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+            
++ Response 200 (application/json)
+
+    + Body
+            {
+                "id":342828,
+                "url":"https://simkl.com/movies/342828/midnight-special",
+                "title":"Midnight Special",
+                "poster":"https://simkl.net/posters/30/3082850367420132f_0.jpg",
+                "fanart":"https://simkl.net/fanart/43/4389778c118f40a6f_0.jpg"
+            }
+            
+### Redirect to last watched image [GET]
+
+Will simply redirect to the image for your app to download or display.
+
+*Please cache the image on the device, do not redownload if the same image url.*
+
++ Parameters
+    + user_id = (required, integer, `51`) ... Simkl user id which has public privacy settings.
+    + image = (required, string, `fanart`) ... can be "poster" or "fanart".
+        + Values
+            + `poster`
+            + `fanart`
+    + client_id (string) ... Get this from [your app settings](https://simkl.com/settings/developer/).
+            
++ Request https://api.simkl.com/users/recently-watched-background/51?image=fanart&client_id=c7be48f1559a6d794w1925237c626326c7be48f1559a6d794w1925137c626316
+            
++ Response 302 
+
+    + Headers
+    
+            location: https://simkl.net/fanart/50/500671636445e211e_0.jpg
+
+    + Body
+
+## Settings [/users/settings]
+### Receive settings [POST]
+<h4>&#128274; Token Required</h4>
+You can sync user's settings with your apps/site settings
+
++ Request (application/json)
+    + Header
+            
+            authorization: Bearer [token]
+            simkl-api-key: [client_id]
+            
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "user": 
+                {
+                    "name": "Andrew Masyk",
+                    "joined_at": "2007-11-04T22:04:46.000Z",
+                    "gender": "male",
+                    "avatar": "https:\/\/graph.facebook.com\/736253775\/picture?width=100&height=100",
+                    "bio": "I'm a founder and developer at simkl.com - a socially powered TV show and movie tracking service",
+                    "loc": "New York, NY, USA",
+                    "age": "30 years"
+                },
+                "account": 
+                {
+                    "id" : 51,
+                    "timezone": "America\/New_York"
+                },
+                "connections": 
+                {
+                    "facebook": true
+                }
+            }
+
+# Group Need some help?
+
+<a href="http://uptime.statuscake.com/?TestID=JBfz26Wtd2" title="Website Uptime Monitoring"><img src="https://www.statuscake.com/App/button/index.php?Track=rVMgFtK0BZ&Days=1&Design=1" /></a>
+
+## CORS
+Currently the API does not supports Cross Origin Resource Sharing (CORS) for AJAX requests. You can read the [CORS W3C working draft](http://www.w3.org/TR/cors), or [this intro](http://code.google.com/p/html5security/wiki/CrossOriginRequestSecurity) from the HTML 5 Security Guide. If you need support for CORS, please contact us at [support@simkl.com](mailto:support@simkl.com) with description of your app.
+
+## Get in touch
+We’re always happy to help you get set up with Simkl. If you're stuck, want to find out more or need to speak to us, [visit our API developer group](https://plus.google.com/u/0/communities/106081147921797342801) or see the [support center](https://support.simkl.com).
