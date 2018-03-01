@@ -1,8 +1,13 @@
+//THIS WILL WORK BUT NODE MUST BE INSTALLED PERFECTLY not like node.tar.gz .... 
+//
+
 var cloudinary = require('cloudinary');
 
 cloudinary.config().cloud_name = 'rootworld';
 cloudinary.config().api_key = '176599776638439';
 cloudinary.config().api_secret = 'zISTHB4Cj4j0AWj3hKSabOxVjWA';
+
+
 
 var img = cloudinary.url("Screenshot_20180227-012914.png", {width: 100, height: 150, crop: "fill"});
 console.log('img',img);
