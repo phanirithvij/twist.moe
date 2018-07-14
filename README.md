@@ -41,6 +41,8 @@ cd Anime/#<anime_name>
 
 ## Examples
 
+**Input**:
+
 ```shell
 ./startp.sh
 ```
@@ -63,6 +65,8 @@ copying download.sh to one-piece
 Done
 ```
 
+**Input**:
+
 ```shell
 ./startp.sh https://twist.moe/a/gintama
 ```
@@ -80,6 +84,8 @@ copying download.sh to gintama
 
 Done
 ```
+
+**Input**:
 
 ```shell
 ./startp.sh corpse-party      #Just the anime name which is exactly from the website
@@ -101,6 +107,8 @@ Done
 ```
 
 ### Now go inside Anime/one-piece/
+
+**Input**:
 
 ```shell
 phani200-pc:~/twist.moe/Anime/one-piece$ ./download.sh
