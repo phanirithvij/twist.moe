@@ -83,7 +83,11 @@ Done
 
 ```shell
 ./startp.sh corpse-party      #Just the anime name which is exactly from the website
+```
 
+**Output**:
+
+```shell
 Creating Anime/corpse-party
 
 Fetching info...
