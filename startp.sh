@@ -70,6 +70,7 @@ for i in $(cat $pw/$di/.t.txt)
 do
 j='https://twist.moe'
 j=$j$i
+echo $j
 echo $j >> $pw/$di/list.txt 
 done
 echo copying download.sh to $di
