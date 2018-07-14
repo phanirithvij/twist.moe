@@ -1,5 +1,11 @@
 # Anime downloader for [Twist.Moe](https://twist.moe)
 
+## NOT WORKING
+
+## Use old data from this link
+
+[JSON](https://raw.githubusercontent.com/phanirithvij/Myanimewebsite/master/twistlinks.json)
+
 ## Installation (Setup)
 
 ```shell
