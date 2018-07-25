@@ -1,10 +1,6 @@
 # Anime downloader for [Twist.Moe](https://twist.moe)
 
-## NOT WORKING
-
-## Use old data from this link
-
-[JSON](https://raw.githubusercontent.com/phanirithvij/Myanimewebsite/master/twistlinks.json)
+## STATUS: WORKING
 
 ## Installation (Setup)
 
@@ -13,22 +9,20 @@
 git clone https://github.com/phanirithvij/twist.moe.git
 cd twist.moe/
 chmod +x *.sh
-
 ```
 
-```shell
-./startp.sh #URL
+## Requirements
 
-#Here URL is from https://twist.moe
+Requires `python`,`bash`
 
-#after comlpetion
+### `Python requirements`
 
-#cd Anime/anime_name_folder/
-
-./download.sh
+```python
+Crypto
+hashlib
 ```
 
-animelist.txt will soon contain all the anime_names that you've used in startp.sh
+Run `./setup.sh` to install `python` and dependencies
 
 ## Usage
 
@@ -44,6 +38,8 @@ animelist.txt will soon contain all the anime_names that you've used in startp.s
 cd Anime/#<anime_name>
 ./download.sh
 ```
+
+animelist.txt will soon contain all the anime_names that you've used in `startp.sh`
 
 ## Examples
 
@@ -136,3 +132,11 @@ end at :
 
 [HorribleSubs] One Piece - 003 [1080p   8%[=====>                                       ]   17.6M   2.12MB/s    eta 3m 30s
 ```
+
+## Use data from these links for complete json
+
+## Created at `1 Mar 2018 GMT 15:19`
+
+[JSON](https://raw.githubusercontent.com/phanirithvij/Myanimewebsite/master/twistlinks.json)
+
+[Minified JSON](https://raw.githubusercontent.com/phanirithvij/Myanimewebsite/master/twistlinks.min.json)
