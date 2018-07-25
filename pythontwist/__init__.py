@@ -1,0 +1,1 @@
+from anime_downloader import get_anime_class

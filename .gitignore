@@ -1,1 +1,9 @@
 *.sh
+V2/
+*.zip
+dist/
+*.egg-info
+releases/
+V1/
+Anime/
+.vscode/
