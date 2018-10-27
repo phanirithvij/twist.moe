@@ -41,6 +41,12 @@ cd Anime/#<anime_name>
 
 animelist.txt will soon contain all the anime_names that you've used in `startp.sh`
 
+## TODO
+
+1. Add a proper database
+2. Provide path as an argument
+
+
 ### Examples
 
 Check [examples/examples.md](https://github.com/phanirithvij/twist.moe/tree/master/examples/examples.md)
@@ -52,3 +58,5 @@ Check [examples/examples.md](https://github.com/phanirithvij/twist.moe/tree/mast
 [JSON](https://raw.githubusercontent.com/phanirithvij/Myanimewebsite/master/twistlinks.json)
 
 [Minified JSON](https://raw.githubusercontent.com/phanirithvij/Myanimewebsite/master/twistlinks.min.json)
+
+This project was inspired by [anime downloader](https://github.com/vn-ki/anime-downloader)
