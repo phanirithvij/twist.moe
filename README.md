@@ -15,14 +15,27 @@ chmod +x *.sh
 
 Requires `python`,`bash`
 
+## Windows users
+
+I recommend `cmder` or `git bash`
+get them from [cmder](https://cmder.net/) and [git](https://git-scm.com/)
+and install python if you don't have it.
+
 ### `Python requirements`
+
+### Linux
 
 ```python
 Crypto
 hashlib
 ```
-
 Run `./setup.sh` to install `python` and dependencies
+
+### Windows
+
+```shell
+pip install pycryptodome
+```
 
 ## Usage
 
