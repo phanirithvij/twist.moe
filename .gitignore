@@ -3,3 +3,4 @@ V1/
 releases/
 node_modules/
 *.mp4
+Anime/**/*
