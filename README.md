@@ -26,7 +26,7 @@ and install python if you don't have it.
 ### Linux
 
 ```python
-Crypto
+pycryptodome # this is recommended and nothing else like pycrypto or Crypto
 hashlib
 ```
 Run `./setup.sh` to install `python` and dependencies
