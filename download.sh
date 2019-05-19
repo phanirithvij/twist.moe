@@ -7,7 +7,7 @@ wget_or_curl(){
 }
 
 wget_or_curl
-echo $CURL_TRUE
+echo "curl is installed" $CURL_TRUE
 
 IFS=$'\n'
 l=`cat list.txt | wc -l`
