@@ -5,17 +5,21 @@ if command -v python &>/dev/null
 then
     echo Python is installed
     py=true
+    pyv="$(python -V 2>&1)"
+    echo "Version: $pyv"
 else
-    echo Python is not installed
+    echo python not accesible from the script
 fi
 if command -v python3 &>/dev/null
 then
     echo Python 3 is installed
     py=true
+    pyv="$(python -V 2>&1)"
+    echo "Version: $pyv"
     # modify the api.sh file
     sed -i 's/python/python3/g' api.sh
 else
-    echo Python 3 is not installed
+    echo python3 command is not accesible from the script
 fi
 if [ ! $py ]
 then
@@ -33,14 +37,14 @@ then
     python -c "import Crypto" &>/dev/null
     if [ $? -ne 0 ]
     then
-        echo 'Install Crypto for python'
-        sudo pip install pycryptodome
+        echo 'Installing Crypto for python'
+        python -m pip install --user pycryptodome
     fi
     python -c "import hashlib" &>/dev/null
     if [ $? -ne 0 ]
     then
-        echo 'Install hashlib for python'
-        sudo pip install hashlib
+        echo 'Installing hashlib for python'
+        python -m pip install --user hashlib
     fi
-    echo 'Crypto, hashlib for python installed'
+    echo 'pycryptodome, hashlib for python installed'
 fi
