@@ -46,7 +46,9 @@ else
 		then
 			if [[ $CURL_TRUE == "yes" ]]
 			then
-				curl -g -L -O -C - "$i" -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36'
+				# https://stackoverflow.com/a/35019553/8608146
+				i=${i%$'\r'}
+				curl -L -O -C - "$i" -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36'
 			else
 				wget -c -q --show-progress $i
 			fi
