@@ -12,6 +12,8 @@ if command -v python3 &>/dev/null
 then
     echo Python 3 is installed
     py=true
+    # modify the api.sh file
+    sed -i 's/python/python3/g' api.sh
 else
     echo Python 3 is not installed
 fi
@@ -32,7 +34,7 @@ then
     if [ $? -ne 0 ]
     then
         echo 'Install Crypto for python'
-        sudo pip install Crypto
+        sudo pip install pycryptodome
     fi
     python -c "import hashlib" &>/dev/null
     if [ $? -ne 0 ]
