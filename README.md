@@ -12,8 +12,9 @@ chmod +x *.sh # optional
 
 ## Requirements
 
-Requires `python`, `bash` on linux
-Requires `python`, `bash` on `cmder` on windows
+> Requires `python`, `bash` on linux
+
+> Requires `python`, `bash` on `cmder` on windows
 
 ## Windows users
 
