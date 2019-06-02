@@ -14,7 +14,7 @@ if command -v python3 &>/dev/null
 then
     echo "[setup.sh] > Python 3 is installed"
     py=true
-    pyv="$(python -V 2>&1)"
+    pyv="$(python3 -V 2>&1)"
     echo "[setup.sh] > Version: $pyv"
     # modify the api.sh file
     if [ -f ".setup_done" ]
