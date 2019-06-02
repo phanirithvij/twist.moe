@@ -5,21 +5,23 @@
 ## Installation (Setup)
 
 ```shell
-
 git clone https://github.com/phanirithvij/twist.moe.git
 cd twist.moe/
-chmod +x *.sh
+chmod +x *.sh # optional
 ```
 
 ## Requirements
 
-Requires `python`,`bash`
+Requires `python`, `bash` on linux
+Requires `python`, `bash` on `cmder` on windows
 
 ## Windows users
 
 I recommend `cmder` or `git bash`
 get them from [cmder](https://cmder.net/) and [git](https://git-scm.com/)
 and install python if you don't have it.
+
+The following instructions are based on the assumption that `cmder`|`bash` are being used.
 
 ### `Python requirements`
 
@@ -37,10 +39,17 @@ Run `./setup.sh` to install `python` and dependencies
 pip install pycryptodome
 ```
 
+Run `./setup.sh` to install `python` and dependencies
+
 ## Usage
 
 ```shell
-./startp.sh #arguments
+./startp.sh #anime_slug
+
+# eg:
+./startp.sh gintama
+# or
+./startp.sh https://twist.moe/a/gintama
 ```
 
 ### The above step will make the directory of the anime in ./Anime/
@@ -58,11 +67,11 @@ animelist.txt will soon contain all the anime_names that you've used in `startp.
 
 1. Add a proper database
 2. Provide path as an argument
-
+3. Rewrite the whole thing in python (not bash)
 
 ### Examples
 
-Check [examples/examples.md](https://github.com/phanirithvij/twist.moe/tree/master/examples/examples.md)
+Check [examples/README.md](/examples)
 
 ## Complete json
 
