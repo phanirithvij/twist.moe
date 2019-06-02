@@ -1,0 +1,17 @@
+{
+  "name": "twist-node",
+  "version": "1.0.0",
+  "description": "A node js based implementation to grab links",
+  "main": "main.js",
+  "scripts": {},
+  "keywords": [
+    "twist.moe",
+    "anime-downloader",
+    "phanirithvij"
+  ],
+  "author": "Phani Rithvij(phanirithvij20003@gmail.com)",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer-core": "^1.17.0"
+  }
+}

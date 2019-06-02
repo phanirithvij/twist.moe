@@ -1,9 +1,3 @@
-V2/
-V1/
-releases/
 node_modules/
-*.mp4
-tmp/
-Anime/**/*
-Anime/
-.setup_done
+allAnime.json
+formatted.json
