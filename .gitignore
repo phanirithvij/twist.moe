@@ -5,4 +5,5 @@ node_modules/
 *.mp4
 tmp/
 Anime/**/*
+Anime/
 .setup_done
