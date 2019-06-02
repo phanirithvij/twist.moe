@@ -12,6 +12,7 @@
   "author": "Phani Rithvij(phanirithvij20003@gmail.com)",
   "license": "MIT",
   "dependencies": {
+    "chrome-launcher": "^0.10.7",
     "puppeteer-core": "^1.17.0"
   }
 }

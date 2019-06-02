@@ -1,7 +1,7 @@
 const puppeteer = require("puppeteer-core");
 const fs = require('fs');
 
-const endPoint = "ws://127.0.0.1:9222/devtools/browser/749a29e9-1112-4e75-bd90-ee0d39a1ad70";
+const endPoint = "ws://127.0.0.1:9222/devtools/browser/57d63bdc-84ec-4fd8-af27-ced2126a3f56";
 
 (async () =>{
     const browser = await puppeteer.connect({
