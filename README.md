@@ -66,9 +66,11 @@ animelist.txt will soon contain all the anime_names that you've used in `startp.
 
 ## TODO
 
-1. Add a proper database
-2. Provide path as an argument
-3. Rewrite the whole thing in python (not bash)
+1. [ ] Add a proper database
+2. [ ] Provide path as an argument
+3. [ ] Rewrite the whole thing in python (not bash)
+4. [ ] save as json instead of txt
+5. [ ] rename output files they look hideous
 
 ### Examples
 
