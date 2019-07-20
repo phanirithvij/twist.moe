@@ -55,6 +55,9 @@ Run `./setup.sh` to install `python` and dependencies
 
 ### The above step will make the directory of the anime in ./Anime/
 
+This is how it should look till here
+![usage](https://user-images.githubusercontent.com/29627898/61578109-2b403c80-ab0f-11e9-9db3-aab05afd56e0.png)
+
 ### Go to that directory
 
 ```shell
