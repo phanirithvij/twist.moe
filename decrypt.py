@@ -10,7 +10,7 @@ import sys
 from requests.utils import quote
 
 BLOCK_SIZE = 16
-KEY = b"k8B$B@0L8D$tDYHGmRg98sQ7!%GOEGOX27T"
+KEY = b"LXgIVP&PorO68Rq7dTx8N^lP!Fa5sGJ^*XK"
 
 # From stackoverflow https://stackoverflow.com/questions/36762098/how-to-decrypt-password-from-javascript-cryptojs-aes-encryptpassword-passphras
 def pad(data):
