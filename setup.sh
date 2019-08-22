@@ -1,5 +1,6 @@
 #!/bin/bash
 py=false
+pyv=2
 
 if command -v python &>/dev/null
 then
@@ -25,6 +26,7 @@ then
         python setup.py
         touch .setup_done
     fi
+    alias python='python3'
 else
     echo "[setup.sh] > python3 command is not accesible from the script"
 fi
