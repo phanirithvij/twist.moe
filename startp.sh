@@ -52,6 +52,7 @@ then
 fi
 echo "Fetching info..."
 slug=$di
+# IFS=$' '
 for i in $(bash ../api.sh "${slug}")
 do
     j='https://twist.moe'

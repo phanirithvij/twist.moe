@@ -35,7 +35,8 @@ then
     read installpy
     if [ $installpy == "Y" -o $installpy == "y" -o $installpy == "yes" ]
     then
-        sudo apt-get install python python3 python-pip python3-pip
+        echo sudo apt-get install python3 python3-pip
+        sudo apt-get install python3 python3-pip
         echo '[setup.sh] > Python is installed'
     else
         echo "[setup.sh] > Please install python3"
@@ -43,11 +44,11 @@ then
 fi
 if $py
 then
-    python -c "import Crypto" &>/dev/null
+    python -c "import Cryptodome" &>/dev/null
     if [ $? -ne 0 ]
     then
         echo '[setup.sh] > Installing Crypto for python'
-        python -m pip install --user pycryptodome
+        python -m pip install --user pycryptodomex
     fi
     python -c "import hashlib" &>/dev/null
     if [ $? -ne 0 ]
@@ -55,5 +56,5 @@ then
         echo '[setup.sh] > Installing hashlib for python'
         python -m pip install --user hashlib
     fi
-    echo '[setup.sh] > pycryptodome, hashlib for python installed'
+    echo '[setup.sh] > pycryptodomex, hashlib for python installed'
 fi
