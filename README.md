@@ -74,6 +74,7 @@ animelist.txt will soon contain all the anime_names that you've used in `startp.
 3. [ ] Rewrite the whole thing in python (not bash)
 4. [ ] save as json instead of txt
 5. [ ] rename output files they look hideous
+6. [ ] encryption progress instead of echoing
 
 ### Examples
 
