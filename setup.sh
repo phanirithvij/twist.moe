@@ -26,9 +26,9 @@ then
         python setup.py
         touch .setup_done
     fi
-    alias python='python3'
 else
     echo "[setup.sh] > python3 command is not accesible from the script"
+    alias python3='python'
 fi
 if [ ! $py ]
 then
@@ -46,17 +46,17 @@ then
 fi
 if $py
 then
-    python -c "import Cryptodome" &>/dev/null
+    python3 -c "import Cryptodome" &>/dev/null
     if [ $? -ne 0 ]
     then
         echo '[setup.sh] > Installing Crypto for python'
-        python -m pip install --user pycryptodomex
+        python3 -m pip install --user pycryptodomex
     fi
-    python -c "import hashlib" &>/dev/null
+    python3 -c "import hashlib" &>/dev/null
     if [ $? -ne 0 ]
     then
         echo '[setup.sh] > Installing hashlib for python'
-        python -m pip install --user hashlib
+        python3 -m pip install --user hashlib
     fi
     echo '[setup.sh] > pycryptodomex, hashlib for python installed'
 fi
