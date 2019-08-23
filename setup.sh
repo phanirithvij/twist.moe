@@ -1,7 +1,7 @@
 #!/bin/bash
 py=false
 pyv=2
-python3='python3'
+python3='py'
 
 if command -v python &>/dev/null
 then
@@ -29,7 +29,7 @@ then
     fi
 else
     echo "[setup.sh] > python3 command is not accesible from the script"
-    python3='python'
+    # python3='python'
 fi
 if [ ! $py ]
 then
@@ -53,11 +53,39 @@ then
         echo '[setup.sh] > Installing Crypto for python'
         $python3 -m pip install --user pycryptodomex
     fi
+    $python3 -c "import requests" &>/dev/null
+    if [ $? -ne 0 ]
+    then
+        echo '[setup.sh] > Installing requests for python'
+        $python3 -m pip install --user requests
+    fi
     $python3 -c "import hashlib" &>/dev/null
     if [ $? -ne 0 ]
     then
         echo '[setup.sh] > Installing hashlib for python'
         $python3 -m pip install --user hashlib
     fi
-    echo '[setup.sh] > pycryptodomex, hashlib for python installed'
+    $python3 -m pip install --user -U -r requirements.txt
+    $python3 -c "import Cryptodome" &>/dev/null
+    if [ $? -ne 0 ]
+    then
+        echo '[setup.sh] > Installing Cryptodome failed'
+    else
+        echo '[setup.sh] > Installing Cryptodome successful'
+    fi
+    $python3 -c "import requests" &>/dev/null
+    if [ $? -ne 0 ]
+    then
+        echo '[setup.sh] > Installing requests failed'
+    else
+        echo '[setup.sh] > Installing requests successful'
+    fi
+    $python3 -c "import hashlib" &>/dev/null
+    if [ $? -ne 0 ]
+    then
+        echo '[setup.sh] > Installing hashlib failed'
+    else
+        echo '[setup.sh] > Installing hashlib successful'
+    fi
+    echo '[setup.sh] > pycryptodomex, hashlib, requests for python installed'
 fi
