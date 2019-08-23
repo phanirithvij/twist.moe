@@ -26,19 +26,20 @@ The following instructions are based on the assumption that `cmder`|`bash` are b
 
 ### `Python requirements`
 
-### Linux
+### Linux and Windows
 
 ```python
-pycryptodome # this is recommended and nothing else like pycrypto or Crypto
+pycryptodomex # this is recommended and nothing else like pycrypto or Crypto or pycryptodome
 hashlib
+requests
 ```
 Run `./setup.sh` to install `python` and dependencies
 
-### Windows
-
 ```shell
-pip install pycryptodome
+pip install pycryptodomex requests hashlib
 ```
+
+**Or** you could do
 
 Run `./setup.sh` to install `python` and dependencies
 
