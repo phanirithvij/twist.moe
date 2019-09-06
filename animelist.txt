@@ -8,6 +8,4 @@ naruto
 dragon-ball-z
 nichijou
 danshi-koukousei-no-nichijou
-gin[3~tama
-gin[3~tama
-gin[3~tama
+one-punch-man-specials
