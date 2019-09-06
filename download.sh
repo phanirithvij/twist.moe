@@ -10,8 +10,6 @@ wget_or_curl(){
 
 wget_or_curl
 
-CURL_TRUE="no"
-
 anime=$(basename $PWD)
 echo "anime is $anime"
 echo "curl is installed: $CURL_TRUE"
@@ -39,16 +37,25 @@ then
     e=$total
 fi
 
+# number of digits in the totalcount
+maxpad=$(echo $total | wc -m)
+maxpad=$((maxpad-1))
+
+echo "maxpad is $maxpad"
+
 if [[ "$s" == "a" ]]
 then
     count=0
     for i in $(cat list.txt)
     do
         count=$((count+1))
-        name=$anime-$count.mp4
+        # https://stackoverflow.com/a/8789815/8608146
+        printf -v paded_count "%0${maxpad}d" $count
+        name=$anime-$paded_count.mp4
         # this is extremely important
         # without this the file will not download
         # the url will become a 404
+        # https://stackoverflow.com/a/35019553/8608146
         i=${i%$'\r'}
         echo "downloading $name"
         if [[ $CURL_TRUE == "yes" ]]
@@ -57,7 +64,6 @@ then
         else
             wget -c -q --show-progress $i -O $name --header='user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36'
         fi
-        echo $name downloaded successfully
     done
 else
     j=1
@@ -65,7 +71,8 @@ else
     do
         if [ $j -ge $s -a $j -le $e ]
         then
-            name=$anime-$j.mp4
+            printf -v paded_count "%0${maxpad}d" $j
+            name=$anime-$paded_count.mp4
             echo "downloading $name"
             i=${i%$'\r'}
             if [[ $CURL_TRUE == "yes" ]]
@@ -74,7 +81,6 @@ else
             else
                 wget -c -q --show-progress $i -O $name --header='user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36'
             fi
-            echo $name downloaded successfully
         fi
         j=$((j+1))
     done
