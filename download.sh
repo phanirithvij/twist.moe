@@ -41,8 +41,6 @@ fi
 maxpad=$(echo $total | wc -m)
 maxpad=$((maxpad-1))
 
-echo "maxpad is $maxpad"
-
 if [[ "$s" == "a" ]]
 then
     count=0
@@ -63,7 +61,7 @@ then
             curl -L -o $name -C - "$i" -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36'
         else
             wget -c -q --show-progress $i -O $name --header='user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36'
-        fi
+        fi || break
     done
 else
     j=1
@@ -80,7 +78,7 @@ else
                 curl -L -o $name -C - "$i" -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36'
             else
                 wget -c -q --show-progress $i -O $name --header='user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36'
-            fi
+            fi || break
         fi
         j=$((j+1))
     done
