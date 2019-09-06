@@ -1,3 +1,5 @@
+CURL_TRUE="no"
+
 wget_or_curl(){
     if ! [ -x "$(command -v curl)" ]; then
         CURL_TRUE="no"
@@ -6,24 +8,16 @@ wget_or_curl(){
     fi
 }
 
-curl_download(){
-    # https://stackoverflow.com/a/35019553/8608146
-    i=$1
-    i=${i%$'\r'}
-    echo "downloading $i as $2"
-    curl -L -o $2 -C - "$i" -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36'
-}
-
 wget_or_curl
 anime=$(basename $PWD)
 echo "anime is $anime"
 echo "curl is installed: $CURL_TRUE"
 
 IFS=$'\n'
-l=`cat list.txt | wc -l`
+total=`cat list.txt | wc -l`
 if [ $# -ne 2 ]
 then
-    echo Total no of episodes : $l
+    echo Total no of episodes : $total
     echo Enter \'a\' for all episodes
     echo start at:
     read s
@@ -36,18 +30,26 @@ else
     s=$1
     e=$2
 fi
-count=0
-if [[ "$s" == "a" ||  "$e" == "a" ]]
+
+if [[ "$e" == "a" ]]
 then
+    e=$total
+fi
+
+if [[ "$s" == "a" ]]
+then
+    count=0
     for i in $(cat list.txt)
     do
         count=$((count+1))
+        name=$anime-$count.mp4
+        echo "downloading $i as $name"
         if [[ $CURL_TRUE == "yes" ]]
         then
-            # curl -g -L -O -C - $i
-            curl_download $i $anime-$count.mp4
+            i=${i%$'\r'}
+            curl -L -o $name -C - "$i" -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36'
         else
-            wget -c -q --show-progress $i -O $anime-$count.mp4
+            wget -c -q --show-progress $i -O $name
         fi
         echo $i
     done
@@ -57,11 +59,14 @@ else
     do
         if [ $j -ge $s -a $j -le $e ]
         then
+            name=$anime-$j.mp4
+            echo "downloading $i as $name"
             if [[ $CURL_TRUE == "yes" ]]
             then
-                curl_download $i $anime-$j.mp4
+                i=${i%$'\r'}
+                curl -L -o $name -C - "$i" -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36'
             else
-                wget -c -q --show-progress $i -O $anime-$j.mp4
+                wget -c -q --show-progress $i -O $name
             fi
         fi
         j=$((j+1))
