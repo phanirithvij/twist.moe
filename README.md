@@ -86,9 +86,8 @@ Check [examples/README.md](/examples)
 
 ### Created at `16 September 2019 GMT 08:39`
 
-[JSON](https://github.com/phanirithvij/twist.moe/files/3615322/all.zip)
-
-[Minified JSON](https://github.com/phanirithvij/twist.moe/files/3615323/all-p.zip)
+[JSON](https://github.com/phanirithvij/twist.moe/files/3615323/all-p.zip)
+[Minified JSON](https://github.com/phanirithvij/twist.moe/files/3615322/all.zip)
 
 To generate one for yourself
 
