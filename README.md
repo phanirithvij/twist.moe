@@ -1,4 +1,4 @@
-# Anime downloader for [Twist.Moe](https://twist.moe)  
+# Anime downloader for [Twist.Moe](https://twist.moe)
 
 ## STATUS: WORKING
 
@@ -33,6 +33,7 @@ pycryptodomex # this is recommended and nothing else like pycrypto or Crypto or 
 hashlib
 requests
 ```
+
 Run `./setup.sh` to install `python` and dependencies
 
 ```shell
@@ -83,10 +84,16 @@ Check [examples/README.md](/examples)
 
 ## Complete json
 
-### Created at `1 Mar 2018 GMT 15:19`
+### Created at `16 September 2019 GMT 08:39`
 
-[JSON](https://raw.githubusercontent.com/phanirithvij/Myanimewebsite/master/twistlinks.json)
+[JSON](https://github.com/phanirithvij/twist.moe/files/3615322/all.zip)
 
-[Minified JSON](https://raw.githubusercontent.com/phanirithvij/Myanimewebsite/master/twistlinks.min.json)
+[Minified JSON](https://github.com/phanirithvij/twist.moe/files/3615323/all-p.zip)
+
+To generate one for yourself
+
+```shell
+python3 allanime.py filename.json
+```
 
 This project was inspired by [anime downloader](https://github.com/vn-ki/anime-downloader)

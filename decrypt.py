@@ -44,18 +44,24 @@ def decrypt(encrypted, passphrase):
     aes = AES.new(key, AES.MODE_CBC, iv)
     return unpad(aes.decrypt(encrypted[16:]))
 
-if sys.argv:
-    if len(sys.argv[1:]) > 1:
-        # sending a file_name as the argument
-        # e.g: python3 decrypt.py file_name.txt anything ...
-        file_name = sys.argv[1]
-        with open(file_name) as fn:
-            for l in fn.readlines():
-                decrypt_ed = decrypt(l.encode('utf-8'), KEY).decode('utf-8').lstrip(' ')
-                # https://stackoverflow.com/a/6618858/8608146
-                escap_ed = quote(decrypt_ed, safe='~@#$&()*!+=:;,.?/\'')
-                print(escap_ed)
-    elif len(sys.argv[1:]) == 1:
-        decrypt_ed = decrypt((sys.argv[1]).encode('utf-8'), KEY).decode('utf-8').lstrip(' ')
-        escap_ed = quote(decrypt_ed, safe='~@#$&()*!+=:;,.?/\'')
-        print(escap_ed)
+def decrypt_export(url):
+    decrypt_ed = decrypt((url).encode('utf-8'), KEY).decode('utf-8').lstrip(' ')
+    escap_ed = quote(decrypt_ed, safe='~@#$&()*!+=:;,.?/\'')
+    return escap_ed
+
+if __name__ == '__main__':
+    if sys.argv:
+        if len(sys.argv[1:]) > 1:
+            # sending a file_name as the argument
+            # e.g: python3 decrypt.py file_name.txt anything ...
+            file_name = sys.argv[1]
+            with open(file_name) as fn:
+                for l in fn.readlines():
+                    decrypt_ed = decrypt(l.encode('utf-8'), KEY).decode('utf-8').lstrip(' ')
+                    # https://stackoverflow.com/a/6618858/8608146
+                    escap_ed = quote(decrypt_ed, safe='~@#$&()*!+=:;,.?/\'')
+                    print(escap_ed)
+        elif len(sys.argv[1:]) == 1:
+            decrypt_ed = decrypt((sys.argv[1]).encode('utf-8'), KEY).decode('utf-8').lstrip(' ')
+            escap_ed = quote(decrypt_ed, safe='~@#$&()*!+=:;,.?/\'')
+            print(escap_ed)
