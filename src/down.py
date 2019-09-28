@@ -22,6 +22,7 @@ def fetch_or_resume(url, filename):
         for data in tqdm(iterable=response.iter_content(chunk_size=1024), total=total_size//1024, unit='KB'):
             file.write(data)
 
+
 if __name__ == "__main__":
     print(sys.argv)
     fetch_or_resume(sys.argv[1], sys.argv[2])
