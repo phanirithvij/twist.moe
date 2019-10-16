@@ -58,9 +58,9 @@ then
         echo "downloading $name"
         if [[ $CURL_TRUE == "yes" ]]
         then
-            curl -L -o $name -C - "$i" -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36'
+            curl -L -o $name -C - "$i" -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36' -H "Referer: https://twist.moe/"
         else
-            wget -c -q --show-progress $i -O $name --header='user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36'
+            wget -c -q --show-progress $i -O $name --header='user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36' --header="Referer: https://twist.moe/"
         fi || break
     done
 else
@@ -75,9 +75,9 @@ else
             i=${i%$'\r'}
             if [[ $CURL_TRUE == "yes" ]]
             then
-                curl -L -o $name -C - "$i" -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36'
+                curl -L -o $name -C - "$i" -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36' -H "Referer: https://twist.moe/"
             else
-                wget -c -q --show-progress $i -O $name --header='user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36'
+                wget -c -q --show-progress $i -O $name --header='user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36' --header="Referer: https://twist.moe/"
             fi || break
         fi
         j=$((j+1))
