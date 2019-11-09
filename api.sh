@@ -1,3 +1,4 @@
+#!/bin/bash
 IFS=$'\n'
 
 slug=$1

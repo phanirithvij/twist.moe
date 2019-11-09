@@ -1,3 +1,4 @@
+#!/bin/bash
 CURL_TRUE="no"
 
 wget_or_curl(){

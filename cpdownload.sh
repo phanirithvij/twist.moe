@@ -1,3 +1,4 @@
+#!/bin/bash
 IFS=$'\n'
 for i in $(ls Anime)
 do

@@ -1,3 +1,4 @@
+#!/bin/bash
 name=$1
 if [ ! -f animelist.txt ]
 then

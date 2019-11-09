@@ -1,3 +1,4 @@
+#!/bin/bash
 IFS=$'\n'
 file=$1
 if [ $# -ne 1 ]
