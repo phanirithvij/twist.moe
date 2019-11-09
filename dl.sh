@@ -16,7 +16,8 @@ echo "anime is $anime"
 echo "curl is installed: $CURL_TRUE"
 
 IFS=$'\n'
-total=`cat list.txt | wc -l`
+total=$(cat list.txt | wc -l | xargs)
+
 if [ $# -ne 2 ]
 then
     echo Total no of episodes : $total
@@ -40,8 +41,8 @@ fi
 
 # number of digits in the totalcount
 maxpad=$(echo $total | wc -m)
+# echo $total|wc -m
 maxpad=$((maxpad-1))
-
 if [[ "$s" == "a" ]]
 then
     count=0
