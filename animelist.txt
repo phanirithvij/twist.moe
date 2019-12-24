@@ -10,3 +10,5 @@ nichijou
 danshi-koukousei-no-nichijou
 one-punch-man-specials
 one-outs
+death-note
+gabriel-dropout

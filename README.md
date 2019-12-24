@@ -77,6 +77,7 @@ animelist.txt will soon contain all the anime_names that you've used in `startp.
 4. [ ] save as json instead of txt
 5. [x] rename output files they look hideous
 6. [x] Better and a faster way of decrypting
+7. [ ] Use dart or something to create executables replacing `setup.sh` and `startp.sh` to something like `twistmoe.exe`, `twistmoe`. issue #21
 
 ### Examples
 
