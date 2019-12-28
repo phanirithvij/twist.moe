@@ -1,0 +1,8 @@
+name: twist_moe
+version: 0.0.1
+author: Phani Rithvij
+repository: https://github.com/phanirithvij/twist.moe
+
+dependencies:
+  path: ^1.6.4
+  args: ^1.5.2
