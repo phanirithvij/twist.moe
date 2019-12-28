@@ -67,7 +67,7 @@ void processUrl(String url) async {
     print("Got ${urls.length} url${urls.length == 1 ? "" : "s"}");
     print("Wrote urls to ${listFile.path}");
     listFile.create().then((f) {
-      f.writeAsString(urls.join('\n')).catchError((e) {
+      f.writeAsString(urls.join('\n')+"\n").catchError((e) {
         print(e);
       });
     });
