@@ -54,7 +54,6 @@ void processUrl(String url) async {
     listFile.deleteSync();
   }
 
-  print("Fetching info...");
   try {
     final episodes = await api.getUrls(animeName);
     // get the encrypted urls
@@ -70,9 +69,6 @@ void processUrl(String url) async {
     listFile.create().then((f) {
       f.writeAsString(urls.join('\n')).catchError((e) {
         print(e);
-      }).whenComplete(() {
-        print("Done");
-        exit(0);
       });
     });
     // Write this to a file

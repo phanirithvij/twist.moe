@@ -28,22 +28,20 @@ cd twist.moe/
 > for now it requires `curl` or `wget` and `bash` on `cmder`
 
 ```shell
-
+bin/twist.exe <urls or anime-ids>
+# or
+bin/twist.exe
+# A prompt will
 ```
 
-### The above step will make the directory of the anime in ./Anime/
+> The above step will make the directory of the anime in ./Anime/
 
-This is how it should look till here
-![usage](https://user-images.githubusercontent.com/29627898/61578109-2b403c80-ab0f-11e9-9db3-aab05afd56e0.png)
-
-### Go to that directory
+> Go to that directory
 
 ```shell
 cd Anime/#<anime_name>
 ./download.sh
 ```
-
-animelist.txt will soon contain all the anime_names that you've used in `startp.sh`
 
 ## TODO
 
@@ -70,6 +68,12 @@ To generate one for yourself
 
 ```shell
 python3 allanime.py filename.json
+```
+
+### To build
+
+```shell
+dart2native.bat lib/main.dart -o bin/twist.exe # bin/twist on linux
 ```
 
 This project was inspired by [anime downloader](https://github.com/vn-ki/anime-downloader)
