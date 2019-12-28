@@ -63,6 +63,7 @@ void processUrl(String url) async {
     // Got the urls
     assert(decUrls != null);
     assert(decUrls.length != 0);
+    // https://stackoverflow.com/a/17407240/8608146
     final urls = decUrls.map((f) => Uri.encodeFull("https://twist.moe$f"));
     print("Got ${urls.length} url${urls.length == 1 ? "" : "s"}");
     print("Wrote urls to ${listFile.path}");
