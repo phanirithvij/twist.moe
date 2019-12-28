@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:path/path.dart' as p;
 import 'package:args/args.dart';
+import 'package:twist_moe/decrypt.dart';
 import 'api.dart' as api;
 
 ArgResults argResults;
@@ -23,7 +24,6 @@ void main(List<String> args) {
   if (argResults.rest.length < 1) {
     print("Enter link from https://twist.moe/");
     final input = stdin.readLineSync().trim();
-    print(input);
     urls.addAll(input.split(RegExp(r"(,| )")));
   } else {
     urls.addAll(argResults.rest.join(" ").split(RegExp(r"(,| )")));
@@ -33,7 +33,7 @@ void main(List<String> args) {
   urls.forEach((url) => processUrl(url));
 }
 
-void processUrl(String url) {
+void processUrl(String url) async {
   var animeName = "";
   var animeUrl = url;
   if (url.startsWith("https://twist.moe/a/")) {
@@ -55,13 +55,14 @@ void processUrl(String url) {
   }
 
   print("Fetching info...");
-  final urls = api.getUrls(animeName);
-  print(urls);
+  try {
+    final episodes = await api.getUrls(animeName);
+    // get the encrypted urls
+    final encUrls = episodes.map((e) => e.source);
+    final urls = decryptUrls(encUrls);
+    print(urls);
+  } on SocketException catch (e) {
+    print("Network error $e");
+  }
+  exit(0);
 }
-
-// class InvalidUrlException implements Exception {
-//   final message;
-//   const InvalidUrlException(this.message);
-//   @override
-//   String toString() => "Url is invalid: $message";
-// }
