@@ -1,58 +1,34 @@
-# Anime downloader for [Twist.Moe](https://twist.moe)
+# Anime downloader
 
-## STATUS: WORKING
+## for [Twist.Moe](https://twist.moe)
 
-## Installation (Setup)
+#### STATUS: WORKING
+
+#### Installation (Setup)
+
+This branch is a dart re-write.
+
+TODO:
+
+- [x] startp.sh
+- [x] api.sh
+- [x] decrypt.py
+- [ ] download.sh
 
 ```shell
 git clone https://github.com/phanirithvij/twist.moe.git
 cd twist.moe/
-chmod +x *.sh # optional
 ```
 
 ## Requirements
 
-> Requires `python`, `bash` on linux
+> Requires `bash`, `wget` or `curl` on linux
 
-> Requires `python`, `bash` on `cmder` on windows
-
-## Windows users
-
-I recommend `cmder` or `git bash`
-get them from [cmder](https://cmder.net/) and [git](https://git-scm.com/)
-and install python if you don't have it.
-
-The following instructions are based on the assumption that `cmder`|`bash` are being used.
-
-### `Python requirements`
-
-### Linux and Windows
-
-```python
-pycryptodomex # this is recommended and nothing else like pycrypto or Crypto or pycryptodome
-hashlib
-requests
-```
-
-Run `./setup.sh` to install `python` and dependencies
+> TODO: reduce requirements on windows
+> for now it requires `curl` or `wget` and `bash` on `cmder`
 
 ```shell
-pip install pycryptodomex requests hashlib
-```
 
-**Or** you could do
-
-Run `./setup.sh` to install `python` and dependencies
-
-## Usage
-
-```shell
-./startp.sh #anime_slug
-
-# eg:
-./startp.sh gintama
-# or
-./startp.sh https://twist.moe/a/gintama
 ```
 
 ### The above step will make the directory of the anime in ./Anime/
@@ -81,7 +57,7 @@ animelist.txt will soon contain all the anime_names that you've used in `startp.
 
 ### Examples
 
-Check [examples/README.md](/examples)
+TODO: add example
 
 ## Complete json
 

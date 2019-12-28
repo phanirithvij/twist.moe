@@ -16,41 +16,24 @@ KEY = b"LXgIVP&PorO68Rq7dTx8N^lP!Fa5sGJ^*XK"
 
 
 def pad(data):
-    print(data)
-    print(type(data))
     length = BLOCK_SIZE - (len(data) % BLOCK_SIZE)
-    print(type(chr(length)*length))
-    print(type((chr(length)*length).encode()))
     return data + (chr(length)*length).encode()
 
 
 def unpad(data):
-    # print(data)
     daa = [o for o in data]
-    print(daa)
-    # print(len(data))
-    # print(type(data))
-    # print(data[-1])
-    # print(type(data[-1]))
-    # print(ord(data[-1]))
     return data[:-(data[-1] if type(data[-1]) == int else ord(data[-1]))]
 
 
 def bytes_to_key(data, salt, output=48):
     # extended from https://gist.github.com/gsakkis/4546068
     assert len(salt) == 8, len(salt)
-    print(data.__len__())
     data += salt
-    print([x for x in data])
-    print(data.__len__())
-    print('Final----')
     key = md5(data).digest()
     final_key = key
     while len(final_key) < output:
         key = md5(key + data).digest()
-        print("c", len(key))
         final_key += key
-        print("s", len(final_key))
     return final_key[:output]
 
 
@@ -58,11 +41,9 @@ def decrypt(encrypted, passphrase):
     encrypted = base64.b64decode(encrypted)
     assert encrypted[0:8] == b"Salted__"
     salt = encrypted[8:16]
-    # print([x for x in salt])
     key_iv = bytes_to_key(passphrase, salt, 32+16)
     key = key_iv[:32]
     iv = key_iv[32:]
-    print([x for x in key_iv])
     aes = AES.new(key, AES.MODE_CBC, iv)
     return unpad(aes.decrypt(encrypted[16:]))
 

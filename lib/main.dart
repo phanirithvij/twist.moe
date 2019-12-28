@@ -59,10 +59,23 @@ void processUrl(String url) async {
     final episodes = await api.getUrls(animeName);
     // get the encrypted urls
     final encUrls = episodes.map((e) => e.source);
-    final urls = decryptUrls(encUrls);
-    print(urls);
+    final decUrls = decryptUrls(encUrls);
+    // Got the urls
+    assert(decUrls != null);
+    assert(decUrls.length != 0);
+    final urls = decUrls.map((f) => Uri.encodeFull("https://twist.moe$f"));
+    print("Got ${urls.length} url${urls.length == 1 ? "" : "s"}");
+    print("Wrote urls to ${listFile.path}");
+    listFile.create().then((f) {
+      f.writeAsString(urls.join('\n')).catchError((e) {
+        print(e);
+      }).whenComplete(() {
+        print("Done");
+        exit(0);
+      });
+    });
+    // Write this to a file
   } on SocketException catch (e) {
     print("Network error $e");
   }
-  exit(0);
 }
