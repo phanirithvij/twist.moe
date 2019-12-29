@@ -7,15 +7,34 @@ import 'api.dart' as api;
 ArgResults argResults;
 
 void main(List<String> args) {
-  final parser = ArgParser();
+  final parser = ArgParser()
+    ..addFlag("download", abbr: 'd', defaultsTo: true)
+    ..addOption(
+      'start',
+      abbr: 's',
+      defaultsTo: '0',
+      valueHelp: "number",
+    )
+    ..addOption(
+      'end',
+      abbr: 'e',
+      defaultsTo: '0',
+      valueHelp: "number",
+    )
+    ..addOption(
+      'dir',
+      abbr: 'o',
+      defaultsTo: './Anime/',
+      valueHelp: "directory",
+    );
   argResults = parser.parse(args);
 
-  var animeDir = "Anime";
+  var animeDir = argResults['dir'];
   animeDir = p.normalize(animeDir);
   var dir = Directory(animeDir);
 
   if (!dir.existsSync()) {
-    print("Creating Anime directory..");
+    print("Creating $animeDir directory..");
     dir.createSync();
   }
 
@@ -30,7 +49,10 @@ void main(List<String> args) {
   }
   // remove empty entries
   urls.retainWhere((str) => str.trim() != "");
+  // TODO: Exit when all are complete
   urls.forEach((url) => processUrl(url));
+  // TODO: Integrate download functionality here
+  // To pack and send as one executable
 }
 
 void processUrl(String url) async {
@@ -67,9 +89,10 @@ void processUrl(String url) async {
     print("Got ${urls.length} url${urls.length == 1 ? "" : "s"}");
     print("Wrote urls to ${listFile.path}");
     listFile.create().then((f) {
-      f.writeAsString(urls.join('\n')+"\n").catchError((e) {
+      f.writeAsString(urls.join('\n') + "\n").catchError((e) {
         print(e);
       });
+      // Must not exit here because there might be multiple urls in args
     });
     // Write this to a file
   } on SocketException catch (e) {
