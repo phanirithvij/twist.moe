@@ -20,9 +20,6 @@ headers = {
 
 def fetch_or_resume(url, filename):
     with open(filename, 'ab') as file:
-        # headers = {
-        #     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36'
-        # }
         pos = file.tell()
         if pos:
             headers['Range'] = f'bytes={pos}-'

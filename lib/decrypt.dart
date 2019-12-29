@@ -63,6 +63,7 @@ String decrypt(String encrypted, String passphrase) {
 
 // Taken from https://gist.github.com/phanirithvij/97bb0648c9888b9285fdcfd3f7b4a291
 // Look at `Aeshelper.processBlocks`
+// Not sure what this does
 Uint8List processBlocks(BlockCipher cipher, Uint8List inp) {
   var out = Uint8List(inp.lengthInBytes);
 
@@ -76,6 +77,7 @@ Uint8List processBlocks(BlockCipher cipher, Uint8List inp) {
 
 // Taken from https://gist.github.com/phanirithvij/97bb0648c9888b9285fdcfd3f7b4a291
 // Look at `Aeshelper.unpad`
+// Some bytes to the right are removed from the decrypted string
 Uint8List unpad(Uint8List src) {
   var pad = PKCS7Padding();
   pad.init(null);

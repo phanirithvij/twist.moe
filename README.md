@@ -76,4 +76,9 @@ python3 allanime.py filename.json
 dart2native.bat lib/main.dart -o bin/twist.exe # bin/twist on linux
 ```
 
+### LICENSES
+
+- Progress bar for dart By [Jaron Tai](https://github.com/jarontai/progress_bar) : [LICENSE](https://github.com/jarontai/progress_bar/blob/master/LICENSE)
+- FileSize by [Erdbeer Schnitzel](https://github.com/erdbeerschnitzel/filesize.dart): [LICENSE](erdbeerschnitzel)
+
 This project was inspired by [anime downloader](https://github.com/vn-ki/anime-downloader)
