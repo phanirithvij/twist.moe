@@ -15,7 +15,9 @@ final BLOCK_SIZE = 16;
 final KEY = "LXgIVP&PorO68Rq7dTx8N^lP!Fa5sGJ^*XK";
 
 Uint8List bytesToKey(Uint8List data, Uint8List salt, {int output: 48}) {
-  assert(salt.length == 8);
+  if (salt.length != 8) {
+    throw DecryptionError("");
+  }
   // create a copy of the data
   List<int> dataB = data.toList();
   // data += salt
@@ -37,7 +39,9 @@ Uint8List bytesToKey(Uint8List data, Uint8List salt, {int output: 48}) {
 
 String decrypt(String encrypted, String passphrase) {
   final bytes = base64.decode(encrypted);
-  assert(utf8.decode(bytes.sublist(0, 8)) == "Salted__");
+  if (utf8.decode(bytes.sublist(0, 8)) != "Salted__") {
+    throw DecryptionError("");
+  }
   final salt = bytes.sublist(8, 16);
   final key_iv = bytesToKey(utf8.encode(passphrase), salt);
   final key = key_iv.sublist(0, 32);
@@ -86,4 +90,14 @@ Uint8List unpad(Uint8List src) {
   int len = src.length - padLength;
 
   return Uint8List(len)..setRange(0, len, src);
+}
+
+class DecryptionError implements Exception {
+  final String message;
+  const DecryptionError(this.message);
+  @override
+  String toString() => """Decryption Error has occured.
+      Please report at https://github.com/phanirithvij/twist.moe/issues
+      """
+      .trim();
 }

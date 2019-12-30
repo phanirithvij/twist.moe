@@ -3,6 +3,8 @@
 # Created by https://www.gitignore.io/api/windows,visualstudiocode,dart
 # Edit at https://www.gitignore.io/?templates=windows,visualstudiocode,dart
 
+bin/twist
+bin/twist.exe
 temp/
 .packages
 V2/

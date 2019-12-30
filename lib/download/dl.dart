@@ -29,11 +29,15 @@ void downloadFromList(
       print("Downloading $count/$numeps");
       final paddedNum =
           (i + 1).toString().padLeft(urls.length.toString().length, '0');
-      var filename =
-          format.replaceAll(':number', paddedNum).replaceAll(':name', name);
+      var filename = format
+          .replaceAll(':number', "${i + 1}")
+          .replaceAll(':name', name)
+          .replaceAll(':Pnumber', paddedNum);
       filename += '.mp4';
+      final fileSavePath = p.join(dir, filename);
 
-      download(url, p.join(dir, filename));
+      print("Downloading $url to $fileSavePath");
+      // download(url, fileSavePath);
     }
   });
 }

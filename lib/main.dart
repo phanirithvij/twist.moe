@@ -1,41 +1,50 @@
 import 'dart:io';
 import 'package:path/path.dart' as p;
 import 'package:args/args.dart';
+import 'package:twist_moe/args.dart';
 import 'package:twist_moe/decrypt.dart';
+import 'package:twist_moe/download/dl.dart';
 import 'api.dart' as api;
 
 ArgResults argResults;
 
 void main(List<String> args) {
-  final parser = ArgParser()
-    ..addFlag("download", abbr: 'd', defaultsTo: true)
-    ..addOption(
-      'start',
-      abbr: 's',
-      defaultsTo: '0',
-      valueHelp: "number",
-    )
-    ..addOption(
-      'end',
-      abbr: 'e',
-      defaultsTo: '0',
-      valueHelp: "number",
-    )
-    ..addOption(
-      'dir',
-      abbr: 'o',
-      defaultsTo: './Anime/',
-      valueHelp: "directory",
-    );
+  final parser = buildParser();
   argResults = parser.parse(args);
 
-  var animeDir = argResults['dir'];
+  if (argResults['help']) {
+    // Show help and exit
+    print(parser.usage);
+    return;
+  }
+
+  // TODO: Validate args
+
+  if (argResults['download']) {
+    print('Need to download..');
+    if (argResults['if'] != null) {
+      // download from file
+      downloadFromFile(
+        argResults['if'],
+        argResults['name'],
+        argResults['format'],
+        start: int.tryParse(argResults['start']) ?? 0,
+        end: int.tryParse(argResults['end']) ?? 0,
+        numeps: int.tryParse(argResults['count']) ?? 0,
+        dir: argResults['dir'],
+      );
+      print("Download complete");
+      return;
+    }
+  }
+
+  String animeDir = argResults['dir'];
   animeDir = p.normalize(animeDir);
   var dir = Directory(animeDir);
 
   if (!dir.existsSync()) {
     print("Creating $animeDir directory..");
-    dir.createSync();
+    dir.createSync(recursive: true);
   }
 
   List<String> urls = [];
@@ -50,12 +59,12 @@ void main(List<String> args) {
   // remove empty entries
   urls.retainWhere((str) => str.trim() != "");
   // TODO: Exit when all are complete
-  urls.forEach((url) => processUrl(url));
+  urls.forEach((url) => processUrl(url, dir));
   // TODO: Integrate download functionality here
   // To pack and send as one executable
 }
 
-void processUrl(String url) async {
+void processUrl(String url, Directory animeDir) async {
   var animeName = "";
   var animeUrl = url;
   if (url.startsWith("https://twist.moe/a/")) {
@@ -66,11 +75,6 @@ void processUrl(String url) async {
     animeUrl = "https://twist.moe/a/$animeName/1";
   }
   print("Url: $animeUrl");
-  final animeDir = Directory("Anime/$animeName");
-  if (!animeDir.existsSync()) {
-    print("Creating $animeDir directory..");
-    animeDir.createSync();
-  }
   final listFile = File("${animeDir.path}/list.txt");
   if (listFile.existsSync()) {
     listFile.deleteSync();
@@ -82,8 +86,11 @@ void processUrl(String url) async {
     final encUrls = episodes.map((e) => e.source);
     final decUrls = decryptUrls(encUrls);
     // Got the urls
-    assert(decUrls != null);
-    assert(decUrls.length != 0);
+    if (decUrls == null || decUrls.length == 0) {
+      print(
+          "Couldn't fetch the urls for $animeUrl please check if the url you've provided is correct");
+      return;
+    }
     // https://stackoverflow.com/a/17407240/8608146
     final urls = decUrls.map((f) => Uri.encodeFull("https://twist.moe$f"));
     print("Got ${urls.length} url${urls.length == 1 ? "" : "s"}");
