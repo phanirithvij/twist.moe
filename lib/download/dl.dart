@@ -37,7 +37,7 @@ void downloadFromList(
       final fileSavePath = p.join(dir, filename);
 
       print("Downloading $url to $fileSavePath");
-      // download(url, fileSavePath);
+      download(url, fileSavePath);
     }
   });
 }

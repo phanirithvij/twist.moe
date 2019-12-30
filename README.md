@@ -12,25 +12,66 @@ cd twist.moe/
 
 #### Requirements
 
-> Requires `bash`, `wget` or `curl` on linux
+> Requires `bash`, and optionally `wget` or `curl` on linux
 
-> TODO: reduce requirements on windows
-> for now it requires `curl` or `wget` and `bash` on `cmder`
+> Requires `cmd` or `bash`, and optionally `wget` or `curl` on windows
 
 ```shell
 bin/twist.exe <urls or anime-ids>
 # or
 bin/twist.exe
-# A prompt will
+# A prompt will ask for urls
+# enter urls or anime-ids
 ```
 
 > The above step will make the directory of the anime in ./Anime/
 
-> Go to that directory
+#### To download
 
 ```shell
-cd Anime/#<anime_name>
-./download.sh
+twist.exe url -d
+# or
+twist.exe -i urls.txt
+```
+
+#### Usage:
+
+```
+twist.exe --help
+```
+
+```
+-h, --help                           Shows this help message
+-d, --[no-]download                  Download the episodes
+-s, --start=<number>                 The start value.
+                                     (defaults to "1")
+
+-e, --end=<number>                   The end episode to download.
+                                     Defaults to the last episode in the list.
+                                     Specify --count or -c for specifying number of episodes instead.
+
+-c, --count=<number>                 The number of episodes to download.
+                                     Specify --end or -e for specifying the end instead.
+
+-i, --if=<path to list.txt>          Path to a urls.txt file
+                                           IMPORTANT: Must pass the name of the anime when using this flag.
+                                           Using: --name "anime name" option.
+
+-n, --name=<Anime name>              Using: --name "anime name" option.
+                                           This name will be used to replace the ":name" when formatting the episode names after downloading.
+                                           Default value will be "episode" when using with --if(-i).
+                                           Default value when downloading directly from url the name is extracted from the url
+                                           This will override that name.
+
+-f, --format=<format>                The format of the episode output name.
+                                     Examples: ':number-:Pnumber-:name'
+                                       You can pass just ':number' to get 1.mp4, 2.mp4 etc.
+                                       ':Pnumber' is for padded numbers i.e. 1 will be 001, 300 will be 300
+                                     Defaults to :name-:Pnumber.mp4.
+                                     (defaults to ":name-:Pnumber")
+
+-o, --dir=<destination directory>    Defaults to Anime/{provided name} or Anime/{fetched name}
+                                     (defaults to "./Anime/")
 ```
 
 #### Examples

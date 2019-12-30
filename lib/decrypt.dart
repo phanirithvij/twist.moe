@@ -4,16 +4,12 @@ import 'dart:typed_data';
 import 'package:crypto/crypto.dart';
 import 'package:pointycastle/export.dart';
 
-List<String> decryptUrls(Iterable<String> urls) {
-  return urls.map((url) => decrypt(url, KEY)).toList();
-}
+final BLOCK_SIZE = 16;
 
 // https://stackoverflow.com/a/36780727/8608146
 
-final BLOCK_SIZE = 16;
-// Get this by setting a breakpoint
 final KEY = "LXgIVP&PorO68Rq7dTx8N^lP!Fa5sGJ^*XK";
-
+// Get this by setting a breakpoint
 Uint8List bytesToKey(Uint8List data, Uint8List salt, {int output: 48}) {
   if (salt.length != 8) {
     throw DecryptionError("");
@@ -63,6 +59,10 @@ String decrypt(String encrypted, String passphrase) {
   Uint8List textBytes = unpad(paddedText);
 
   return String.fromCharCodes(textBytes);
+}
+
+List<String> decryptUrls(Iterable<String> urls) {
+  return urls.map((url) => decrypt(url, KEY)).toList();
 }
 
 // Taken from https://gist.github.com/phanirithvij/97bb0648c9888b9285fdcfd3f7b4a291

@@ -57,7 +57,6 @@ Specify --end or -e for specifying the end instead.
     ..addOption(
       'name',
       abbr: 'n',
-      defaultsTo: 'episode',
       valueHelp: "Anime name",
       help: """
       Using: --name "anime name" option.
@@ -87,5 +86,6 @@ Defaults to :name-:Pnumber.mp4.
       abbr: 'o',
       defaultsTo: './Anime/',
       valueHelp: "destination directory",
+      help: "Defaults to Anime/{provided name} or Anime/{fetched name}",
     );
 }
