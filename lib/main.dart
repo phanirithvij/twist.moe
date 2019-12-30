@@ -94,8 +94,8 @@ void main(List<String> args) {
       if (animeDir == 'Anime') {
         destDir = p.join(animeDir, curls['name']);
       }
-      downloadFromList(List.from(curls['urls']), format, start, end, numeps,
-          givenName ?? curls['name'], destDir);
+      await downloadFromList(List.from(curls['urls']), format, start, end,
+          numeps, givenName ?? curls['name'], destDir);
     } else {
       print("""
       To download this anime use:

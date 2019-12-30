@@ -23,7 +23,7 @@ void downloadFromList(
 
   print("Downloading $numeps episodes");
   var count = 0;
-  urls.asMap().forEach((i, url) async {
+  urls.asMap().forEach((i, url) {
     if (i + 1 <= end && i + 1 >= start) {
       count++;
       print("Downloading $count/$numeps");
@@ -37,7 +37,7 @@ void downloadFromList(
       final fileSavePath = p.join(dir, filename);
 
       print("Downloading $url to $fileSavePath");
-      await download(url, fileSavePath);
+      download(url, fileSavePath);
     }
   });
 }

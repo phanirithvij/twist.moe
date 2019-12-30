@@ -11,7 +11,7 @@ const defaultHeaders = {
       "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:69.0) Gecko/20100101 Firefox/69.0",
 };
 
-Future<void> download(
+Future<bool> download(
   String url,
   String path, {
   Map headers = defaultHeaders,
@@ -19,27 +19,27 @@ Future<void> download(
   var downloadSize = 0;
   var totalSize = 0;
 
-  print("Downloading to $path");
+  await print("Downloading to $path");
 
   final dile = File(path);
   final exists = dile.existsSync();
   var size = null;
   if (exists) {
     size = await dile.length();
-    print("Resuming from the ${size} byte");
+    await print("Resuming from the ${size} byte");
   }
   HttpClient client = HttpClient();
   final request = await client.getUrl(Uri.parse(url));
   if (headers != null) {
-    headers.forEach((k, v) {
+    await headers.forEach((k, v) {
       request.headers.set(k, v);
     });
   }
   if (size != null) {
-    request.headers.set("Range", "bytes=$size-");
+    await request.headers.set("Range", "bytes=$size-");
   }
 
-  request.close().then((HttpClientResponse response) {
+  await request.close().then((HttpClientResponse response) async {
     downloadSize = response.contentLength;
     final contentRange = response.headers['Content-Range'];
     if (contentRange != null && contentRange.length > 0) {
@@ -69,17 +69,20 @@ Future<void> download(
       ":percent [:bar] :Hcurrent/:Htotal ETA :etas",
       total: downloadSize,
     );
-    response.listen((data) async {
+    await response.listen((data) {
       file.add(data);
       // show progress bar
       if (downloadSize > 0) bar.tick(len: data.length);
     }, onError: (e) {
       print(e);
+      return false;
     }, onDone: () {
       print("Done");
       // file.close();
       // Only exit after closing the file
-      file.close().then((e) => exit(0));
+      file.close().then((e) {
+        return true;
+      });
     });
   });
 }

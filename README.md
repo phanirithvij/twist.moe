@@ -12,9 +12,9 @@ cd twist.moe/
 
 #### Requirements
 
-> Requires `bash`, and optionally `wget` or `curl` on linux
+> Requires `bash`, and optionally `wget` or `curl` on Linux and Mac
 
-> Requires `cmd` or `bash`, and optionally `wget` or `curl` on windows
+> Requires `cmd` or `bash`, and optionally `wget` or `curl` on Windows
 
 ```shell
 bin/twist.exe <urls or anime-ids>
@@ -28,11 +28,20 @@ bin/twist.exe
 
 #### To download
 
+This twist executable has built-in download functionality with resuming support but it's safer to use `curl` or `wget` as they are sophisticated software.
+
+You can download using one of the following:
+
+Using this executable:
+
 ```shell
 twist.exe url -d
 # or
 twist.exe -i urls.txt
 ```
+
+Using curl or wget.
+To download using `curl` or `wget`
 
 #### Usage:
 
@@ -76,12 +85,39 @@ twist.exe --help
 
 #### Examples
 
-> `twist.exe` on windows and `twist` on linux/mac
-
-<!-- TODO -->
+> Note: `twist.exe` on windows and `twist` on linux/mac
 
 ```shell
-twist.exe url, url, url
+twist.exe gintama, one-piece
+# This will fetch the urls for those two anime
+```
+
+```shell
+twist.exe gintama -d -s 1 -c 3
+# This will fetch the urls and start downloading episode 1, and downloads three episodes including the first one i.e. 1, 2, 3
+```
+
+```shell
+twist.exe gintama -d -e 3 -f ':name-:Pnumber'
+# This will fetch the urls and sets the download format as `gintama-001.mp4`, `gintama-002.mp4`, and `gintama-003.mp4`
+```
+
+```shell
+twist.exe gintama -d -o Anime/gint
+# This will fetch the urls and download to the given directory
+```
+
+#### When interrupted they can be run again and the downloads will resume
+
+Example:
+
+```shell
+twist.exe gintama -d -o Anime/gint
+
+^C
+
+twist.exe gintama -d -o Anime/gint
+
 ```
 
 #### To build
