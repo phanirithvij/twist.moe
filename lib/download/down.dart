@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:twist_moe/file_size/filesize.dart';
@@ -11,7 +12,7 @@ const defaultHeaders = {
       "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:69.0) Gecko/20100101 Firefox/69.0",
 };
 
-Future<bool> download(
+Future<void> download(
   String url,
   String path, {
   Map headers = defaultHeaders,
@@ -19,27 +20,36 @@ Future<bool> download(
   var downloadSize = 0;
   var totalSize = 0;
 
-  await print("Downloading to $path");
+  // print("Downloading to $path");
 
   final dile = File(path);
   final exists = dile.existsSync();
-  var size = null;
-  if (exists) {
-    size = await dile.length();
-    await print("Resuming from the ${size} byte");
+
+  int size;
+  Future<int> getSize() async {
+    if (exists) {
+      size = await dile.length();
+      // print("Resuming from the ${size} byte");
+      return size;
+    }
+    return null;
   }
+
+  size = await getSize();
+
+  final completer = Completer<void>();
   HttpClient client = HttpClient();
   final request = await client.getUrl(Uri.parse(url));
   if (headers != null) {
-    await headers.forEach((k, v) {
+    headers.forEach((k, v) {
       request.headers.set(k, v);
     });
   }
   if (size != null) {
-    await request.headers.set("Range", "bytes=$size-");
+    request.headers.set("Range", "bytes=$size-");
   }
 
-  await request.close().then((HttpClientResponse response) async {
+  request.close().then((HttpClientResponse response) async {
     downloadSize = response.contentLength;
     final contentRange = response.headers['Content-Range'];
     if (contentRange != null && contentRange.length > 0) {
@@ -69,22 +79,29 @@ Future<bool> download(
       ":percent [:bar] :Hcurrent/:Htotal ETA :etas",
       total: downloadSize,
     );
+    // Asked a question on S.O
+    // Mezoni answered it.
+    // Great answer which invloved mutex locks
+    // https://stackoverflow.com/a/59534181/8608146
+
+    // print(response.headers);
     await response.listen((data) {
       file.add(data);
       // show progress bar
       if (downloadSize > 0) bar.tick(len: data.length);
     }, onError: (e) {
-      print(e);
-      return false;
+      completer.completeError(e);
     }, onDone: () {
-      print("Done");
-      // file.close();
-      // Only exit after closing the file
+      // Only return after closing the file
       file.close().then((e) {
-        return true;
+        print('Downloaded: $url');
+        print('File written: $path');
+        completer.complete();
       });
     });
   });
+
+  return completer.future;
 }
 
 void main(List<String> args) {

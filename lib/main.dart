@@ -8,7 +8,7 @@ import 'package:twist_moe/download/dl.dart';
 
 import 'api.dart' as api;
 
-void main(List<String> args) {
+void main(List<String> args) async {
   final parser = buildParser();
   argResults = parser.parse(args);
 
@@ -53,7 +53,7 @@ void main(List<String> args) {
     if (animeDir == 'Anime') {
       destDir = p.join(animeDir, givenName);
     }
-    downloadFromFile(inputFile, givenName, format,
+    await downloadFromFile(inputFile, givenName, format,
         start: start, end: end, numeps: numeps, dir: destDir);
     print("Download complete");
     return;
@@ -70,7 +70,7 @@ void main(List<String> args) {
   }
   // remove empty entries
   urls.retainWhere((str) => str.trim() != "");
-  final urlList = urls.map((url) => processUrl(url, dir, givenName));
+  final urlList = urls.map((url) => processUrl(url, dir, givenName)).toList();
   if (urls.length > 1 && argResults['download']) {
     // Multiple urls were specified
     // Better not download
@@ -86,8 +86,10 @@ void main(List<String> args) {
       return;
     }
   }
-  urlList.forEach((f) async {
+  for (int i = 0; i < urlList.length; i++) {
+    final f = urlList[i];
     final curls = await f;
+    print("curls $i");
     if (argResults['download']) {
       // If no name was given use the one from the url
       var destDir = animeDir;
@@ -103,7 +105,7 @@ void main(List<String> args) {
       """
           .trim());
     }
-  });
+  }
 }
 
 ArgResults argResults;

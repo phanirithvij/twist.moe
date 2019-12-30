@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:twist_moe/download/down.dart' show download;
 import 'package:path/path.dart' as p;
 
-void downloadFromList(
+Future<void> downloadFromList(
   List<String> urls,
   String format,
   int start,
@@ -11,7 +11,7 @@ void downloadFromList(
   int numeps,
   String name,
   String dir,
-) {
+) async {
   if (end == 0) {
     end = urls.length;
   }
@@ -22,27 +22,39 @@ void downloadFromList(
   }
 
   print("Downloading $numeps episodes");
-  var count = 0;
-  urls.asMap().forEach((i, url) {
+  final List<String> dlUrls = [];
+  for (int i = 0; i < urls.length; i++) {
+    final url = urls[i];
     if (i + 1 <= end && i + 1 >= start) {
-      count++;
-      print("Downloading $count/$numeps");
-      final paddedNum =
-          (i + 1).toString().padLeft(urls.length.toString().length, '0');
-      var filename = format
-          .replaceAll(':number', "${i + 1}")
-          .replaceAll(':name', name)
-          .replaceAll(':Pnumber', paddedNum);
-      filename += '.mp4';
-      final fileSavePath = p.join(dir, filename);
-
-      print("Downloading $url to $fileSavePath");
-      download(url, fileSavePath);
+      dlUrls.add(url);
     }
+  }
+
+  final List<List<Object>> dlUrlsIndex = [];
+  dlUrls.asMap().forEach((i, f) {
+    dlUrlsIndex.add([i, f]);
   });
+
+  void doit(List<Object> s) async {
+    final int i = s[0];
+    final String url = s[1];
+    final paddedNum =
+        (i + 1).toString().padLeft(urls.length.toString().length, '0');
+    var filename = format
+        .replaceAll(':number', "${i + 1}")
+        .replaceAll(':name', name)
+        .replaceAll(':Pnumber', paddedNum);
+    filename += '.mkv';
+    final fileSavePath = p.join(dir, filename);
+
+    print("Downloading $url to $fileSavePath");
+    await download(url, fileSavePath);
+  }
+
+  Future.forEach(dlUrlsIndex, doit);
 }
 
-void downloadFromFile(
+Future<void> downloadFromFile(
   String path,
   String name,
   String format, {
@@ -50,14 +62,14 @@ void downloadFromFile(
   int end: 0,
   int numeps: 0,
   String dir: 'Anime',
-}) {
+}) async {
   if (!File(path).existsSync()) {
     print('no such file $path');
     return;
   }
-  File(path)
-      .readAsLines()
-      .then((x) => downloadFromList(x, format, start, end, numeps, name, dir));
+  var lines = await File(path).readAsLines();
+  print("Got lines");
+  await downloadFromList(lines, format, start, end, numeps, name, dir);
 }
 
 void main(List<String> args) {
