@@ -55,7 +55,6 @@ void main(List<String> args) async {
     }
     await downloadFromFile(inputFile, givenName, format,
         start: start, end: end, numeps: numeps, dir: destDir);
-    print("Download complete");
     return;
   }
 

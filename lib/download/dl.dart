@@ -44,7 +44,7 @@ Future<void> downloadFromList(
         .replaceAll(':number', "${i + 1}")
         .replaceAll(':name', name)
         .replaceAll(':Pnumber', paddedNum);
-    filename += '.mkv';
+    filename += '.mp4';
     final fileSavePath = p.join(dir, filename);
 
     print("Downloading $url to $fileSavePath");
