@@ -23,7 +23,6 @@ class ProgressBar {
   String lastDraw;
   bool complete = false;
   Function callback;
-  // TODO
   String totalStr;
 
   /**
@@ -68,7 +67,6 @@ class ProgressBar {
     this.completeChar = complete;
     this.incompleteChar = incomplete;
     this.callback = callback;
-    // TODO
     totalStr = filesize(total);
   }
 
@@ -115,9 +113,7 @@ class ProgressBar {
         .format
         .replaceAll(':current', this.curr.toString())
         .replaceAll(':total', this.total.toString())
-        // TODO
         .replaceAll(':Hcurrent', currStr)
-        // TODO
         .replaceAll(':Htotal', totalStr)
         .replaceAll(':elapsed',
             elapsed.isNaN ? '0.0' : (elapsed / 1000).toStringAsFixed(1))
