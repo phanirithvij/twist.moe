@@ -22,18 +22,14 @@ Future<void> downloadFromList(
   }
 
   print("Downloading $numeps episodes");
-  final List<String> dlUrls = [];
+  final List<List<Object>> dlUrlsIndex = [];
   for (int i = 0; i < urls.length; i++) {
     final url = urls[i];
     if (i + 1 <= end && i + 1 >= start) {
-      dlUrls.add(url);
+      // print(url);
+      dlUrlsIndex.add([i, url]);
     }
   }
-
-  final List<List<Object>> dlUrlsIndex = [];
-  dlUrls.asMap().forEach((i, f) {
-    dlUrlsIndex.add([i, f]);
-  });
 
   void doit(List<Object> s) async {
     final int i = s[0];
