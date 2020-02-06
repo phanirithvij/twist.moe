@@ -1,3 +1,17 @@
+## Dart implementation.
+
+This branch is the updated dart implementation.
+
+This doesn't use python so no need to install it but it is a cli tool so it requires a terminal like bash or cmd.
+
+If you were using the old version i.e. the setup.sh one, which is currently not working. Switching to this new one should be simple.
+
+I have no intention to deprecate the old version (as of now). Open an issue if you have something to say/suggest.
+
+> You can go to the master branch for the older version.
+
+> I'm working on fixing the old version, please use this until then.
+
 ### Installation (Setup)
 
 You can go to the [releases](https://github.com/phanirithvij/twist.moe/releases) page and download the exact distribution for your os.
@@ -5,10 +19,9 @@ Then add the download path of the executable to `PATH`.
 
 Adding to PATH on [Windows](#win-path), [Linux](https://unix.stackexchange.com/a/26059/312058) and on Mac it's same as linux.
 
-```shell
-git clone https://github.com/phanirithvij/twist.moe.git
-cd twist.moe/
-```
+> No need to clone the repository. Unless you are a Mac user.
+
+For Mac users build it your self. I don't have a Mac to upload a release. Scroll down for build instructions.
 
 #### Requirements
 
@@ -125,6 +138,7 @@ twist.exe gintama -d -o Anime/gint
 ```
 git clone https://github.com/phanirithvij/twist.moe
 cd twist.moe/
+git checkout dart-re-write
 ```
 
 ```shell
@@ -141,6 +155,6 @@ Start > Search for "Env" > "Edit environment variables for your account" > Find 
 ### LICENSES
 
 - Progress bar for dart By [Jaron Tai](https://github.com/jarontai/progress_bar) : [LICENSE](https://github.com/jarontai/progress_bar/blob/master/LICENSE)
-- FileSize by [Erdbeer Schnitzel](https://github.com/erdbeerschnitzel/filesize.dart): [LICENSE](erdbeerschnitzel)
+- FileSize by [Erdbeer Schnitzel](https://github.com/erdbeerschnitzel/filesize.dart): [LICENSE](https://github.com/erdbeerschnitzel/filesize.dart#license)
 
 > This project was inspired by [anime downloader](https://github.com/vn-ki/anime-downloader)
