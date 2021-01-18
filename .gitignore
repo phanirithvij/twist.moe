@@ -1,3 +1,9 @@
+# dart re write local files
+temp/
+.packages
+bin/
+.dart_tool/
+
 V2/
 V1/
 releases/
