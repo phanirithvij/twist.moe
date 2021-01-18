@@ -55,7 +55,8 @@ slug=$di
 # IFS=$' '
 for i in $(bash ../api.sh "${slug}")
 do
-    j='https://twist.moe'
+    # j='https://twist.moe'
+    j='https://twistcdn.bunny.sh'
     j=$j$i
     echo $j
     echo $j >> $pw/$di/list.txt

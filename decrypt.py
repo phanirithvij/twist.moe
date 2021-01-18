@@ -11,7 +11,8 @@ from Cryptodome.Cipher import AES
 from requests.utils import quote
 
 BLOCK_SIZE = 16
-KEY = b"LXgIVP&PorO68Rq7dTx8N^lP!Fa5sGJ^*XK"
+#KEY = b"LXgIVP&PorO68Rq7dTx8N^lP!Fa5sGJ^*XK"
+KEY = b"267041df55ca2b36f2e322d05ee2c9cf"
 
 # From stackoverflow https://stackoverflow.com/questions/36762098/how-to-decrypt-password-from-javascript-cryptojs-aes-encryptpassword-passphras
 def pad(data):
