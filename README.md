@@ -1,5 +1,14 @@
 # Anime downloader for [Twist.Moe](https://twist.moe)
 
+
+## NOTE
+
+Pull the latest code and try before opening any issues
+
+```
+git pull
+```
+
 ## STATUS: WORKING
 
 ## Installation (Setup)
