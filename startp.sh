@@ -53,7 +53,8 @@ fi
 echo "Fetching info..."
 slug=$di
 # IFS=$' '
-for i in $(bash ../api.sh "${slug}")
+cd ..
+for i in $(bash api.sh "${slug}")
 do
     # j='https://twist.moe'
     j='https://twistcdn.bunny.sh'
@@ -61,6 +62,7 @@ do
     echo $j
     echo $j >> $pw/$di/list.txt
 done
+cd Anime
 echo "Creating $di/list.txt"
 echo "copying download.sh to $di"
 cp ../download.sh $di/

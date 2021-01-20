@@ -85,15 +85,17 @@ Check [examples/README.md](/examples)
 
 ## Complete json
 
-### Created at `16 September 2019 GMT 08:39`
+### Created at `20 Jan 2021 GMT 08:39`
 
-[JSON](https://github.com/phanirithvij/twist.moe/files/3615323/all-p.zip)
-[Minified JSON](https://github.com/phanirithvij/twist.moe/files/3615322/all.zip)
+[JSON](https://github.com/phanirithvij/twist.moe/files/5843720/new.json.gz)
+[Minified JSON](https://github.com/phanirithvij/twist.moe/files/5843721/new.min.json.gz)
 
 To generate one for yourself
 
 ```shell
-python3 allanime.py filename.json
+python3 allanimenew.py filename.json
 ```
+
+The previous json format used to have some other format, so use/modify the script for compatibility
 
 This project was inspired by [anime downloader](https://github.com/vn-ki/anime-downloader)

@@ -4,6 +4,8 @@ temp/
 bin/
 .dart_tool/
 
+.temp.txt
+.data.txt
 V2/
 V1/
 releases/

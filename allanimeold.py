@@ -13,6 +13,7 @@ from bs4 import BeautifulSoup as soup
 from tqdm import tqdm
 
 from decrypt import decrypt_export
+from x_access_token import X_ACCESS_TOKEN
 
 sucuri_cookies = {}
 reqHeaders = {
@@ -112,7 +113,7 @@ def get_names_json(file_name="data.json", force=False):
 def get_api_details(slug):
     api_url = f"https://api.twist.moe/api/anime/{slug}/sources"
     response = requests.get(
-        api_url, headers={'x-access-token': '0df14814b9e590a1f26d3071a4ed7974'})
+        api_url, headers={'x-access-token': X_ACCESS_TOKEN})
     urls = []
     for s in response.json():
         urls.append(decrypt_export(s['source']))
