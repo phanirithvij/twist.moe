@@ -55,6 +55,14 @@ Run `./setup.sh` to install `python` and dependencies
 
 ## Usage
 
+**New:** A basic fuzzy search is implemented
+
+```sh
+python3 search.py "one piece"
+python3 search.py "x2wone piece f"
+# will output slugs which can be used in ./startp.sh <slug>
+```
+
 ```shell
 ./startp.sh #anime_slug
 
