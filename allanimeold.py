@@ -164,7 +164,8 @@ def get_all(data, filename):
                     count += 1
                 # urls = []
                 urls = get_api_details(slug)
-                urls = [f"https://twist.moe{url}" for url in urls]
+                # urls = [f"https://twist.moe{url}" for url in urls]
+                urls = [f"https://twistcdn.bunny.sh{url}" for url in urls]
                 temp = {'n': s[0], 'u': urls}
                 current[slug] = temp
             except KeyboardInterrupt:

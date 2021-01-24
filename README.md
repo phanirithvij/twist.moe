@@ -57,6 +57,8 @@ Run `./setup.sh` to install `python` and dependencies
 
 **New:** A basic fuzzy search is implemented
 
+First install requirements via `pip install -r requirements.search.txt`
+
 ```sh
 python3 search.py "one piece"
 python3 search.py "x2wone piece f"
