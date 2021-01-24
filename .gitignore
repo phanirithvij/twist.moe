@@ -4,8 +4,8 @@ temp/
 bin/
 .dart_tool/
 
-new.json
-new.min.json
+*.json
+*.min.json
 animelist.txt
 .temp.txt
 .data.txt
