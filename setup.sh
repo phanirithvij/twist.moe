@@ -18,15 +18,6 @@ then
     py=true
     pyv="$(python3 -V 2>&1)"
     echo "[setup.sh] > Version: $pyv"
-    # modify the api.sh file
-    if [ -f ".setup_done" ]
-    then
-        echo "[setup.py] > Setup already done"
-        echo "[setup.py] > remove .setup_done file and run this again if need to force setup"
-    else
-        python setup.py
-        touch .setup_done
-    fi
 else
     echo "[setup.sh] > python3 command is not accesible from the script"
     # python3='python'

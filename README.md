@@ -1,5 +1,14 @@
 # Anime downloader for [Twist.Moe](https://twist.moe)
 
+
+## NOTE
+
+Pull the latest code and try before opening any issues
+
+```
+git pull
+```
+
 ## STATUS: WORKING
 
 ## Installation (Setup)
@@ -46,6 +55,16 @@ Run `./setup.sh` to install `python` and dependencies
 
 ## Usage
 
+**New:** A basic fuzzy search is implemented
+
+First install requirements via `pip install -r requirements.search.txt`
+
+```sh
+python3 search.py "one piece"
+python3 search.py "x2wone piece f"
+# will output slugs which can be used in ./startp.sh <slug>
+```
+
 ```shell
 ./startp.sh #anime_slug
 
@@ -85,15 +104,17 @@ Check [examples/README.md](/examples)
 
 ## Complete json
 
-### Created at `16 September 2019 GMT 08:39`
+### Created at `20 Jan 2021 GMT 08:39`
 
-[JSON](https://github.com/phanirithvij/twist.moe/files/3615323/all-p.zip)
-[Minified JSON](https://github.com/phanirithvij/twist.moe/files/3615322/all.zip)
+[JSON](https://github.com/phanirithvij/twist.moe/files/5843720/new.json.gz)
+[Minified JSON](https://github.com/phanirithvij/twist.moe/files/5843721/new.min.json.gz)
 
 To generate one for yourself
 
 ```shell
-python3 allanime.py filename.json
+python3 allanimenew.py filename.json
 ```
+
+The previous json format used to have some other format, so use/modify the script for compatibility
 
 This project was inspired by [anime downloader](https://github.com/vn-ki/anime-downloader)

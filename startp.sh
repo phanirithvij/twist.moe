@@ -53,14 +53,21 @@ fi
 echo "Fetching info..."
 slug=$di
 # IFS=$' '
-for i in $(bash ../api.sh "${slug}")
+cd ..
+for i in $(bash api.sh "${slug}")
 do
-    # j='https://twist.moe'
-    j='https://twistcdn.bunny.sh'
-    j=$j$i
+    if [[ $i == "https://"* || $i == "http://"* ]]; then
+        # already a url for some reason
+        j=$i
+    else
+        # j='https://twist.moe'
+        j='https://twistcdn.bunny.sh'
+        j=$j$i
+    fi
     echo $j
     echo $j >> $pw/$di/list.txt
 done
+cd Anime
 echo "Creating $di/list.txt"
 echo "copying download.sh to $di"
 cp ../download.sh $di/
