@@ -1,3 +1,14 @@
+# dart re write local files
+temp/
+.packages
+bin/
+.dart_tool/
+
+*.json
+*.min.json
+animelist.txt
+.temp.txt
+.data.txt
 V2/
 V1/
 releases/

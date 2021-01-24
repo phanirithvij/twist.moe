@@ -13,6 +13,7 @@ from bs4 import BeautifulSoup as soup
 from tqdm import tqdm
 
 from decrypt import decrypt_export
+from x_access_token import X_ACCESS_TOKEN
 
 sucuri_cookies = {}
 reqHeaders = {
@@ -31,7 +32,8 @@ def combine(acookies, bcookies):
 
 
 def decode(html):
-    script = html.find("script").text
+    # https://stackoverflow.com/a/63151716/8608146
+    script = html.find("script").string
     script = script.replace("e(r)", "console.log(r)")
     script = subprocess.check_output(['node', '--eval', script])
     script = script.decode('utf-8')
@@ -39,16 +41,23 @@ def decode(html):
     script = script.replace("location.reload()", "console.log(cookie)")
     cookie = subprocess.check_output(['node', '--eval', script])
     cookie = cookie.decode('utf-8')
-    (key, value) = cookie.split(";")[0].split("=")
-    sucuri_cookies[key] = value
+    if cookie.strip() != '':
+        (key, value) = cookie.split(";")[0].split("=")
+        sucuri_cookies[key] = value
 
+get_count = 0
 
 def get(url, params=None, headers=reqHeaders, cookies={}, timeout=60, allow_redirects=False):
+    global get_count
+    get_count += 1
+    if get_count > 20:
+        print("[*] Trouble reaching the server too many redirects")
+        exit(-1)
     cookies = combine(sucuri_cookies, cookies)
     r = requests.get(url, params=None, headers=headers, cookies=cookies,
                      timeout=timeout, allow_redirects=allow_redirects)
     if r.status_code == 200 and r.headers['Server'] == "Sucuri/Cloudproxy" and "You are being redirected" in r.text:
-        decode(soup(r.text, "html.parser"),)
+        decode(soup(r.text, "html.parser"))
         return get(url, params, headers, cookies, timeout, allow_redirects)
     return r
 
@@ -58,16 +67,16 @@ def post(url, data=None, json=None, headers=reqHeaders, cookies={}, timeout=60, 
     r = requests.post(url, data=data, json=json, headers=headers,
                       cookies=cookies, timeout=timeout, allow_redirects=allow_redirects)
     if r.status_code == 200 and r.headers['Server'] == "Sucuri/Cloudproxy" and "You are being redirected" in r.text:
-        decode(soup(r.text, "html.parser"),)
+        decode(soup(r.text, "html.parser"))
         return post(url, data, json, headers, cookies, timeout, allow_redirects)
     return r
 
 
 def get_names_json(file_name="data.json", force=False):
     total = 0
-    parse = False
     original = None
     if os.path.isfile(os.path.join(".", file_name)):
+        print("[*] Reading from ", file_name, "...")
         with open(file_name) as f:
             original = json.load(f)
             total = original['total']
@@ -83,6 +92,10 @@ def get_names_json(file_name="data.json", force=False):
 
     data = soup(resp.text, "html.parser")
     ul = data.find("ul")
+    if ul is None:
+        print(data)
+        print("[ERROR] No results found, server might be down")
+        exit(-1)
     ret = {'total': len(ul), 'data': [], 'created': str(datetime.now())}
     if total != 0 and total == ret['total']:
         return original
@@ -98,9 +111,9 @@ def get_names_json(file_name="data.json", force=False):
 
 
 def get_api_details(slug):
-    api_url = f"https://twist.moe/api/anime/{slug}/sources"
+    api_url = f"https://api.twist.moe/api/anime/{slug}/sources"
     response = requests.get(
-        api_url, headers={'x-access-token': '1rj2vRtegS8Y60B3w3qNZm5T2Q0TN2NR'})
+        api_url, headers={'x-access-token': X_ACCESS_TOKEN})
     urls = []
     for s in response.json():
         urls.append(decrypt_export(s['source']))
@@ -151,7 +164,8 @@ def get_all(data, filename):
                     count += 1
                 # urls = []
                 urls = get_api_details(slug)
-                urls = [f"https://twist.moe{url}" for url in urls]
+                # urls = [f"https://twist.moe{url}" for url in urls]
+                urls = [f"https://twistcdn.bunny.sh{url}" for url in urls]
                 temp = {'n': s[0], 'u': urls}
                 current[slug] = temp
             except KeyboardInterrupt:
