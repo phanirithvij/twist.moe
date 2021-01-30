@@ -61,7 +61,8 @@ do
         j=$i
     else
         # j='https://twist.moe'
-        j='https://twistcdn.bunny.sh'
+        # j='https://twistcdn.bunny.sh'
+        j='https://cdn.twist.moe'
         j=$j$i
     fi
     echo $j
