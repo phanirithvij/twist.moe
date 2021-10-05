@@ -15,19 +15,25 @@ headers = {
     'Referer': 'https://twist.moe/',
 }
 
-# https://stackoverflow.com/a/51812486/8608146
-
-
-def fetch_or_resume(url, filename):
+def fetch_or_resume(url, filename, session=None):
+    # https://stackoverflow.com/a/51812486/8608146
+    if session is None:
+        session = requests.Session()
+    headers = {}
     with open(filename, 'ab') as file:
         pos = file.tell()
         if pos:
             headers['Range'] = f'bytes={pos}-'
-        response = requests.get(url, headers=headers, stream=True)
-        # if pos:
-        #     validate_as_paranoid_as_you_want_to_be_(pos, response)
+        response = session.get(url, headers=headers, stream=True)
+        if response.status_code == 416:
+            return
         total_size = int(response.headers.get('content-length'))
-        for data in tqdm(iterable=response.iter_content(chunk_size=1024), total=total_size//1024, unit='KB'):
+        for data in tqdm(
+            iterable=response.iter_content(chunk_size=1024),
+            total=total_size//1024,
+            unit='KB',
+            leave=False
+        ):
             file.write(data)
 
 
