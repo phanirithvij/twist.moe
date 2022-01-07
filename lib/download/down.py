@@ -15,24 +15,30 @@ headers = {
     'Referer': 'https://twist.moe/',
 }
 
-def fetch_or_resume(url, filename, session=None):
+def fetch_or_resume(url, filename, params=tuple(), headers={}, session=None):
+    """Downloads a file from url with continue support"""
     # https://stackoverflow.com/a/51812486/8608146
     if session is None:
-        session = requests.Session()
-    headers = {}
-    with open(filename, 'ab') as file:
+        session = Session()
+    with open(filename, "ab") as file:
         pos = file.tell()
         if pos:
-            headers['Range'] = f'bytes={pos}-'
-        response = session.get(url, headers=headers, stream=True)
+            headers["Range"] = f"bytes={pos}-"
+        response = session.get(url, headers=headers, params=params, stream=True)
         if response.status_code == 416:
             return
-        total_size = int(response.headers.get('content-length'))
+        if response.status_code >= 300:
+            print(response.status_code, response.text)
+            file.close()
+            os.remove(filename)
+            exit(1)
+            # return False
+        total_size = int(response.headers.get("content-length"))
         for data in tqdm(
             iterable=response.iter_content(chunk_size=1024),
-            total=total_size//1024,
-            unit='KB',
-            leave=False
+            total=total_size // 1024,
+            unit="KB",
+            leave=False,
         ):
             file.write(data)
 
