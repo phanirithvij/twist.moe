@@ -8,7 +8,7 @@ idna==2.10
 pycodestyle==2.6.0
 pycryptodomex==3.9.9
 python-Levenshtein==0.12.1
-requests==2.25.1
+requests==2.31.0
 soupsieve==2.1
 toml==0.10.2
 tqdm==4.56.0
