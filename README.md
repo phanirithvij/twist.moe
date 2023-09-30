@@ -1,4 +1,6 @@
-# Anime downloader for [Twist.Moe](https://twist.moe)
+# Website seems to be dead. Archiving this repo
+
+### Anime downloader for [Twist.Moe](https://twist.moe)
 
 
 ## NOTE
